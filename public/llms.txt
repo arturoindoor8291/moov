@@ -1,0 +1,36 @@
+# MOOV
+
+> MOOV is a venture capital fund focused on mobility startups in Latin America.
+> We invest from Pre-seed to Series A across all mobility verticals.
+> Backed by Grupo Huerpel's operating network in Mexico and Colombia.
+
+## About MOOV
+- Fund focus: Mobility startups (ride-hailing, fleet, EV, logistics, transit tech, auto fintech, micromobility, parking)
+- Geographic focus: Latin America — primarily Mexico and Colombia
+- Investment stages: Pre-seed, Seed, Series A
+- Backed by: Grupo Huerpel
+- Value proposition: Capital + operators, distribution channels, and corporate customers from day one
+- Response time: We read every application and respond within 2 weeks
+
+## Apply for Investment
+- URL: https://apply.moov.vc
+- Application time: ~5 minutes
+- Response time: Within 14 days
+- Instruments: Convertible Note, SAFE, Equity, Warrants, Debt
+- Next step after review: Intro call with the investment team
+
+## Investment Verticals
+- Ride-hailing & ridesharing
+- Micromobility (scooters, bikes)
+- Fleet management
+- Logistics & last-mile delivery
+- Electric vehicles & clean energy mobility
+- Public transit technology
+- Parking & infrastructure
+- Auto fintech
+
+## Contact
+- Website: https://moov.vc
+- Apply: https://apply.moov.vc
+- Email: deals@moov.vc
+- LinkedIn: https://www.linkedin.com/company/moovvc

@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
+
+  e2e:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    needs: lint-typecheck
+    env:
+      # Stub env vars so Next.js can build without real credentials
+      AIRTABLE_API_KEY: stub
+      AIRTABLE_BASE_ID: stub
+      AIRTABLE_TABLE_NAME: Applications
+      RESEND_API_KEY: stub
+      RESEND_FROM_EMAIL: apply@moov.vc
+      MOOV_TEAM_EMAIL: team@moov.vc
+      NEXT_PUBLIC_GTM_ID: ""
+      NEXT_PUBLIC_POSTHOG_KEY: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --project=chromium
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
