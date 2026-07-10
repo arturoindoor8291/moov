@@ -1,0 +1,322 @@
+{
+  "ultima_actualizacion": "2026-07-09",
+  "fondo": {
+    "nombre": "MOOV",
+    "entidad": "Grupo Huerpel",
+    "total_invertido_confirmado_usd": 511417.98,
+    "startups_total": 10,
+    "startups_sanas": 4,
+    "startups_vigilar": 4,
+    "startups_criticas": 2,
+    "startups_sin_monto_confirmado": ["Bemycar", "Autolab", "Ruedata", "Kigo"],
+    "moic_a_costo": 1.0,
+    "crecimiento_pct_a_costo": 0.0,
+    "nota_crecimiento": "Cifra conservadora calculada 'a costo' (sin marcar al alza el valor de ninguna posición) porque no hay una ronda de valuación posterior confirmada para ninguna de las 6 startups con monto de inversión conocido. El total invertido real es MAYOR al mostrado aquí, porque 4 de 10 startups no tienen su monto de inversión confirmado todavía.",
+    "distribucion_instrumento": {
+      "SAFE": 4,
+      "Convertible Note": 1,
+      "Equity directo": 1,
+      "SPV / Equity Serie A": 1,
+      "No confirmado": 3
+    }
+  },
+  "startups": [
+    {
+      "nombre": "Bemycar",
+      "estado": "sano",
+      "sector": "SaaS B2B automotriz (dashboards IA, enriquecimiento de leads)",
+      "paises": ["España", "México", "Colombia", "Perú", "Portugal"],
+      "modelo_negocio": "SaaS",
+      "legal": {
+        "instrumento": "Equity directo (compra de participaciones + Pacto de Socios)",
+        "monto_usd": null,
+        "fecha_inversion": "2023-11-29",
+        "cap_usd": null,
+        "vencimiento": null,
+        "entidad": "Bemy Technology S.L. (España)",
+        "notas": "Monto exacto invertido por Huerpel NO confirmado. Adhesión formal al Pacto de Socios el 19-sep-2025 (el Pacto original es de oct-2023)."
+      },
+      "financiero": {
+        "metrica_principal": "MRR",
+        "valor": 47586,
+        "moneda": "EUR",
+        "fecha_dato": "2025-11",
+        "arr": 571035,
+        "tendencia": "MRR creció ~10x en 24 meses (dic-2023 a nov-2025). Serie de datos más completa y confiable de todo el portafolio."
+      },
+      "situacion_actual": "Startup con mejor calidad de dato financiero del portafolio. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway reportado hasta dic-2026.",
+      "proximos_pasos": [
+        "Confirmar el monto exacto invertido por Huerpel y el % de participación resultante",
+        "Preguntar qué ocurrió en octubre 2025 con el gasto elevado"
+      ],
+      "alertas": ["Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes"]
+    },
+    {
+      "nombre": "Autolab",
+      "estado": "vigilar",
+      "sector": "Marketplace de reparación y mantenimiento de flotillas vehiculares",
+      "paises": ["México", "Colombia"],
+      "modelo_negocio": "Marketplace take-rate",
+      "legal": {
+        "instrumento": null,
+        "monto_usd": null,
+        "fecha_inversion": null,
+        "cap_usd": null,
+        "vencimiento": null,
+        "entidad": null,
+        "notas": "Instrumento de inversión NO localizado en la carpeta de Autolab - hallazgo de riesgo confirmado, no es una búsqueda pendiente."
+      },
+      "financiero": {
+        "metrica_principal": "% Cumplimiento GTV vs. presupuesto",
+        "valor": 1.04,
+        "moneda": "%",
+        "fecha_dato": "2025-Q3",
+        "arr_objetivo": 3000000,
+        "tendencia": "Colombia alcanzó EBITDA positivo (+$5K USD) en julio 2025, tras pérdidas de $70-80K a inicios de año. Take rate México subió de 14-15% a más de 18%."
+      },
+      "situacion_actual": "ARR de $1.4M USD (oct-2024) con meta de $3M para Serie A. Concentración de riesgo alta en Kovi y Mi Nave. Pasaron de perseguir Serie A a priorizar breakeven en 2025. Cerrando extensión de ~$600-700K de su nota convertible.",
+      "proximos_pasos": [
+        "Localizar el instrumento legal de inversión de Huerpel",
+        "Pedir cifras absolutas de GTV/Net Revenue en texto plano, no solo gráficas"
+      ],
+      "alertas": ["Sin instrumento legal localizado", "Cifras financieras absolutas no confiables (solo % de cumplimiento)"]
+    },
+    {
+      "nombre": "Ruedata",
+      "estado": "vigilar",
+      "sector": "SaaS de gestión predictiva de llantas para flotas comerciales",
+      "paises": ["México", "Brasil", "USA"],
+      "modelo_negocio": "SaaS",
+      "legal": {
+        "instrumento": "SAFE (ronda Seed 2024)",
+        "monto_usd": null,
+        "fecha_inversion": "2024",
+        "cap_usd": null,
+        "vencimiento": null,
+        "entidad": "Ruedata Inc.",
+        "notas": "Posición exacta de Huerpel no aislada en el cap table Pro Forma (feb-2025)."
+      },
+      "financiero": {
+        "metrica_principal": "Net New MRR",
+        "valor": 24000,
+        "moneda": "USD",
+        "fecha_dato": "2026-Q1",
+        "tendencia": "NRR de 105%, pero peor trimestre de churn en su historia ($20K MRR perdido). Reduciendo equipo agresivamente (61→39→28) para llegar a breakeven en Q2 2026."
+      },
+      "situacion_actual": "Definiciones de MRR inconsistentes entre reportes a lo largo del tiempo (ver Discrepancias_Detectadas). Piloto pagado con Abarta Coca-Cola en USA completado con ROI proyectado de 4.8x-9.3x.",
+      "proximos_pasos": [
+        "Aclarar con Ruedata la definición única de MRR a usar",
+        "Confirmar si llegaron a breakeven en Q2 2026"
+      ],
+      "alertas": ["Definiciones de MRR inconsistentes entre reportes"]
+    },
+    {
+      "nombre": "Drivana",
+      "estado": "sano",
+      "sector": "Marketplace de renta de autos peer-to-peer (P2P)",
+      "paises": ["México"],
+      "modelo_negocio": "Marketplace take-rate",
+      "legal": {
+        "instrumento": "SAFE",
+        "monto_usd": 50000,
+        "fecha_inversion": "2025-04-15",
+        "cap_usd": 5000000,
+        "vencimiento": null,
+        "entidad": "Drivana Corp. (Delaware, EE.UU.)",
+        "notas": "SAFE firmado y localizado sin ambigüedad - una de las posiciones mejor documentadas del portafolio."
+      },
+      "financiero": {
+        "metrica_principal": "GTV mensual",
+        "valor": 683082,
+        "moneda": "USD",
+        "fecha_dato": "2026-03",
+        "tendencia": "Diciembre 2025 fue su mejor mes histórico ($1.62M USD). Alta volatilidad mes a mes."
+      },
+      "situacion_actual": "Debutó en Shark Tank México (temporada 10, oct-2025). Lanzamiento de App 2.0. Febrero 2026 fue un mes débil por 'preocupaciones de seguridad vial crecientes en México' según la propia startup.",
+      "proximos_pasos": [
+        "Entender la mecánica del 'Insurance Take' negativo",
+        "Solicitar el reporte más reciente (posterior a marzo 2026)"
+      ],
+      "alertas": []
+    },
+    {
+      "nombre": "Ualabee",
+      "estado": "critico",
+      "sector": "SaaS de datos de movilidad urbana para gobiernos",
+      "paises": ["México", "Argentina"],
+      "modelo_negocio": "SaaS",
+      "legal": {
+        "instrumento": "SAFE",
+        "monto_usd": 80000,
+        "fecha_inversion": "2025-03-17",
+        "cap_usd": 7500000,
+        "vencimiento": null,
+        "entidad": "uMobility Corp. (Delaware, EE.UU.)",
+        "notas": "Vehículo: Blue Mobility Ventures (SPV). Descuento de 80% en el documento parece atípico - verificar contra el original."
+      },
+      "financiero": {
+        "metrica_principal": "MRR",
+        "valor": 35000,
+        "moneda": "USD",
+        "fecha_dato": "2026-05",
+        "arr": 420000,
+        "tendencia": "MRR +43.5% en Q1 2026, pero con runway crítico de 3 meses."
+      },
+      "situacion_actual": "🔴 CRISIS DE CAJA ACTIVA: el CEO reportó directamente (jun-2026) que le faltan $50,000 USD para cerrar la caja de julio 2026. Daniel Stern (Blue Mobility Ventures) preguntó si desde México se puede apoyar. Alianza activa con Waze para el Mundial FIFA 2026.",
+      "proximos_pasos": [
+        "Confirmar el estatus actual de la caja de julio 2026",
+        "Decidir la postura del fondo sobre si apoyar y de qué forma"
+      ],
+      "alertas": ["Crisis de caja activa desde junio 2026", "Runway de solo 3 meses", "Descuento del SAFE (80%) requiere verificación"]
+    },
+    {
+      "nombre": "Mobi",
+      "estado": "critico",
+      "sector": "Movilidad",
+      "paises": ["Paraguay"],
+      "modelo_negocio": "Desconocido - sin documentación suficiente",
+      "legal": {
+        "instrumento": null,
+        "monto_usd": 75035,
+        "fecha_inversion": "2025-07-31",
+        "cap_usd": null,
+        "vencimiento": null,
+        "entidad": "MOBI BMV SPV1 2025 A Series of CGF2021 (vehículo Blue Mobility Ventures)",
+        "notas": "Solo existe el comprobante de transferencia. NO se localizó ningún SAFE o contrato de inversión firmado."
+      },
+      "financiero": {
+        "metrica_principal": null,
+        "valor": null,
+        "moneda": null,
+        "fecha_dato": null,
+        "tendencia": "Sin ningún reporte financiero localizado."
+      },
+      "situacion_actual": "La startup con MENOS información de todo el portafolio - ni instrumento legal completo ni reporte financiero de ningún tipo.",
+      "proximos_pasos": [
+        "Localizar el SAFE o contrato de inversión firmado (prioridad legal más urgente del portafolio)",
+        "Solicitar el primer reporte de KPIs/financiero",
+        "Solicitar cualquier material descriptivo del negocio (deck, AOI)"
+      ],
+      "alertas": ["Sin instrumento legal localizado", "Sin ningún reporte financiero", "Startup con menos documentación de todo el portafolio"]
+    },
+    {
+      "nombre": "Leasy",
+      "estado": "sano",
+      "sector": "Fintech - financiamiento de vehículos rent-to-own para economía gig",
+      "paises": ["Perú", "México"],
+      "modelo_negocio": "Fintech",
+      "legal": {
+        "instrumento": "Equity / SPV (Serie A)",
+        "monto_usd": 106382.98,
+        "fecha_inversion": "2025-12-10",
+        "cap_usd": null,
+        "pre_money_usd": 53000000,
+        "vencimiento": null,
+        "entidad": "LEASY A Series of MobilityVC LLC (vehículo Blue Mobility Ventures)",
+        "notas": "Solo existe el comprobante de transferencia. Falta el contrato/SAFE firmado. Descuento del 20% exclusivo para el SPV de MobilityVC."
+      },
+      "financiero": {
+        "metrica_principal": "ARR",
+        "valor": 9400000,
+        "moneda": "USD",
+        "fecha_dato": "2024",
+        "ebitda": 3900000,
+        "margen_ebitda_pct": 0.62,
+        "tendencia": "Crecimiento promedio de 89% anual en los últimos 5 años."
+      },
+      "situacion_actual": "Modelo intensivo en capital: efectivo cayó -70% entre 2023 y 2024 mientras los activos en autos crecieron fuerte. Depende de deuda de terceros (Lendable, Percent). En medio de una Serie A de $7M USD.",
+      "proximos_pasos": [
+        "Localizar el contrato/SAFE firmado de la posición de Huerpel",
+        "Confirmar cuál margen neto 2024 es el correcto (8.7% o 20%)",
+        "Vigilar las condiciones de la deuda con Lendable y Percent"
+      ],
+      "alertas": ["Discrepancia en margen neto 2024 (8.7% vs 20%)", "Contrato legal no localizado"]
+    },
+    {
+      "nombre": "Vera AI",
+      "estado": "vigilar",
+      "sector": "Retail-tech (IA para ventas en tienda física)",
+      "paises": ["USA"],
+      "modelo_negocio": "Etapa temprana / piloto",
+      "legal": {
+        "instrumento": "SAFE",
+        "monto_usd": 100000,
+        "fecha_inversion": "2025-11-19",
+        "cap_usd": 6000000,
+        "vencimiento": null,
+        "entidad": "City Returns, LLC (Delaware, EE.UU.)",
+        "notas": "Documentación legal completa y sin ambigüedad."
+      },
+      "financiero": {
+        "metrica_principal": "Revenue acumulado",
+        "valor": 45000,
+        "moneda": "USD",
+        "fecha_dato": "2025-06",
+        "tendencia": "69% de crecimiento promedio mes a mes, pero sobre una base muy pequeña - no interpretar como señal fuerte todavía."
+      },
+      "situacion_actual": "Etapa de piloto. Es esperable que aún no tenga reportes financieros recurrentes, a diferencia de otros casos del portafolio donde la ausencia de reportes sí es un problema.",
+      "proximos_pasos": [
+        "Solicitar el primer reporte de avance del piloto"
+      ],
+      "alertas": []
+    },
+    {
+      "nombre": "Kigo",
+      "estado": "sano",
+      "sector": "Marketplace de estacionamientos digitales, parquímetros y control de accesos",
+      "paises": ["México"],
+      "modelo_negocio": "Marketplace",
+      "legal": {
+        "instrumento": null,
+        "monto_usd": null,
+        "fecha_inversion": "2023",
+        "cap_usd": null,
+        "vencimiento": null,
+        "entidad": "Cargo Móvil S.A. de C.V. (México) / Kigo Holdings LLC (Delaware, desde 2023)",
+        "notas": "Ronda de $30M MXN en 2023 confirma a Grupo Huerpel como inversionista, pero el instrumento y monto exacto NO están localizados. Confirmar en cuál de las dos entidades está registrada la posición."
+      },
+      "financiero": {
+        "metrica_principal": "Revenue anual",
+        "valor": 145906550,
+        "moneda": "MXN",
+        "fecha_dato": "2025",
+        "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva)."
+      },
+      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja.",
+      "proximos_pasos": [
+        "Localizar el instrumento de inversión específico de Huerpel",
+        "Confirmar en qué entidad (México o Delaware) está la posición"
+      ],
+      "alertas": ["Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio"]
+    },
+    {
+      "nombre": "Partrunner",
+      "estado": "vigilar",
+      "sector": "Logística last-mile para carga voluminosa ('big & bulky')",
+      "paises": ["México", "USA"],
+      "modelo_negocio": "Marketplace take-rate",
+      "legal": {
+        "instrumento": "Convertible Promissory Note",
+        "monto_usd": 100000,
+        "fecha_inversion": "2023-07-17",
+        "cap_usd": null,
+        "vencimiento": "Extendido a ~2029 vía waiver de 2026 (firma sin confirmar)",
+        "entidad": "Partrunner Deliveries, Inc. (Delaware, EE.UU.)",
+        "notas": "Waiver de 2026 extiende el vencimiento y elimina el umbral mínimo de conversión, pero no se confirmó si Huerpel ya lo firmó."
+      },
+      "financiero": {
+        "metrica_principal": "GMV mensual",
+        "valor": 765000,
+        "moneda": "USD",
+        "fecha_dato": "2025-06",
+        "tendencia": "Crecimiento fuerte y sostenido, take rate estable 17-21%. Lanzaron formalmente su Serie A en mayo 2025."
+      },
+      "situacion_actual": "Financieramente sana y creciendo, con el mejor historial de reportes de todo el portafolio (42+ reportes mensuales desde 2023). Dato financiero desactualizado (más de 12 meses).",
+      "proximos_pasos": [
+        "Confirmar si el waiver legal de 2026 ya se firmó",
+        "Solicitar el reporte financiero más reciente (2026)"
+      ],
+      "alertas": ["Firma del waiver legal 2026 sin confirmar", "Dato financiero desactualizado (>12 meses)"]
+    }
+  ]
+}
