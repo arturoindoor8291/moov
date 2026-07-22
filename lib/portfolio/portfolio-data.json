@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-09",
+  "ultima_actualizacion": "2026-07-22",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -127,15 +127,15 @@
       },
       "financiero": {
         "metrica_principal": "GTV mensual",
-        "valor": 683082,
+        "valor": 805541,
         "moneda": "USD",
-        "fecha_dato": "2026-03",
-        "tendencia": "Diciembre 2025 fue su mejor mes histórico ($1.62M USD). Alta volatilidad mes a mes."
+        "fecha_dato": "2026-06",
+        "tendencia": "Mayo 2026 fue el segundo mejor mes de toda la serie ($1.11M USD), pero junio cayó -27% vs. mayo. Diciembre 2025 sigue siendo el mejor mes histórico ($1.62M USD). Alta volatilidad mes a mes se mantiene como patrón estructural."
       },
-      "situacion_actual": "Debutó en Shark Tank México (temporada 10, oct-2025). Lanzamiento de App 2.0. Febrero 2026 fue un mes débil por 'preocupaciones de seguridad vial crecientes en México' según la propia startup.",
+      "situacion_actual": "Debutó en Shark Tank México (temporada 10, oct-2025). Lanzamiento de App 2.0. Reporte actualizado ahora cubre hasta jun-2026: abr-may 2026 mostraron fuerte recuperación (+33% y +22% GTV MoM) antes de la caída de junio. Caja: MXN $5.82M al cierre de jun-2026, runway de ~21.8 meses (sano).",
       "proximos_pasos": [
         "Entender la mecánica del 'Insurance Take' negativo",
-        "Solicitar el reporte más reciente (posterior a marzo 2026)"
+        "Confirmar con Drivana la causa de la caída de GTV en junio 2026 (-27% vs. mayo)"
       ],
       "alertas": []
     },
