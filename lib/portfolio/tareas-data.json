@@ -1,0 +1,182 @@
+{
+  "ultima_actualizacion": "2026-07-20",
+  "fuente": "Bitácoras de comunicación + transcripciones de llamadas (Mobi, Leasy, Ruedata, Ualabee) + research de oportunidades (Alfred, Karvia). Ver Tareas_y_Compromisos.gsheet en la raíz de la carpeta de Drive del portafolio para la copia canónica editable.",
+  "tareas": [
+    {
+      "id": "T-001",
+      "startup": "Ualabee",
+      "tarea": "Decisión de comité sobre ronda puente de Ualabee",
+      "descripcion": "Ualabee está levantando una extensión/bridge de 150,000 USD en las mismas condiciones de su ronda anterior y preguntó directamente a Huerpel si planea reinvertir. Requiere llevar el caso al comité de inversión.",
+      "nivel_importancia": "alta",
+      "responsable": "Arturo / Comité de inversión Huerpel",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": "2026-08-31"
+    },
+    {
+      "id": "T-002",
+      "startup": "Ualabee",
+      "tarea": "Scouting de inversionistas ángel en México para Ualabee",
+      "descripcion": "Ualabee pidió ayuda para identificar ángeles mexicanos interesados en su ronda (tickets sugeridos ~90,000 USD).",
+      "nivel_importancia": "media",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": "2026-08-31"
+    },
+    {
+      "id": "T-003",
+      "startup": "Ualabee",
+      "tarea": "Recibir lista de contactos ya abordados por Ualabee",
+      "descripcion": "Para evitar duplicar outreach de ángeles, Ualabee debe compartir su lista de contactos ya contactados en México.",
+      "nivel_importancia": "baja",
+      "responsable": "Ualabee (envía) / Arturo (da seguimiento)",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-004",
+      "startup": "Portafolio (general)",
+      "tarea": "Presentar al comité resumen de startups buscando segunda vuelta",
+      "descripcion": "Arturo está recabando información de todas las startups del portafolio para presentar al comité cuáles están buscando una segunda ronda (incluye al menos Ualabee y Mobi).",
+      "nivel_importancia": "alta",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": "Próximas semanas (sin fecha exacta)"
+    },
+    {
+      "id": "T-005",
+      "startup": "Mobi",
+      "tarea": "Enviar y analizar propuesta de financiamiento de flotillas eléctricas",
+      "descripcion": "Mobi propuso una colaboración de financiamiento de motos/autos eléctricos vinculados a plataformas tipo Rappi/Uber. Mobi debe enviar la información y Huerpel debe analizarla con los gerentes de área.",
+      "nivel_importancia": "media",
+      "responsable": "Mobi (envía) / Arturo (distribuye y analiza)",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-006",
+      "startup": "Mobi",
+      "tarea": "Buscar fondos de movilidad en México para referir a Mobi",
+      "descripcion": "Mobi pidió ayuda para conectar con 1-2 fondos enfocados en movilidad en México.",
+      "nivel_importancia": "media",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-007",
+      "startup": "Mobi",
+      "tarea": "Recibir plan de softlanding a México",
+      "descripcion": "Mobi ofreció compartir su plan de softlanding para el mercado mexicano una vez que lo tengan estructurado.",
+      "nivel_importancia": "baja",
+      "responsable": "Mobi (envía)",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-008",
+      "startup": "Leasy",
+      "tarea": "Investigar identidad del 'segundo socio' mencionado en Puebla",
+      "descripcion": "En la llamada se mencionó un posible competidor/segundo socio (nombre poco claro en la transcripción, similar a 'Espilotea') ofreciendo una propuesta similar en Puebla.",
+      "nivel_importancia": "media",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-009",
+      "startup": "Leasy",
+      "tarea": "Tocar base con 'Will' para entender el reto desde su lado",
+      "descripcion": "Leasy pidió que Arturo hable directamente con el contacto interno 'Will' (lado dealer/Hyundai) para entender el reto de márgenes en venta a flotillas.",
+      "nivel_importancia": "media",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-010",
+      "startup": "Leasy",
+      "tarea": "Confirmar inclusión de Arturo en lista de reportes trimestrales",
+      "descripcion": "Leasy referenció que 'Alejandro' debía sumar a Arturo a la lista de distribución de reportes trimestrales.",
+      "nivel_importancia": "baja",
+      "responsable": "Leasy (Alejandro)",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-011",
+      "startup": "Leasy",
+      "tarea": "[HALLAZGO DE RIESGO] Verificar relación con socio mexicano 'Santiago'",
+      "descripcion": "Un tercer interlocutor señaló que un socio mexicano de nombre Santiago no estaría cumpliendo compromisos de envío de clientes pese a un ticket de financiamiento de 100,000 USD ya entregado. No se pudo confirmar con certeza si es la misma persona que el contacto de Leasy. Se documenta como hallazgo de riesgo, no como tarea de búsqueda.",
+      "nivel_importancia": "alta",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "hallazgo_de_riesgo",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-012",
+      "startup": "Ruedata",
+      "tarea": "Identificar contactos internos que puedan ser clientes de Ruedata",
+      "descripcion": "Ruedata busca relacionarse con talleres mecánicos de Nissan y clientes de transporte pesado/clase 3-8.",
+      "nivel_importancia": "media",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-013",
+      "startup": "Ruedata",
+      "tarea": "Recibir one-pager comercial de Ruedata",
+      "descripcion": "Ruedata enviará material comercial para que Arturo pueda referir oportunidades en su nombre.",
+      "nivel_importancia": "baja",
+      "responsable": "Ruedata (envía)",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-014",
+      "startup": "Ruedata",
+      "tarea": "Enviar correo corporativo correcto para lista de reportes",
+      "descripcion": "Arturo debe reenviar la invitación con su correo de empresa (no personal) para quedar en la lista de reportes de Ruedata.",
+      "nivel_importancia": "baja",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "pendiente",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-015",
+      "startup": "Alfred",
+      "tarea": "Análisis de oportunidad de inversión (AOI) - ronda Serie A",
+      "descripcion": "Javier/Arturo solicitaron evaluar a Alfred como oportunidad de inversión. Deck de investors.alfred.co (julio 2026) indica ronda Serie A de 6M USD.",
+      "nivel_importancia": "alta",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "completado",
+      "fecha_limite": null
+    },
+    {
+      "id": "T-016",
+      "startup": "Karvia",
+      "tarea": "Investigar a Karvia para Javier (gestión de flotillas)",
+      "descripcion": "Javier pidió investigar si Karvia se parece a Mitaller. El fundador de Karvia previamente cotizó el desarrollo de las apps de Multicréditos y Mitaller como proveedor tecnológico.",
+      "nivel_importancia": "alta",
+      "responsable": "Arturo",
+      "fecha_origen": "2026-07-20",
+      "estado": "completado_con_preguntas_abiertas",
+      "fecha_limite": null
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface PortafolioNavProps {
-  active: "dashboard" | "overview" | "usuarios";
+  active: "dashboard" | "overview" | "tareas" | "usuarios";
 }
 
 interface CurrentUser {
@@ -47,6 +47,12 @@ export default function PortafolioNav({ active }: PortafolioNavProps) {
             style={{ ...s.link, ...(active === "overview" ? s.linkActive : {}) }}
           >
             Fondo
+          </Link>
+          <Link
+            href="/portafolio/tareas"
+            style={{ ...s.link, ...(active === "tareas" ? s.linkActive : {}) }}
+          >
+            Tareas y Compromisos
           </Link>
           {user?.role === "admin" && (
             <Link

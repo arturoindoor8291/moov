@@ -83,3 +83,34 @@ export const PortfolioDataSchema = z.object({
 });
 
 export type PortfolioData = z.infer<typeof PortfolioDataSchema>;
+
+/**
+ * Shape of tareas-data.json — 16 tareas/compromisos extraídas de llamadas
+ * con startups del portafolio y research de oportunidades. Independiente
+ * de PortfolioDataSchema, no modifica el shape de las startups existentes.
+ * `estado` se deja como texto libre (no enum cerrado): valores conocidos
+ * hoy son "pendiente", "completado", "hallazgo_de_riesgo" y
+ * "completado_con_preguntas_abiertas", pero la realidad de los datos no
+ * encaja en un enum rígido — ver la misma nota de diseño en
+ * PortfolioDataSchema.
+ */
+export const TareaSchema = z.object({
+  id: z.string(),
+  startup: z.string(),
+  tarea: z.string(),
+  descripcion: z.string(),
+  nivel_importancia: z.enum(["alta", "media", "baja"]),
+  responsable: z.string(),
+  fecha_origen: z.string(),
+  estado: z.string(),
+  fecha_limite: z.string().nullable(),
+});
+
+export type Tarea = z.infer<typeof TareaSchema>;
+
+export const TareasDataSchema = z.object({
+  ultima_actualizacion: z.string(),
+  tareas: z.array(TareaSchema),
+});
+
+export type TareasData = z.infer<typeof TareasDataSchema>;
