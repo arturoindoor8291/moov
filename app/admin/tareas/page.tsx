@@ -15,6 +15,7 @@ export default function AdminTareasPage() {
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [proyectoFilter, setProyectoFilter] = useState("all");
   const [startupFilter, setStartupFilter] = useState("all");
   const [importanciaFilter, setImportanciaFilter] = useState<"all" | NivelImportancia>("all");
   const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
@@ -42,6 +43,11 @@ export default function AdminTareasPage() {
 
   const tareasById = useMemo(() => new Map(tareas.map((t) => [t.id, t])), [tareas]);
 
+  const proyectos = useMemo(
+    () => Array.from(new Set(tareas.map((t) => t.proyecto))).sort(),
+    [tareas]
+  );
+
   const startups = useMemo(
     () => Array.from(new Set(tareas.map((t) => t.startup))).sort(),
     [tareas]
@@ -49,14 +55,15 @@ export default function AdminTareasPage() {
 
   const filtered = useMemo(() => {
     return tareas.filter((t) => {
+      const matchProyecto = proyectoFilter === "all" || t.proyecto === proyectoFilter;
       const matchStartup = startupFilter === "all" || t.startup === startupFilter;
       const matchImportancia = importanciaFilter === "all" || t.nivel_importancia === importanciaFilter;
       const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
       const matchTipo = tipoFilter === "all" || t.tipo_tarea === tipoFilter;
       const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
-      return matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
+      return matchProyecto && matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
     });
-  }, [tareas, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
+  }, [tareas, proyectoFilter, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
 
   const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
     let previousColumn: Tarea["columna_kanban"] | undefined;
@@ -105,6 +112,18 @@ export default function AdminTareasPage() {
         </div>
 
         <div style={s.controls}>
+          <select
+            value={proyectoFilter}
+            onChange={(e) => setProyectoFilter(e.target.value)}
+            style={{ ...s.select, ...s.selectProyecto }}
+          >
+            <option value="all">Todos los proyectos</option>
+            {proyectos.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
           <select value={startupFilter} onChange={(e) => setStartupFilter(e.target.value)} style={s.select}>
             <option value="all">Todas las startups</option>
             {startups.map((st) => (
@@ -199,6 +218,10 @@ const s: Record<string, React.CSSProperties> = {
     fontSize: "14px",
     color: "#eef1f6",
     outline: "none",
+  },
+  selectProyecto: {
+    fontWeight: 700,
+    border: "1px solid rgba(47,109,255,0.35)",
   },
   toggle: {
     display: "flex",

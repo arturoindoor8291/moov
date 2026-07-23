@@ -118,6 +118,12 @@ export const HistorialEntrySchema = z.object({
 
 export const TareaSchema = z.object({
   id: z.string(),
+  // Empresa/iniciativa dueña de la tarea — distinto de `startup` (que es la
+  // startup del portafolio, cuando aplica). Texto libre a propósito: el
+  // board consolida tareas de MOOV/Portafolio, Multicréditos, Mitaller y
+  // cualquier otro proyecto que se sume después, sin tener que tocar el
+  // schema cada vez que aparece uno nuevo.
+  proyecto: z.string(),
   startup: z.string(),
   tipo_tarea: z.enum([
     "compromiso_propio",

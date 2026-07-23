@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ImportanciaBadge from "./ImportanciaBadge";
 import UrgenciaBadge from "./UrgenciaBadge";
+import ProyectoBadge from "./ProyectoBadge";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { formatFechaLimite, isFechaLimiteUrgente } from "@/lib/portfolio/format";
 
@@ -40,6 +41,9 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
       onDragStart={(e) => onDragStart(e, tarea.id)}
       style={{ ...s.card, ...(isRiesgo ? s.cardRiesgo : {}), ...(urgenteFecha ? s.cardUrgente : {}) }}
     >
+      <div style={s.proyectoRow}>
+        <ProyectoBadge proyecto={tarea.proyecto} />
+      </div>
       <div style={s.headerRow}>
         {isRiesgo && (
           <span title="Hallazgo de riesgo — verificar, no es una tarea por hacer" style={s.riesgoIcon}>
@@ -191,6 +195,7 @@ const s: Record<string, React.CSSProperties> = {
   },
   cardRiesgo: { borderColor: "rgba(255,195,0,0.4)", boxShadow: "inset 3px 0 0 0 #ffc300" },
   cardUrgente: { borderColor: "rgba(255,90,90,0.35)" },
+  proyectoRow: { marginBottom: "2px" },
   headerRow: { display: "flex", alignItems: "flex-start", gap: "6px" },
   riesgoIcon: { color: "#ffc300", fontSize: "13px", lineHeight: "18px" },
   title: { fontSize: "13px", fontWeight: 700, color: "#eef1f6", lineHeight: 1.4 },
