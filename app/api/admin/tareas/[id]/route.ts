@@ -30,7 +30,7 @@ export async function PATCH(
   try {
     await setColumnOverride(id, parsed.data);
   } catch (err) {
-    console.error("[portafolio/tareas/:id] failed to persist column change:", err);
+    console.error("[admin/tareas/:id] failed to persist column change:", err);
     return NextResponse.json({ message: "No se pudo guardar el cambio" }, { status: 503 });
   }
 

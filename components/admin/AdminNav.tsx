@@ -1,32 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-interface PortafolioNavProps {
-  active: "dashboard" | "overview" | "usuarios";
+interface AdminNavProps {
+  active: "dashboard" | "portfolio" | "tareas";
 }
 
-interface CurrentUser {
-  username: string;
-  role: "admin" | "viewer";
-}
-
-export default function PortafolioNav({ active }: PortafolioNavProps) {
+export default function AdminNav({ active }: AdminNavProps) {
   const router = useRouter();
-  const [user, setUser] = useState<CurrentUser | null>(null);
-
-  useEffect(() => {
-    fetch("/api/portafolio/me")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => setUser(data))
-      .catch(() => setUser(null));
-  }, []);
 
   async function handleLogout() {
-    await fetch("/api/portafolio/logout", { method: "POST" });
-    router.push("/portafolio/login");
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.push("/admin/login");
   }
 
   return (
@@ -34,35 +20,30 @@ export default function PortafolioNav({ active }: PortafolioNavProps) {
       <div style={s.inner}>
         <div style={s.left}>
           <span style={s.logo}>MOOV</span>
-          <span style={s.badge}>Portafolio</span>
+          <span style={s.badge}>Admin</span>
           <div style={s.divider} />
           <Link
-            href="/portafolio"
+            href="/admin/dashboard"
             style={{ ...s.link, ...(active === "dashboard" ? s.linkActive : {}) }}
           >
-            Startups
+            Applications
           </Link>
           <Link
-            href="/portafolio/overview"
-            style={{ ...s.link, ...(active === "overview" ? s.linkActive : {}) }}
+            href="/admin/portfolio"
+            style={{ ...s.link, ...(active === "portfolio" ? s.linkActive : {}) }}
           >
-            Fondo
+            Portfolio
           </Link>
-          {user?.role === "admin" && (
-            <Link
-              href="/portafolio/usuarios"
-              style={{ ...s.link, ...(active === "usuarios" ? s.linkActive : {}) }}
-            >
-              Usuarios
-            </Link>
-          )}
+          <Link
+            href="/admin/tareas"
+            style={{ ...s.link, ...(active === "tareas" ? s.linkActive : {}) }}
+          >
+            Tareas
+          </Link>
         </div>
-        <div style={s.right}>
-          {user && <span style={s.username}>{user.username}</span>}
-          <button onClick={handleLogout} style={s.logout}>
-            Cerrar sesión
-          </button>
-        </div>
+        <button onClick={handleLogout} style={s.logout}>
+          Sign out
+        </button>
       </div>
     </nav>
   );
@@ -86,7 +67,6 @@ const s: Record<string, React.CSSProperties> = {
     justifyContent: "space-between",
   },
   left: { display: "flex", alignItems: "center", gap: "20px" },
-  right: { display: "flex", alignItems: "center", gap: "14px" },
   logo: {
     fontSize: "18px",
     fontWeight: 800,
@@ -122,10 +102,6 @@ const s: Record<string, React.CSSProperties> = {
   linkActive: {
     color: "#eef1f6",
     borderBottomColor: "#2f6dff",
-  },
-  username: {
-    fontSize: "13px",
-    color: "rgba(238,241,246,0.4)",
   },
   logout: {
     background: "transparent",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import PortafolioNav from "@/components/portafolio/PortafolioNav";
+import AdminNav from "@/components/admin/AdminNav";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
 import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
@@ -10,7 +10,7 @@ type NivelImportancia = Tarea["nivel_importancia"];
 type NivelUrgencia = Tarea["nivel_urgencia"];
 type TipoTarea = Tarea["tipo_tarea"];
 
-export default function PortafolioTareasPage() {
+export default function AdminTareasPage() {
   const [tareas, setTareas] = useState<Tarea[]>([]);
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function PortafolioTareasPage() {
 
   const fetchTareas = useCallback(async () => {
     try {
-      const res = await fetch("/api/portafolio/tareas");
+      const res = await fetch("/api/admin/tareas");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
       setTareas(data.tareas);
@@ -69,7 +69,7 @@ export default function PortafolioTareasPage() {
       })
     );
 
-    fetch(`/api/portafolio/tareas/${id}`, {
+    fetch(`/api/admin/tareas/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ columna_kanban: columna }),
@@ -87,7 +87,7 @@ export default function PortafolioTareasPage() {
 
   return (
     <div style={s.page}>
-      <PortafolioNav active="tareas" />
+      <AdminNav active="tareas" />
       <main style={s.main}>
         <div style={s.header}>
           <div>
