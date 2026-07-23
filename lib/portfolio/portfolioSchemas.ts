@@ -85,25 +85,65 @@ export const PortfolioDataSchema = z.object({
 export type PortfolioData = z.infer<typeof PortfolioDataSchema>;
 
 /**
- * Shape of tareas-data.json — 16 tareas/compromisos extraídas de llamadas
- * con startups del portafolio y research de oportunidades. Independiente
- * de PortfolioDataSchema, no modifica el shape de las startups existentes.
- * `estado` se deja como texto libre (no enum cerrado): valores conocidos
- * hoy son "pendiente", "completado", "hallazgo_de_riesgo" y
- * "completado_con_preguntas_abiertas", pero la realidad de los datos no
- * encaja en un enum rígido — ver la misma nota de diseño en
- * PortfolioDataSchema.
+ * Shape of tareas-data.json (schema v3) — 16 tareas/compromisos con
+ * contexto completo (fuente, enlaces, checklist, historial,
+ * dependencias) extraídas de llamadas con startups del portafolio y
+ * research de oportunidades. Independiente de PortfolioDataSchema, no
+ * modifica el shape de las startups existentes. `estado` se deja como
+ * texto libre (no enum cerrado) para matices que no caben en
+ * `columna_kanban` — la realidad de los datos no encaja en un enum
+ * rígido, misma nota de diseño que en PortfolioDataSchema.
  */
+export const FuenteTareaSchema = z.object({
+  tipo: z.string(),
+  referencia: z.string(),
+  fecha: z.string(),
+  link: z.string().nullable(),
+});
+
+export const EnlaceSchema = z.object({
+  titulo: z.string(),
+  url: z.string(),
+});
+
+export const ChecklistItemSchema = z.object({
+  item: z.string(),
+  hecho: z.boolean(),
+});
+
+export const HistorialEntrySchema = z.object({
+  fecha: z.string(),
+  nota: z.string(),
+});
+
 export const TareaSchema = z.object({
   id: z.string(),
   startup: z.string(),
+  tipo_tarea: z.enum([
+    "compromiso_propio",
+    "compromiso_contraparte",
+    "decision_comite",
+    "hallazgo_riesgo",
+  ]),
   tarea: z.string(),
   descripcion: z.string(),
+  proxima_accion: z.string(),
   nivel_importancia: z.enum(["alta", "media", "baja"]),
+  nivel_urgencia: z.enum(["inmediata", "esta_semana", "este_mes", "sin_urgencia_definida"]),
+  columna_kanban: z.enum(["pendiente", "en_progreso", "bloqueada", "completada"]),
   responsable: z.string(),
   fecha_origen: z.string(),
-  estado: z.string(),
+  fecha_actualizacion: z.string(),
+  fecha_completado: z.string().nullable(),
   fecha_limite: z.string().nullable(),
+  estado: z.string(),
+  fuente: FuenteTareaSchema,
+  enlaces: z.array(EnlaceSchema),
+  depende_de: z.array(z.string()),
+  etiquetas: z.array(z.string()),
+  confidencial: z.boolean(),
+  checklist: z.array(ChecklistItemSchema),
+  historial: z.array(HistorialEntrySchema),
 });
 
 export type Tarea = z.infer<typeof TareaSchema>;

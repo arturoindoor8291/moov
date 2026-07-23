@@ -2,10 +2,13 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import PortafolioNav from "@/components/portafolio/PortafolioNav";
-import TareasTable from "@/components/portafolio/TareasTable";
+import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
+import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 type NivelImportancia = Tarea["nivel_importancia"];
+type NivelUrgencia = Tarea["nivel_urgencia"];
+type TipoTarea = Tarea["tipo_tarea"];
 
 export default function PortafolioTareasPage() {
   const [tareas, setTareas] = useState<Tarea[]>([]);
@@ -14,6 +17,8 @@ export default function PortafolioTareasPage() {
   const [error, setError] = useState("");
   const [startupFilter, setStartupFilter] = useState("all");
   const [importanciaFilter, setImportanciaFilter] = useState<"all" | NivelImportancia>("all");
+  const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
+  const [tipoFilter, setTipoFilter] = useState<"all" | TipoTarea>("all");
   const [hideCompletadas, setHideCompletadas] = useState(false);
 
   const fetchTareas = useCallback(async () => {
@@ -34,6 +39,8 @@ export default function PortafolioTareasPage() {
     fetchTareas();
   }, [fetchTareas]);
 
+  const tareasById = useMemo(() => new Map(tareas.map((t) => [t.id, t])), [tareas]);
+
   const startups = useMemo(
     () => Array.from(new Set(tareas.map((t) => t.startup))).sort(),
     [tareas]
@@ -43,10 +50,16 @@ export default function PortafolioTareasPage() {
     return tareas.filter((t) => {
       const matchStartup = startupFilter === "all" || t.startup === startupFilter;
       const matchImportancia = importanciaFilter === "all" || t.nivel_importancia === importanciaFilter;
-      const matchCompletada = !hideCompletadas || t.estado !== "completado";
-      return matchStartup && matchImportancia && matchCompletada;
+      const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
+      const matchTipo = tipoFilter === "all" || t.tipo_tarea === tipoFilter;
+      const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
+      return matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
     });
-  }, [tareas, startupFilter, importanciaFilter, hideCompletadas]);
+  }, [tareas, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
+
+  const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
+    setTareas((prev) => prev.map((t) => (t.id === id ? { ...t, columna_kanban: columna } : t)));
+  }, []);
 
   return (
     <div style={s.page}>
@@ -68,11 +81,7 @@ export default function PortafolioTareasPage() {
         </div>
 
         <div style={s.controls}>
-          <select
-            value={startupFilter}
-            onChange={(e) => setStartupFilter(e.target.value)}
-            style={s.select}
-          >
+          <select value={startupFilter} onChange={(e) => setStartupFilter(e.target.value)} style={s.select}>
             <option value="all">Todas las startups</option>
             {startups.map((st) => (
               <option key={st} value={st}>
@@ -90,6 +99,29 @@ export default function PortafolioTareasPage() {
             <option value="media">🟡 Media</option>
             <option value="baja">⚪ Baja</option>
           </select>
+          <select
+            value={urgenciaFilter}
+            onChange={(e) => setUrgenciaFilter(e.target.value as "all" | NivelUrgencia)}
+            style={s.select}
+          >
+            <option value="all">Toda urgencia</option>
+            <option value="inmediata">🔺 Inmediata</option>
+            <option value="esta_semana">🟠 Esta semana</option>
+            <option value="este_mes">🔵 Este mes</option>
+            <option value="sin_urgencia_definida">⚪ Sin urgencia definida</option>
+          </select>
+          <select
+            value={tipoFilter}
+            onChange={(e) => setTipoFilter(e.target.value as "all" | TipoTarea)}
+            style={s.select}
+          >
+            <option value="all">Todo tipo</option>
+            {(Object.keys(TIPO_TAREA_LABEL) as TipoTarea[]).map((tipo) => (
+              <option key={tipo} value={tipo}>
+                {TIPO_TAREA_LABEL[tipo]}
+              </option>
+            ))}
+          </select>
           <label style={s.toggle}>
             <input
               type="checkbox"
@@ -106,7 +138,7 @@ export default function PortafolioTareasPage() {
         ) : error ? (
           <p style={{ ...s.empty, color: "#ff5a5a" }}>{error}</p>
         ) : (
-          <TareasTable tareas={filtered} />
+          <TareasKanbanBoard tareas={filtered} tareasById={tareasById} onColumnChange={handleColumnChange} />
         )}
       </main>
     </div>
@@ -115,7 +147,7 @@ export default function PortafolioTareasPage() {
 
 const s: Record<string, React.CSSProperties> = {
   page: { minHeight: "100vh", background: "#050506", color: "#eef1f6" },
-  main: { maxWidth: "1280px", margin: "0 auto", padding: "32px 24px" },
+  main: { maxWidth: "1400px", margin: "0 auto", padding: "32px 24px" },
   header: {
     display: "flex",
     justifyContent: "space-between",

@@ -1,182 +1,453 @@
 {
-  "ultima_actualizacion": "2026-07-20",
-  "fuente": "Bitácoras de comunicación + transcripciones de llamadas (Mobi, Leasy, Ruedata, Ualabee) + research de oportunidades (Alfred, Karvia). Ver Tareas_y_Compromisos.gsheet en la raíz de la carpeta de Drive del portafolio para la copia canónica editable.",
+  "ultima_actualizacion": "2026-07-23",
+  "fuente_general": "Bitácoras de comunicación + transcripciones de llamadas (Mobi, Leasy, Ruedata, Ualabee) + research de oportunidades (Alfred, Karvia). Ver Tareas_y_Compromisos.gsheet en la raíz de la carpeta de Drive del portafolio para la copia canónica editable.",
+  "schema_version": "3 (kanban completo: fuente, enlaces, nivel_urgencia, proxima_accion, checklist, historial, dependencias, etiquetas, confidencialidad)",
+  "leyenda_campos": {
+    "tipo_tarea": "compromiso_propio | compromiso_contraparte | decision_comite | hallazgo_riesgo",
+    "nivel_importancia": "alta | media | baja — QUÉ TAN GRAVE es si no se hace (impacto)",
+    "nivel_urgencia": "inmediata | esta_semana | este_mes | sin_urgencia_definida — QUÉ TAN PRONTO hay que actuar (tiempo). Importancia y urgencia son ejes distintos: una tarea puede ser importante pero no urgente, o urgente pero de bajo impacto.",
+    "columna_kanban": "pendiente | en_progreso | bloqueada | completada",
+    "fuente": "de dónde salió la tarea originalmente (una sola referencia raíz)",
+    "enlaces": "lista abierta de documentos/links de contexto adicionales (deck, sitio web, carpeta de Drive, otra hoja) — puede haber varios, a diferencia de fuente que es uno solo"
+  },
   "tareas": [
     {
       "id": "T-001",
       "startup": "Ualabee",
+      "tipo_tarea": "decision_comite",
       "tarea": "Decisión de comité sobre ronda puente de Ualabee",
       "descripcion": "Ualabee está levantando una extensión/bridge de 150,000 USD en las mismas condiciones de su ronda anterior y preguntó directamente a Huerpel si planea reinvertir. Requiere llevar el caso al comité de inversión.",
+      "proxima_accion": "Agendar el punto en la próxima sesión de comité y llevar el resumen de T-004.",
       "nivel_importancia": "alta",
+      "nivel_urgencia": "inmediata",
+      "columna_kanban": "bloqueada",
       "responsable": "Arturo / Comité de inversión Huerpel",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": "2026-08-31",
       "estado": "pendiente",
-      "fecha_limite": "2026-08-31"
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ualabee, ver Ualabee_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1KvtqTuuPWYdDkswqdx2pB_jBfJmeHOLau2ic-swrk-E/edit"},
+      "enlaces": [
+        {"titulo": "Sitio de Ualabee", "url": "https://ualabee.com"},
+        {"titulo": "BD de Oportunidades de Inversión (fila Ualabee)", "url": "https://docs.google.com/spreadsheets/d/158-_TYp986j92XcC79hPCqzeqUr3-fD3thobJTEzztA/edit"}
+      ],
+      "depende_de": [],
+      "etiquetas": ["ronda de inversión", "decisión de comité", "follow-on"],
+      "confidencial": false,
+      "checklist": [
+        {"item": "Confirmar monto e instrumento exacto de la extensión", "hecho": false},
+        {"item": "Revisar situación financiera actual de Ualabee (breakeven)", "hecho": false},
+        {"item": "Presentar al comité", "hecho": false},
+        {"item": "Comunicar decisión a Ualabee", "hecho": false}
+      ],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ualabee."}
+      ]
     },
     {
       "id": "T-002",
       "startup": "Ualabee",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Scouting de inversionistas ángel en México para Ualabee",
       "descripcion": "Ualabee pidió ayuda para identificar ángeles mexicanos interesados en su ronda (tickets sugeridos ~90,000 USD).",
+      "proxima_accion": "Armar lista corta de 3-5 ángeles con foco en movilidad y compartirla con Ualabee.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "esta_semana",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": "2026-08-31",
       "estado": "pendiente",
-      "fecha_limite": "2026-08-31"
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ualabee, ver Ualabee_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1KvtqTuuPWYdDkswqdx2pB_jBfJmeHOLau2ic-swrk-E/edit"},
+      "enlaces": [{"titulo": "Sitio de Ualabee", "url": "https://ualabee.com"}],
+      "depende_de": ["T-003"],
+      "etiquetas": ["scouting", "ángeles", "ronda de inversión"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ualabee."}
+      ]
     },
     {
       "id": "T-003",
       "startup": "Ualabee",
+      "tipo_tarea": "compromiso_contraparte",
       "tarea": "Recibir lista de contactos ya abordados por Ualabee",
       "descripcion": "Para evitar duplicar outreach de ángeles, Ualabee debe compartir su lista de contactos ya contactados en México.",
+      "proxima_accion": "Recordar a Ualabee que envíe la lista.",
       "nivel_importancia": "baja",
+      "nivel_urgencia": "esta_semana",
+      "columna_kanban": "bloqueada",
       "responsable": "Ualabee (envía) / Arturo (da seguimiento)",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ualabee, ver Ualabee_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1KvtqTuuPWYdDkswqdx2pB_jBfJmeHOLau2ic-swrk-E/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["scouting", "ángeles"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ualabee."}
+      ]
     },
     {
       "id": "T-004",
       "startup": "Portafolio (general)",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Presentar al comité resumen de startups buscando segunda vuelta",
       "descripcion": "Arturo está recabando información de todas las startups del portafolio para presentar al comité cuáles están buscando una segunda ronda (incluye al menos Ualabee y Mobi).",
+      "proxima_accion": "Consolidar en una sola presentación el estatus de Ualabee y Mobi y agendar con el comité.",
       "nivel_importancia": "alta",
+      "nivel_urgencia": "esta_semana",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": "Próximas semanas (sin fecha exacta)",
       "estado": "pendiente",
-      "fecha_limite": "Próximas semanas (sin fecha exacta)"
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ualabee, ver Ualabee_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1KvtqTuuPWYdDkswqdx2pB_jBfJmeHOLau2ic-swrk-E/edit"},
+      "enlaces": [],
+      "depende_de": ["T-001"],
+      "etiquetas": ["comité", "reporte", "ronda de inversión"],
+      "confidencial": false,
+      "checklist": [
+        {"item": "Resumen Ualabee", "hecho": true},
+        {"item": "Resumen Mobi", "hecho": true},
+        {"item": "Armar presentación", "hecho": false},
+        {"item": "Agendar con comité", "hecho": false}
+      ],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ualabee."}
+      ]
     },
     {
       "id": "T-005",
       "startup": "Mobi",
+      "tipo_tarea": "compromiso_contraparte",
       "tarea": "Enviar y analizar propuesta de financiamiento de flotillas eléctricas",
       "descripcion": "Mobi propuso una colaboración de financiamiento de motos/autos eléctricos vinculados a plataformas tipo Rappi/Uber. Mobi debe enviar la información y Huerpel debe analizarla con los gerentes de área.",
+      "proxima_accion": "Dar seguimiento a Mobi para que envíe la información prometida.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "bloqueada",
       "responsable": "Mobi (envía) / Arturo (distribuye y analiza)",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Mobi, ver Mobi_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1HcAJusCORt463IDKjWk0YiNMm7dhljy5i5ITYh3PMQo/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["colaboración comercial", "flotillas eléctricas"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Mobi."}
+      ]
     },
     {
       "id": "T-006",
       "startup": "Mobi",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Buscar fondos de movilidad en México para referir a Mobi",
       "descripcion": "Mobi pidió ayuda para conectar con 1-2 fondos enfocados en movilidad en México.",
+      "proxima_accion": "Identificar 1-2 fondos y hacer la introducción por correo.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Mobi, ver Mobi_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1HcAJusCORt463IDKjWk0YiNMm7dhljy5i5ITYh3PMQo/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["networking", "fondos"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Mobi."}
+      ]
     },
     {
       "id": "T-007",
       "startup": "Mobi",
+      "tipo_tarea": "compromiso_contraparte",
       "tarea": "Recibir plan de softlanding a México",
       "descripcion": "Mobi ofreció compartir su plan de softlanding para el mercado mexicano una vez que lo tengan estructurado.",
+      "proxima_accion": "Esperar a que Mobi lo comparta; no requiere acción activa por ahora.",
       "nivel_importancia": "baja",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "bloqueada",
       "responsable": "Mobi (envía)",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Mobi, ver Mobi_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1HcAJusCORt463IDKjWk0YiNMm7dhljy5i5ITYh3PMQo/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["expansión México"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Mobi."}
+      ]
     },
     {
       "id": "T-008",
       "startup": "Leasy",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Investigar identidad del 'segundo socio' mencionado en Puebla",
-      "descripcion": "En la llamada se mencionó un posible competidor/segundo socio (nombre poco claro en la transcripción, similar a 'Espilotea') ofreciendo una propuesta similar en Puebla.",
+      "descripcion": "En la llamada se mencionó un posible competidor/segundo socio (nombre poco claro en la transcripción, similar a 'Espilotea') ofreciendo una propuesta similar en Puebla. No está documentado en los archivos de innovación existentes.",
+      "proxima_accion": "Preguntar directamente a Leasy el nombre exacto en la próxima llamada.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "este_mes",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Leasy, ver Leasy_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1WPw4C5bGO3aJ3brLDhOzYN1LcZ4gKfzglzeemRKoe4U/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["Puebla", "competencia"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Leasy."}
+      ]
     },
     {
       "id": "T-009",
       "startup": "Leasy",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Tocar base con 'Will' para entender el reto desde su lado",
       "descripcion": "Leasy pidió que Arturo hable directamente con el contacto interno 'Will' (lado dealer/Hyundai) para entender el reto de márgenes en venta a flotillas.",
+      "proxima_accion": "Agendar llamada con Will.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "este_mes",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Leasy, ver Leasy_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1WPw4C5bGO3aJ3brLDhOzYN1LcZ4gKfzglzeemRKoe4U/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["margen", "Hyundai", "flotillas"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Leasy."}
+      ]
     },
     {
       "id": "T-010",
       "startup": "Leasy",
+      "tipo_tarea": "compromiso_contraparte",
       "tarea": "Confirmar inclusión de Arturo en lista de reportes trimestrales",
       "descripcion": "Leasy referenció que 'Alejandro' debía sumar a Arturo a la lista de distribución de reportes trimestrales.",
+      "proxima_accion": "Confirmar por correo con Alejandro si ya quedó incluido.",
       "nivel_importancia": "baja",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "bloqueada",
       "responsable": "Leasy (Alejandro)",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Leasy, ver Leasy_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1WPw4C5bGO3aJ3brLDhOzYN1LcZ4gKfzglzeemRKoe4U/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["reportes", "administrativo"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Leasy."}
+      ]
     },
     {
       "id": "T-011",
       "startup": "Leasy",
-      "tarea": "[HALLAZGO DE RIESGO] Verificar relación con socio mexicano 'Santiago'",
-      "descripcion": "Un tercer interlocutor señaló que un socio mexicano de nombre Santiago no estaría cumpliendo compromisos de envío de clientes pese a un ticket de financiamiento de 100,000 USD ya entregado. No se pudo confirmar con certeza si es la misma persona que el contacto de Leasy. Se documenta como hallazgo de riesgo, no como tarea de búsqueda.",
+      "tipo_tarea": "hallazgo_riesgo",
+      "tarea": "Verificar relación con socio mexicano 'Santiago'",
+      "descripcion": "Un tercer interlocutor señaló que un socio mexicano de nombre Santiago no estaría cumpliendo compromisos de envío de clientes pese a un ticket de financiamiento de 100,000 USD ya entregado, y no vería a Huerpel como socio estratégico. No se pudo confirmar con certeza si es la misma persona que el contacto de Leasy en la llamada. Se documenta como hallazgo de riesgo, no como tarea de búsqueda (transcripción de baja calidad).",
+      "proxima_accion": "Verificar directamente con el equipo interno quién es este 'Santiago' antes de sacar conclusiones.",
       "nivel_importancia": "alta",
+      "nivel_urgencia": "este_mes",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
-      "estado": "hallazgo_de_riesgo",
-      "fecha_limite": null
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
+      "estado": "hallazgo_de_riesgo_requiere_verificacion_directa",
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Leasy (tercer interlocutor), ver Leasy_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1WPw4C5bGO3aJ3brLDhOzYN1LcZ4gKfzglzeemRKoe4U/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["riesgo", "relación comercial", "sensible"],
+      "confidencial": true,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Hallazgo registrado; transcripción de baja calidad, no se pudo confirmar identidad con certeza."}
+      ]
     },
     {
       "id": "T-012",
       "startup": "Ruedata",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Identificar contactos internos que puedan ser clientes de Ruedata",
-      "descripcion": "Ruedata busca relacionarse con talleres mecánicos de Nissan y clientes de transporte pesado/clase 3-8.",
+      "descripcion": "Ruedata busca relacionarse con talleres mecánicos de Nissan y clientes de transporte pesado/clase 3-8. Dos startups ya tocaron esta puerta antes.",
+      "proxima_accion": "Revisar directorio de talleres Nissan y clientes de transporte pesado del grupo.",
       "nivel_importancia": "media",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ruedata, ver Ruedata_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1CJV0yrnJJHkHrI4fSuJ22qQhsPc7crtfnR23q40mdAE/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["networking", "talleres Nissan"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ruedata."}
+      ]
     },
     {
       "id": "T-013",
       "startup": "Ruedata",
+      "tipo_tarea": "compromiso_contraparte",
       "tarea": "Recibir one-pager comercial de Ruedata",
       "descripcion": "Ruedata enviará material comercial para que Arturo pueda referir oportunidades en su nombre.",
+      "proxima_accion": "Dar seguimiento si no llega en los próximos días.",
       "nivel_importancia": "baja",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "bloqueada",
       "responsable": "Ruedata (envía)",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ruedata, ver Ruedata_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1CJV0yrnJJHkHrI4fSuJ22qQhsPc7crtfnR23q40mdAE/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["material comercial"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ruedata."}
+      ]
     },
     {
       "id": "T-014",
       "startup": "Ruedata",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Enviar correo corporativo correcto para lista de reportes",
       "descripcion": "Arturo debe reenviar la invitación con su correo de empresa (no personal) para quedar en la lista de reportes de Ruedata.",
+      "proxima_accion": "Enviar el correo — es una acción de 2 minutos, sin razón para posponerla.",
       "nivel_importancia": "baja",
+      "nivel_urgencia": "esta_semana",
+      "columna_kanban": "pendiente",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "pendiente",
-      "fecha_limite": null
+      "fuente": {"tipo": "llamada_transcrita", "referencia": "Llamada Werpel-Ruedata, ver Ruedata_Bitacora", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1CJV0yrnJJHkHrI4fSuJ22qQhsPc7crtfnR23q40mdAE/edit"},
+      "enlaces": [],
+      "depende_de": [],
+      "etiquetas": ["administrativo", "reportes"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Tarea creada a partir de la transcripción de la llamada con Ruedata."}
+      ]
     },
     {
       "id": "T-015",
       "startup": "Alfred",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Análisis de oportunidad de inversión (AOI) - ronda Serie A",
-      "descripcion": "Javier/Arturo solicitaron evaluar a Alfred como oportunidad de inversión. Deck de investors.alfred.co (julio 2026) indica ronda Serie A de 6M USD.",
+      "descripcion": "Javier/Arturo solicitaron evaluar a Alfred como oportunidad de inversión. Deck de investors.alfred.co (julio 2026) indica ronda Serie A de 6M USD, frente al SAFE de 700K USD analizado por Bluebox en marzo 2025.",
+      "proxima_accion": "Decidir con Javier si se retoma como inversión, como proveedor de white label para Mitaller, o ambas.",
       "nivel_importancia": "alta",
+      "nivel_urgencia": "sin_urgencia_definida",
+      "columna_kanban": "completada",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": "2026-07-20",
+      "fecha_limite": null,
       "estado": "completado",
-      "fecha_limite": null
+      "fuente": {"tipo": "deck_inversion_y_research", "referencia": "Deck 'Alfred oportunidad Inv.pdf' (investors.alfred.co) + AOI Bluebox mar-2025 + alfred.co; ver Alfred_AOI_2026-07-20", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/1o1pX9mtuBeUaCdpud86HOOL_zC-f3uo-Tb24p_FOYyQ/edit"},
+      "enlaces": [
+        {"titulo": "Sitio de Alfred (consumidor)", "url": "https://alfred.co"},
+        {"titulo": "Sitio de inversionistas de Alfred", "url": "https://investors.alfred.co"},
+        {"titulo": "BD de Oportunidades de Inversión (fila Alfred)", "url": "https://docs.google.com/spreadsheets/d/158-_TYp986j92XcC79hPCqzeqUr3-fD3thobJTEzztA/edit"}
+      ],
+      "depende_de": [],
+      "etiquetas": ["oportunidad de inversión", "Mitaller", "Serie A"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "AOI completo entregado. Pendiente de decisión: retomar como inversión, como white label para Mitaller, o ambas."}
+      ]
     },
     {
       "id": "T-016",
       "startup": "Karvia",
+      "tipo_tarea": "compromiso_propio",
       "tarea": "Investigar a Karvia para Javier (gestión de flotillas)",
-      "descripcion": "Javier pidió investigar si Karvia se parece a Mitaller. El fundador de Karvia previamente cotizó el desarrollo de las apps de Multicréditos y Mitaller como proveedor tecnológico.",
+      "descripcion": "Javier pidió investigar si Karvia se parece a Mitaller. El fundador de Karvia previamente cotizó el desarrollo de las apps de Multicréditos y Mitaller como proveedor tecnológico — declarar este antecedente si se avanza como inversión.",
+      "proxima_accion": "Responder con el founder las 7 preguntas abiertas del reporte antes de definir el siguiente paso con Javier.",
       "nivel_importancia": "alta",
+      "nivel_urgencia": "este_mes",
+      "columna_kanban": "bloqueada",
       "responsable": "Arturo",
       "fecha_origen": "2026-07-20",
+      "fecha_actualizacion": "2026-07-20",
+      "fecha_completado": null,
+      "fecha_limite": null,
       "estado": "completado_con_preguntas_abiertas",
-      "fecha_limite": null
+      "fuente": {"tipo": "research_web", "referencia": "karvia.mx, karvia.mx/features, karvia.mx/pricing + búsqueda web; ver Karvia_AOI_2026-07-20", "fecha": "2026-07-20", "link": "https://docs.google.com/document/d/18k_B55pPDuDSO72ocQKbkHqAqbAcFNwyy2tRUMhULkM/edit"},
+      "enlaces": [
+        {"titulo": "Sitio de Karvia", "url": "https://karvia.mx"},
+        {"titulo": "Características Karvia", "url": "https://karvia.mx/features"},
+        {"titulo": "Precios Karvia", "url": "https://karvia.mx/pricing"},
+        {"titulo": "BD de Oportunidades de Inversión (fila Karvia)", "url": "https://docs.google.com/spreadsheets/d/158-_TYp986j92XcC79hPCqzeqUr3-fD3thobJTEzztA/edit"}
+      ],
+      "depende_de": [],
+      "etiquetas": ["oportunidad de inversión", "conflicto de interés", "flotillas"],
+      "confidencial": false,
+      "checklist": [],
+      "historial": [
+        {"fecha": "2026-07-20", "nota": "Bloqueada: esperando que Arturo responda 7 preguntas abiertas directamente con el founder antes de avanzar."}
+      ]
     }
   ]
 }
