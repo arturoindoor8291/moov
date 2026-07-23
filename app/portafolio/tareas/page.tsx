@@ -20,6 +20,7 @@ export default function PortafolioTareasPage() {
   const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
   const [tipoFilter, setTipoFilter] = useState<"all" | TipoTarea>("all");
   const [hideCompletadas, setHideCompletadas] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   const fetchTareas = useCallback(async () => {
     try {
@@ -58,7 +59,30 @@ export default function PortafolioTareasPage() {
   }, [tareas, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
 
   const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
-    setTareas((prev) => prev.map((t) => (t.id === id ? { ...t, columna_kanban: columna } : t)));
+    let previousColumn: Tarea["columna_kanban"] | undefined;
+    setSaveError("");
+    setTareas((prev) =>
+      prev.map((t) => {
+        if (t.id !== id) return t;
+        previousColumn = t.columna_kanban;
+        return { ...t, columna_kanban: columna };
+      })
+    );
+
+    fetch(`/api/portafolio/tareas/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ columna_kanban: columna }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed");
+      })
+      .catch(() => {
+        setTareas((prev) =>
+          prev.map((t) => (t.id === id && previousColumn ? { ...t, columna_kanban: previousColumn } : t))
+        );
+        setSaveError("No se pudo guardar el cambio de estado. Intenta de nuevo.");
+      });
   }, []);
 
   return (
@@ -133,6 +157,8 @@ export default function PortafolioTareasPage() {
           </label>
         </div>
 
+        {saveError && <p style={s.saveError}>{saveError}</p>}
+
         {loading ? (
           <p style={s.empty}>Cargando...</p>
         ) : error ? (
@@ -184,5 +210,14 @@ const s: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
   checkbox: { width: "14px", height: "14px", cursor: "pointer" },
+  saveError: {
+    fontSize: "13px",
+    color: "#ff5a5a",
+    background: "rgba(255,90,90,0.08)",
+    border: "1px solid rgba(255,90,90,0.25)",
+    borderRadius: "10px",
+    padding: "10px 14px",
+    marginBottom: "16px",
+  },
   empty: { color: "rgba(238,241,246,0.4)", padding: "40px 0", textAlign: "center" },
 };
