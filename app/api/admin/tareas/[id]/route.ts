@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllTareas } from "@/lib/portfolio/tareasData";
-import { setColumnOverride } from "@/lib/portfolio/tareasStore";
+import { setColumnOverride, getExternalTareaById, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { TareaSchema } from "@/lib/portfolio/portfolioSchemas";
 
 const ColumnaKanbanSchema = TareaSchema.shape.columna_kanban;
@@ -10,10 +10,6 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const exists = getAllTareas().some((t) => t.id === id);
-  if (!exists) {
-    return NextResponse.json({ message: "Tarea no encontrada" }, { status: 404 });
-  }
 
   let body: unknown;
   try {
@@ -27,8 +23,25 @@ export async function PATCH(
     return NextResponse.json({ message: "columna_kanban inválida" }, { status: 400 });
   }
 
+  // MOOV-native tareas (from tareas-data.json) only persist the column as
+  // an override; externally-ingested tareas have no base JSON record, so
+  // the whole stored object gets rewritten instead.
+  const isNative = getAllTareas().some((t) => t.id === id);
+
   try {
-    await setColumnOverride(id, parsed.data);
+    if (isNative) {
+      await setColumnOverride(id, parsed.data);
+    } else {
+      const external = await getExternalTareaById(id);
+      if (!external) {
+        return NextResponse.json({ message: "Tarea no encontrada" }, { status: 404 });
+      }
+      await upsertExternalTarea({
+        ...external,
+        columna_kanban: parsed.data,
+        fecha_actualizacion: new Date().toISOString().slice(0, 10),
+      });
+    }
   } catch (err) {
     console.error("[admin/tareas/:id] failed to persist column change:", err);
     return NextResponse.json({ message: "No se pudo guardar el cambio" }, { status: 503 });
