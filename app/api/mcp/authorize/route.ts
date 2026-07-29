@@ -95,7 +95,11 @@ async function issueCodeAndRedirect(email: string, oauth: OAuthParams): Promise<
   const redirect = new URL(oauth.redirectUri!);
   redirect.searchParams.set("code", code);
   if (oauth.state) redirect.searchParams.set("state", oauth.state);
-  return NextResponse.redirect(redirect);
+  // 303, not the 307 NextResponse.redirect() defaults to — 307 preserves
+  // the original request method, so the POST from the login form would
+  // get replayed as a POST against claude.ai's callback URL (which only
+  // accepts GET), producing a "Method Not Allowed" error on their side.
+  return NextResponse.redirect(redirect, 303);
 }
 
 export async function GET(req: NextRequest) {
