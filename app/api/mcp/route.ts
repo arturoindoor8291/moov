@@ -6,6 +6,7 @@ import { TareaSchema, type Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { getAllTareas } from "@/lib/portfolio/tareasData";
 import { upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { checkIngestRateLimit } from "@/lib/ratelimit";
+import { verifyAccessToken } from "@/lib/mcpOAuthStore";
 
 export const runtime = "nodejs";
 
@@ -111,19 +112,39 @@ function buildServer(): McpServer {
 }
 
 /**
- * Bearer-secret auth, same pattern as /api/tareas-ingest but with its own
- * env var (MCP_TAREAS_SECRET) — kept separate so a leak from either surface
- * can't reach the other. Fase 2 of the plan checks whether claude.ai's
- * custom-connector flow requires OAuth instead; if so this gets replaced.
+ * Fase 2 of the plan confirmed claude.ai's custom-connector flow requires
+ * OAuth (it asks for a client id/secret, not a raw header). Requests now
+ * carry either the static MCP_TAREAS_SECRET (kept for local/inspector
+ * testing) or an OAuth access token minted by /api/mcp/token. On failure,
+ * WWW-Authenticate points clients at the protected-resource metadata so
+ * they can discover /api/mcp/authorize + /api/mcp/token on their own.
  */
-async function handle(req: NextRequest): Promise<Response> {
-  const expected = process.env.MCP_TAREAS_SECRET;
-  if (!expected) {
-    return NextResponse.json({ message: "MCP no configurado" }, { status: 503 });
-  }
+async function isAuthorized(req: NextRequest): Promise<boolean> {
   const auth = req.headers.get("authorization");
-  if (auth !== `Bearer ${expected}`) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  if (!auth?.startsWith("Bearer ")) return false;
+  const token = auth.slice("Bearer ".length);
+
+  const staticSecret = process.env.MCP_TAREAS_SECRET;
+  if (staticSecret && token === staticSecret) return true;
+
+  const claims = await verifyAccessToken(token);
+  return claims !== null;
+}
+
+function unauthorizedResponse(req: NextRequest): NextResponse {
+  const resourceMetadataUrl = `${req.nextUrl.origin}/.well-known/oauth-protected-resource`;
+  return NextResponse.json(
+    { message: "Unauthorized" },
+    {
+      status: 401,
+      headers: { "WWW-Authenticate": `Bearer resource_metadata="${resourceMetadataUrl}"` },
+    }
+  );
+}
+
+async function handle(req: NextRequest): Promise<Response> {
+  if (!(await isAuthorized(req))) {
+    return unauthorizedResponse(req);
   }
 
   const ip = getClientIP(req);
