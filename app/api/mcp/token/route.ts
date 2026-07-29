@@ -52,6 +52,16 @@ export async function POST(req: NextRequest) {
   const form = new URLSearchParams(rawBody);
 
   if (!authenticateClient(req, form)) {
+    console.error("[mcp/token] invalid_client debug:", {
+      contentType: req.headers.get("content-type"),
+      hasAuthHeader: !!req.headers.get("authorization"),
+      authScheme: req.headers.get("authorization")?.split(" ")[0],
+      bodyKeys: Array.from(form.keys()),
+      bodyClientIdPresent: form.has("client_id"),
+      bodyClientIdMatches: form.get("client_id") === process.env.MCP_OAUTH_CLIENT_ID,
+      envClientIdSet: !!process.env.MCP_OAUTH_CLIENT_ID,
+      envClientSecretSet: !!process.env.MCP_OAUTH_CLIENT_SECRET,
+    });
     return NextResponse.json({ error: "invalid_client" }, { status: 401 });
   }
 
