@@ -59,8 +59,12 @@ export async function POST(req: NextRequest) {
       bodyKeys: Array.from(form.keys()),
       bodyClientIdPresent: form.has("client_id"),
       bodyClientIdMatches: form.get("client_id") === process.env.MCP_OAUTH_CLIENT_ID,
+      bodyClientSecretPresent: form.has("client_secret"),
+      bodyClientSecretLength: form.get("client_secret")?.length ?? 0,
+      bodyClientSecretMatches: form.get("client_secret") === process.env.MCP_OAUTH_CLIENT_SECRET,
       envClientIdSet: !!process.env.MCP_OAUTH_CLIENT_ID,
       envClientSecretSet: !!process.env.MCP_OAUTH_CLIENT_SECRET,
+      envClientSecretLength: process.env.MCP_OAUTH_CLIENT_SECRET?.length ?? 0,
     });
     return NextResponse.json({ error: "invalid_client" }, { status: 401 });
   }
