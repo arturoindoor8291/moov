@@ -124,7 +124,7 @@ async function isAuthorized(req: NextRequest): Promise<boolean> {
   if (!auth?.startsWith("Bearer ")) return false;
   const token = auth.slice("Bearer ".length);
 
-  const staticSecret = process.env.MCP_TAREAS_SECRET;
+  const staticSecret = process.env.MCP_TAREAS_SECRET?.trim();
   if (staticSecret && token === staticSecret) return true;
 
   const claims = await verifyAccessToken(token);

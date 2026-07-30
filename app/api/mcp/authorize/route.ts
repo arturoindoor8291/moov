@@ -26,7 +26,7 @@ function readOAuthParams(params: URLSearchParams): OAuthParams {
 
 function validateOAuthParams(p: OAuthParams): string | null {
   if (p.responseType !== "code") return "response_type debe ser 'code'.";
-  if (!p.clientId || p.clientId !== process.env.MCP_OAUTH_CLIENT_ID) return "client_id inválido.";
+  if (!p.clientId || p.clientId !== process.env.MCP_OAUTH_CLIENT_ID?.trim()) return "client_id inválido.";
   if (!p.redirectUri) return "redirect_uri es requerido.";
   try {
     const u = new URL(p.redirectUri);

@@ -17,10 +17,15 @@ function safeEqual(a: string, b: string): boolean {
   return timingSafeEqual(bufA, bufB);
 }
 
-/** Client auth via HTTP Basic (preferred) or client_secret_post fallback. */
+/**
+ * Client auth via HTTP Basic (preferred) or client_secret_post fallback.
+ * .trim() on the env vars — `vercel env add`'s interactive prompt is prone
+ * to picking up a trailing newline from a pasted value, which silently
+ * turned every client_secret comparison into a false negative.
+ */
 function authenticateClient(req: NextRequest, form: URLSearchParams): boolean {
-  const expectedId = process.env.MCP_OAUTH_CLIENT_ID;
-  const expectedSecret = process.env.MCP_OAUTH_CLIENT_SECRET;
+  const expectedId = process.env.MCP_OAUTH_CLIENT_ID?.trim();
+  const expectedSecret = process.env.MCP_OAUTH_CLIENT_SECRET?.trim();
   if (!expectedId || !expectedSecret) return false;
 
   const authHeader = req.headers.get("authorization");
@@ -52,20 +57,6 @@ export async function POST(req: NextRequest) {
   const form = new URLSearchParams(rawBody);
 
   if (!authenticateClient(req, form)) {
-    console.error("[mcp/token] invalid_client debug:", {
-      contentType: req.headers.get("content-type"),
-      hasAuthHeader: !!req.headers.get("authorization"),
-      authScheme: req.headers.get("authorization")?.split(" ")[0],
-      bodyKeys: Array.from(form.keys()),
-      bodyClientIdPresent: form.has("client_id"),
-      bodyClientIdMatches: form.get("client_id") === process.env.MCP_OAUTH_CLIENT_ID,
-      bodyClientSecretPresent: form.has("client_secret"),
-      bodyClientSecretLength: form.get("client_secret")?.length ?? 0,
-      bodyClientSecretMatches: form.get("client_secret") === process.env.MCP_OAUTH_CLIENT_SECRET,
-      envClientIdSet: !!process.env.MCP_OAUTH_CLIENT_ID,
-      envClientSecretSet: !!process.env.MCP_OAUTH_CLIENT_SECRET,
-      envClientSecretLength: process.env.MCP_OAUTH_CLIENT_SECRET?.length ?? 0,
-    });
     return NextResponse.json({ error: "invalid_client" }, { status: 401 });
   }
 
