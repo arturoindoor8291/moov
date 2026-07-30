@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
 import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
+import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 type NivelImportancia = Tarea["nivel_importancia"];
@@ -22,6 +23,8 @@ export default function AdminTareasPage() {
   const [tipoFilter, setTipoFilter] = useState<"all" | TipoTarea>("all");
   const [hideCompletadas, setHideCompletadas] = useState(false);
   const [saveError, setSaveError] = useState("");
+  // undefined = modal closed, null = creating a new tarea, Tarea = editing
+  const [modalTarea, setModalTarea] = useState<Tarea | null | undefined>(undefined);
 
   const fetchTareas = useCallback(async () => {
     try {
@@ -92,6 +95,21 @@ export default function AdminTareasPage() {
       });
   }, []);
 
+  const handleSaveTarea = useCallback(async (values: TareaFormValues, id: string | null) => {
+    const res = await fetch(id ? `/api/admin/tareas/${id}` : "/api/admin/tareas", {
+      method: id ? "PATCH" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    if (!res.ok) throw new Error("Failed");
+    const saved: Tarea = await res.json();
+    setTareas((prev) => {
+      const exists = prev.some((t) => t.id === saved.id);
+      return exists ? prev.map((t) => (t.id === saved.id ? saved : t)) : [saved, ...prev];
+    });
+    setModalTarea(undefined);
+  }, []);
+
   return (
     <div style={s.page}>
       <AdminNav active="tareas" />
@@ -109,6 +127,9 @@ export default function AdminTareasPage() {
                 })}`}
             </p>
           </div>
+          <button onClick={() => setModalTarea(null)} style={s.newBtn}>
+            + Nueva tarea
+          </button>
         </div>
 
         <div style={s.controls}>
@@ -183,7 +204,20 @@ export default function AdminTareasPage() {
         ) : error ? (
           <p style={{ ...s.empty, color: "#ff5a5a" }}>{error}</p>
         ) : (
-          <TareasKanbanBoard tareas={filtered} tareasById={tareasById} onColumnChange={handleColumnChange} />
+          <TareasKanbanBoard
+            tareas={filtered}
+            tareasById={tareasById}
+            onColumnChange={handleColumnChange}
+            onEdit={(t) => setModalTarea(t)}
+          />
+        )}
+
+        {modalTarea !== undefined && (
+          <TareaFormModal
+            tarea={modalTarea}
+            onClose={() => setModalTarea(undefined)}
+            onSave={handleSaveTarea}
+          />
         )}
       </main>
     </div>
@@ -203,6 +237,17 @@ const s: Record<string, React.CSSProperties> = {
   },
   title: { fontSize: "26px", fontWeight: 700, margin: "0 0 4px" },
   subtitle: { fontSize: "13px", color: "rgba(238,241,246,0.45)", margin: 0 },
+  newBtn: {
+    background: "#2f6dff",
+    border: "none",
+    borderRadius: "8px",
+    padding: "10px 18px",
+    fontSize: "13px",
+    fontWeight: 600,
+    color: "#fff",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+  },
   controls: {
     display: "flex",
     alignItems: "center",

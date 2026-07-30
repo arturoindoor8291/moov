@@ -36,9 +36,10 @@ interface TareasKanbanBoardProps {
   tareas: Tarea[];
   tareasById: Map<string, Tarea>;
   onColumnChange: (id: string, columna: Tarea["columna_kanban"]) => void;
+  onEdit: (tarea: Tarea) => void;
 }
 
-export default function TareasKanbanBoard({ tareas, tareasById, onColumnChange }: TareasKanbanBoardProps) {
+export default function TareasKanbanBoard({ tareas, tareasById, onColumnChange, onEdit }: TareasKanbanBoardProps) {
   const [expandedColumns, setExpandedColumns] = useState<Set<Tarea["columna_kanban"]>>(new Set());
   const [dragOverColumn, setDragOverColumn] = useState<Tarea["columna_kanban"] | null>(null);
 
@@ -87,6 +88,7 @@ export default function TareasKanbanBoard({ tareas, tareasById, onColumnChange }
                     tareasById={tareasById}
                     onColumnChange={onColumnChange}
                     onDragStart={handleDragStart}
+                    onEdit={onEdit}
                   />
                 ))
               )}

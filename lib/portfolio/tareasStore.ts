@@ -1,5 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { TareaSchema, type Tarea } from "./portfolioSchemas";
+import { getAllTareas } from "./tareasData";
 
 const HASH_KEY = "moov_apply:portafolio:tareas:columna_overrides";
 const EXTERNAL_HASH_KEY = "moov_apply:portafolio:tareas:externas";
@@ -22,10 +23,11 @@ function getRedis(): Redis | null {
 /**
  * tareas-data.json is imported at build time (lib/portfolio/tareasData.ts)
  * and bundled into the server — a running serverless function can't
- * rewrite it. Column moves on the kanban board persist here instead, as
- * a Redis hash of {tareaId: columna_kanban}, and get merged onto the
- * base JSON on every read. Only columna_kanban is overridable this way;
- * everything else about a tarea still comes from Cowork's JSON.
+ * rewrite it. This hash is a legacy leftover from when column moves were
+ * the only edit the panel could persist (kept read-only for backward
+ * compatibility with anything already stored); any edit made from the
+ * panel today, including a plain column change, goes through
+ * upsertExternalTarea instead and forks the whole record into Redis.
  */
 export async function getColumnOverrides(): Promise<Record<string, string>> {
   const client = getRedis();
@@ -34,25 +36,19 @@ export async function getColumnOverrides(): Promise<Record<string, string>> {
   return overrides ?? {};
 }
 
-export async function setColumnOverride(
-  id: string,
-  columna: Tarea["columna_kanban"]
-): Promise<void> {
-  const client = getRedis();
-  if (!client) {
-    throw new Error("Redis no configurado — no se puede guardar el cambio de estado.");
-  }
-  await client.hset(HASH_KEY, { [id]: columna });
-}
-
 /**
- * Tareas that don't come from Cowork's tareas-data.json at all — submitted
- * live by the "extraer-tareas" skill running in other repos (Multicréditos,
- * Mitaller, etc.) via POST /api/tareas-ingest. Unlike columna_overrides,
- * these have no base JSON record to merge onto — the full Tarea lives in
- * Redis. Ids are expected to carry a project-specific prefix (e.g.
- * "MTC-T-001") so they never collide with MOOV's native "T-XXX" ids or
- * with each other across projects.
+ * Full Tarea records that live entirely in Redis rather than in
+ * tareas-data.json. Two ways a record ends up here:
+ *  - Submitted live by the "extraer-tareas" skill running in other repos
+ *    (Multicréditos, Mitaller, etc.) via POST /api/tareas-ingest — ids
+ *    carry a project-specific prefix (e.g. "MTC-T-001") so they never
+ *    collide with MOOV's native "T-XXX" ids or with each other.
+ *  - Created or fully edited from the /admin/tareas panel itself (see
+ *    app/api/admin/tareas routes) — a native tarea edited beyond just its
+ *    column gets "forked" here in full, and new tareas created from the
+ *    UI get an id prefixed "UI-T-".
+ * Either way, once a record exists here it's the source of truth for
+ * that id and wins over tareas-data.json + column overrides on read.
  */
 export async function upsertExternalTarea(tarea: Tarea): Promise<void> {
   const client = getRedis();
@@ -91,4 +87,24 @@ export async function getExternalTareaById(id: string): Promise<Tarea | null> {
   const parsedJson = typeof value === "string" ? JSON.parse(value) : value;
   const result = TareaSchema.safeParse(parsedJson);
   return result.success ? result.data : null;
+}
+
+/**
+ * Resolves the current full record for any tarea id, whichever store it
+ * lives in: a fully-edited/created tarea in EXTERNAL_HASH_KEY takes
+ * precedence (once a native tarea gets a full edit from the UI, it's
+ * "forked" there and that copy wins from then on); otherwise falls back
+ * to the native tareas-data.json record with its column override merged
+ * in, if any. Returns null only if the id doesn't exist anywhere.
+ */
+export async function resolveTarea(id: string): Promise<Tarea | null> {
+  const stored = await getExternalTareaById(id);
+  if (stored) return stored;
+
+  const native = getAllTareas().find((t) => t.id === id);
+  if (!native) return null;
+
+  const overrides = await getColumnOverrides();
+  const override = overrides[id];
+  return override ? { ...native, columna_kanban: override as Tarea["columna_kanban"] } : native;
 }

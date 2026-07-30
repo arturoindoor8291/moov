@@ -26,9 +26,10 @@ interface TareaCardProps {
   tareasById: Map<string, Tarea>;
   onColumnChange: (id: string, columna: Tarea["columna_kanban"]) => void;
   onDragStart: (e: React.DragEvent, id: string) => void;
+  onEdit: (tarea: Tarea) => void;
 }
 
-export default function TareaCard({ tarea, tareasById, onColumnChange, onDragStart }: TareaCardProps) {
+export default function TareaCard({ tarea, tareasById, onColumnChange, onDragStart, onEdit }: TareaCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isRiesgo = tarea.tipo_tarea === "hallazgo_riesgo";
   const urgenteFecha = isFechaLimiteUrgente(tarea.fecha_limite);
@@ -91,9 +92,14 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
         </select>
       </div>
 
-      <button onClick={() => setExpanded((v) => !v)} style={s.expandBtn}>
-        {expanded ? "Ocultar detalle ▲" : "Ver detalle ▼"}
-      </button>
+      <div style={s.cardActions}>
+        <button onClick={() => setExpanded((v) => !v)} style={s.expandBtn}>
+          {expanded ? "Ocultar detalle ▲" : "Ver detalle ▼"}
+        </button>
+        <button onClick={() => onEdit(tarea)} style={s.editBtn}>
+          Editar ✎
+        </button>
+      </div>
 
       {expanded && (
         <div style={s.detail}>
@@ -224,15 +230,31 @@ const s: Record<string, React.CSSProperties> = {
     color: "#eef1f6",
     outline: "none",
   },
+  cardActions: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "8px",
+    borderTop: "1px solid rgba(255,255,255,0.06)",
+    paddingTop: "8px",
+  },
   expandBtn: {
     background: "transparent",
     border: "none",
-    borderTop: "1px solid rgba(255,255,255,0.06)",
-    paddingTop: "8px",
     fontSize: "11px",
     color: "rgba(238,241,246,0.4)",
     cursor: "pointer",
     textAlign: "left",
+    padding: 0,
+  },
+  editBtn: {
+    background: "transparent",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: "6px",
+    padding: "3px 9px",
+    fontSize: "11px",
+    color: "rgba(238,241,246,0.6)",
+    cursor: "pointer",
   },
   detail: { display: "flex", flexDirection: "column", gap: "2px", paddingTop: "4px" },
   detailLabel: {
