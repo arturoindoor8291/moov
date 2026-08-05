@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-22",
+  "ultima_actualizacion": "2026-08-04",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -8,7 +8,12 @@
     "startups_sanas": 4,
     "startups_vigilar": 4,
     "startups_criticas": 2,
-    "startups_sin_monto_confirmado": ["Bemycar", "Autolab", "Ruedata", "Kigo"],
+    "startups_sin_monto_confirmado": [
+      "Bemycar",
+      "Autolab",
+      "Ruedata",
+      "Kigo"
+    ],
     "moic_a_costo": 1.0,
     "crecimiento_pct_a_costo": 0.0,
     "nota_crecimiento": "Cifra conservadora calculada 'a costo' (sin marcar al alza el valor de ninguna posición) porque no hay una ronda de valuación posterior confirmada para ninguna de las 6 startups con monto de inversión conocido. El total invertido real es MAYOR al mostrado aquí, porque 4 de 10 startups no tienen su monto de inversión confirmado todavía.",
@@ -25,7 +30,13 @@
       "nombre": "Bemycar",
       "estado": "sano",
       "sector": "SaaS B2B automotriz (dashboards IA, enriquecimiento de leads)",
-      "paises": ["España", "México", "Colombia", "Perú", "Portugal"],
+      "paises": [
+        "España",
+        "México",
+        "Colombia",
+        "Perú",
+        "Portugal"
+      ],
       "modelo_negocio": "SaaS",
       "legal": {
         "instrumento": "Equity directo (compra de participaciones + Pacto de Socios)",
@@ -49,13 +60,18 @@
         "Confirmar el monto exacto invertido por Huerpel y el % de participación resultante",
         "Preguntar qué ocurrió en octubre 2025 con el gasto elevado"
       ],
-      "alertas": ["Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes"]
+      "alertas": [
+        "Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes"
+      ]
     },
     {
       "nombre": "Autolab",
       "estado": "vigilar",
       "sector": "Marketplace de reparación y mantenimiento de flotillas vehiculares",
-      "paises": ["México", "Colombia"],
+      "paises": [
+        "México",
+        "Colombia"
+      ],
       "modelo_negocio": "Marketplace take-rate",
       "legal": {
         "instrumento": null,
@@ -74,18 +90,30 @@
         "arr_objetivo": 3000000,
         "tendencia": "Colombia alcanzó EBITDA positivo (+$5K USD) en julio 2025, tras pérdidas de $70-80K a inicios de año. Take rate México subió de 14-15% a más de 18%."
       },
-      "situacion_actual": "ARR de $1.4M USD (oct-2024) con meta de $3M para Serie A. Concentración de riesgo alta en Kovi y Mi Nave. Pasaron de perseguir Serie A a priorizar breakeven en 2025. Cerrando extensión de ~$600-700K de su nota convertible.",
+      "situacion_actual": "Arturo (Huerpel) es ahora el punto de contacto de Autolab, reemplazando a Blue Box (que queda como apoyo ocasional). Equipo de 21 personas. Inicio de 2026 complicado por impago de Grupo Salinas/Tiendas Neto y pérdida del cliente Koji. Prioridad actual: llegar a breakeven antes de fin de año (reportan estar cerca). Ronda cerrada \"el año pasado\" de $900K USD para financiar 2026 — posible extensión de la nota convertible de ~$600-700K mencionada anteriormente, sin confirmar (ver discrepancia). Evaluando oportunidad de colaboración en México con el operador colombiano Call Mecánica para reabrir el modelo de usuario final bajo la marca Autolab.",
       "proximos_pasos": [
         "Localizar el instrumento legal de inversión de Huerpel",
-        "Pedir cifras absolutas de GTV/Net Revenue en texto plano, no solo gráficas"
+        "Pedir cifras absolutas de GTV/Net Revenue en texto plano, no solo gráficas",
+        "Confirmar con Chava si el monto de $900K corresponde a la misma extensión de nota convertible ($600-700K) o es una ronda distinta",
+        "Arturo presenta la propuesta de colaboración México a José Arturo (comité) antes de retomar con Chava"
       ],
-      "alertas": ["Sin instrumento legal localizado", "Cifras financieras absolutas no confiables (solo % de cumplimiento)"]
+      "alertas": [
+        "Sin instrumento legal localizado",
+        "Cifras financieras absolutas no confiables (solo % de cumplimiento)",
+        "Cliente Grupo Salinas/Tiendas Neto dejó de pagar; cartera grande pendiente de cobro (ago-2026)",
+        "Perdieron al cliente Koji por centralización de operaciones en agencia (ago-2026)",
+        "Discrepancia sin resolver: monto de ronda cerrada ($900K, ago-2026) vs. extensión de nota convertible mencionada antes ($600-700K, jul-2025)"
+      ]
     },
     {
       "nombre": "Ruedata",
       "estado": "vigilar",
       "sector": "SaaS de gestión predictiva de llantas para flotas comerciales",
-      "paises": ["México", "Brasil", "USA"],
+      "paises": [
+        "México",
+        "Brasil",
+        "USA"
+      ],
       "modelo_negocio": "SaaS",
       "legal": {
         "instrumento": "SAFE (ronda Seed 2024)",
@@ -108,13 +136,17 @@
         "Aclarar con Ruedata la definición única de MRR a usar",
         "Confirmar si llegaron a breakeven en Q2 2026"
       ],
-      "alertas": ["Definiciones de MRR inconsistentes entre reportes"]
+      "alertas": [
+        "Definiciones de MRR inconsistentes entre reportes"
+      ]
     },
     {
       "nombre": "Drivana",
       "estado": "sano",
       "sector": "Marketplace de renta de autos peer-to-peer (P2P)",
-      "paises": ["México"],
+      "paises": [
+        "México"
+      ],
       "modelo_negocio": "Marketplace take-rate",
       "legal": {
         "instrumento": "SAFE",
@@ -143,7 +175,10 @@
       "nombre": "Ualabee",
       "estado": "critico",
       "sector": "SaaS de datos de movilidad urbana para gobiernos",
-      "paises": ["México", "Argentina"],
+      "paises": [
+        "México",
+        "Argentina"
+      ],
       "modelo_negocio": "SaaS",
       "legal": {
         "instrumento": "SAFE",
@@ -167,13 +202,19 @@
         "Confirmar el estatus actual de la caja de julio 2026",
         "Decidir la postura del fondo sobre si apoyar y de qué forma"
       ],
-      "alertas": ["Crisis de caja activa desde junio 2026", "Runway de solo 3 meses", "Descuento del SAFE (80%) requiere verificación"]
+      "alertas": [
+        "Crisis de caja activa desde junio 2026",
+        "Runway de solo 3 meses",
+        "Descuento del SAFE (80%) requiere verificación"
+      ]
     },
     {
       "nombre": "Mobi",
       "estado": "critico",
       "sector": "Movilidad",
-      "paises": ["Paraguay"],
+      "paises": [
+        "Paraguay"
+      ],
       "modelo_negocio": "Desconocido - sin documentación suficiente",
       "legal": {
         "instrumento": null,
@@ -197,13 +238,20 @@
         "Solicitar el primer reporte de KPIs/financiero",
         "Solicitar cualquier material descriptivo del negocio (deck, AOI)"
       ],
-      "alertas": ["Sin instrumento legal localizado", "Sin ningún reporte financiero", "Startup con menos documentación de todo el portafolio"]
+      "alertas": [
+        "Sin instrumento legal localizado",
+        "Sin ningún reporte financiero",
+        "Startup con menos documentación de todo el portafolio"
+      ]
     },
     {
       "nombre": "Leasy",
       "estado": "sano",
       "sector": "Fintech - financiamiento de vehículos rent-to-own para economía gig",
-      "paises": ["Perú", "México"],
+      "paises": [
+        "Perú",
+        "México"
+      ],
       "modelo_negocio": "Fintech",
       "legal": {
         "instrumento": "Equity / SPV (Serie A)",
@@ -230,13 +278,18 @@
         "Confirmar cuál margen neto 2024 es el correcto (8.7% o 20%)",
         "Vigilar las condiciones de la deuda con Lendable y Percent"
       ],
-      "alertas": ["Discrepancia en margen neto 2024 (8.7% vs 20%)", "Contrato legal no localizado"]
+      "alertas": [
+        "Discrepancia en margen neto 2024 (8.7% vs 20%)",
+        "Contrato legal no localizado"
+      ]
     },
     {
       "nombre": "Vera AI",
       "estado": "vigilar",
       "sector": "Retail-tech (IA para ventas en tienda física)",
-      "paises": ["USA"],
+      "paises": [
+        "USA"
+      ],
       "modelo_negocio": "Etapa temprana / piloto",
       "legal": {
         "instrumento": "SAFE",
@@ -264,7 +317,9 @@
       "nombre": "Kigo",
       "estado": "sano",
       "sector": "Marketplace de estacionamientos digitales, parquímetros y control de accesos",
-      "paises": ["México"],
+      "paises": [
+        "México"
+      ],
       "modelo_negocio": "Marketplace",
       "legal": {
         "instrumento": null,
@@ -287,13 +342,18 @@
         "Localizar el instrumento de inversión específico de Huerpel",
         "Confirmar en qué entidad (México o Delaware) está la posición"
       ],
-      "alertas": ["Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio"]
+      "alertas": [
+        "Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio"
+      ]
     },
     {
       "nombre": "Partrunner",
       "estado": "vigilar",
       "sector": "Logística last-mile para carga voluminosa ('big & bulky')",
-      "paises": ["México", "USA"],
+      "paises": [
+        "México",
+        "USA"
+      ],
       "modelo_negocio": "Marketplace take-rate",
       "legal": {
         "instrumento": "Convertible Promissory Note",
@@ -316,7 +376,10 @@
         "Confirmar si el waiver legal de 2026 ya se firmó",
         "Solicitar el reporte financiero más reciente (2026)"
       ],
-      "alertas": ["Firma del waiver legal 2026 sin confirmar", "Dato financiero desactualizado (>12 meses)"]
+      "alertas": [
+        "Firma del waiver legal 2026 sin confirmar",
+        "Dato financiero desactualizado (>12 meses)"
+      ]
     }
   ]
 }
