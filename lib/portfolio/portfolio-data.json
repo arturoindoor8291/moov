@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-04",
+  "ultima_actualizacion": "2026-08-28",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -49,19 +49,21 @@
       },
       "financiero": {
         "metrica_principal": "MRR",
-        "valor": 47586,
+        "valor": 73127,
         "moneda": "EUR",
-        "fecha_dato": "2025-11",
-        "arr": 571035,
-        "tendencia": "MRR creció ~10x en 24 meses (dic-2023 a nov-2025). Serie de datos más completa y confiable de todo el portafolio."
+        "fecha_dato": "2026-07",
+        "arr": 877530,
+        "tendencia": "MRR creció ~15x desde diciembre 2023 hasta julio 2026 (32 meses de historia). Julio 2026: MRR +8.7% MoM vs junio 2026. Serie de datos más completa y confiable de todo el portafolio."
       },
-      "situacion_actual": "Startup con mejor calidad de dato financiero del portafolio. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway reportado hasta dic-2026.",
+      "situacion_actual": "Julio 2026: MRR €73,127 (ARR €877,530), 43 clientes totales / 42 con MRR. Costos del mes (€100,221) volvieron a dispararse muy por encima del MRR — segundo mes con esa señal después de oct-2025. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway con discrepancia sin resolver: 31-dic-2026 vs 1-dic-2027 según el reporte de junio-2026 (ver Discrepancias_Detectadas).",
       "proximos_pasos": [
         "Confirmar el monto exacto invertido por Huerpel y el % de participación resultante",
-        "Preguntar qué ocurrió en octubre 2025 con el gasto elevado"
+        "Preguntar qué ocurrió en octubre 2025 con el gasto elevado",
+        "Preguntar qué ocurrió en julio 2026 con el gasto elevado (€100,221 vs MRR de €73,127)"
       ],
       "alertas": [
-        "Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes"
+        "Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes",
+        "Costos de julio 2026 (€100,221) volvieron a superar ampliamente el MRR (€73,127) — segunda vez que se repite este patrón"
       ]
     },
     {
