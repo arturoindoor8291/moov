@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-28",
+  "ultima_actualizacion": "2026-08-29",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -127,19 +127,24 @@
         "notas": "Posición exacta de Huerpel no aislada en el cap table Pro Forma (feb-2025)."
       },
       "financiero": {
-        "metrica_principal": "Net New MRR",
-        "valor": 24000,
+        "metrica_principal": "MRR Billed",
+        "valor": 153694,
         "moneda": "USD",
-        "fecha_dato": "2026-Q1",
-        "tendencia": "NRR de 105%, pero peor trimestre de churn en su historia ($20K MRR perdido). Reduciendo equipo agresivamente (61→39→28) para llegar a breakeven en Q2 2026."
+        "fecha_dato": "2026-06",
+        "tendencia": "MRR Billed subio de $142,999 (feb-2026) a $153,694 (jun-2026), crecimiento mensual modesto y consistente. New MRR de Q2 2026 fue solo 44% de la meta trimestral (~$17K vs $38K), con USA aportando $0. Cash Positive Operations alcanzado en junio 2026 (con matiz: ayudado por cobranza de cuentas por cobrar atrasadas, principalmente Traxion)."
       },
-      "situacion_actual": "Definiciones de MRR inconsistentes entre reportes a lo largo del tiempo (ver Discrepancias_Detectadas). Piloto pagado con Abarta Coca-Cola en USA completado con ROI proyectado de 4.8x-9.3x.",
+      "situacion_actual": "Q2 2026: llegaron a Cash Positive Operations en junio (meta que se habian fijado desde Q1), aunque con ayuda de cobranza atrasada de Traxion - julio/agosto deberian ser cash positive de forma estructural. Pipeline activo en USA: piloto pagado CEVA Logistics (2 plantas, $400K ACV potencial), ABARTA Coca-Cola pasa a produccion pagada en agosto y abrio puerta a Coca-Cola United (piloto oct-2026), partnership con Doran (TPMS) con primer piloto conjunto en agosto (Home City Ice). En Mexico: GEPP expande a $50K MRR (cuenta mas grande), FEMSA evaluando piloto ($60K MRR potencial, Q3), ADO firmo piloto en julio. Perdieron Mansfield (piloto no pagado) y TVA (por falta de certificacion SOC 2, prioridad Q3) en Q2. Definiciones de MRR siguen sin unificacion formal aunque el update de Q2 usa consistentemente 'MRR Billed' (ver Discrepancias_Detectadas).",
       "proximos_pasos": [
-        "Aclarar con Ruedata la definición única de MRR a usar",
-        "Confirmar si llegaron a breakeven en Q2 2026"
+        "Aclarar con Ruedata la definicion unica de MRR a usar de forma permanente",
+        "Confirmar si julio/agosto se sostienen cash positive sin el efecto de cobranza atrasada",
+        "Dar seguimiento a certificacion SOC 2 (prioridad Q3, causo perdida de TVA)",
+        "Dar seguimiento a cierre de partnerships Bosch FleetME y Geotab Order Now (prioridad Q3)",
+        "Vigilar si la meta Q3 2026 de $180K MRR es alcanzable (New MRR de Q2 fue solo 44% de su propia meta)"
       ],
       "alertas": [
-        "Definiciones de MRR inconsistentes entre reportes"
+        "New MRR growth de Q2 2026 fue solo 44% de la meta trimestral (USA aporto $0)",
+        "Cash positive de junio ayudado por cobranza atrasada - vigilar sostenibilidad estructural",
+        "Definiciones de MRR aun sin unificacion formal confirmada por la startup"
       ]
     },
     {
