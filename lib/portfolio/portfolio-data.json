@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-29",
+  "ultima_actualizacion": "2026-09-07",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -49,13 +49,13 @@
       },
       "financiero": {
         "metrica_principal": "MRR",
-        "valor": 73127,
+        "valor": 68592.86,
         "moneda": "EUR",
-        "fecha_dato": "2026-07",
+        "fecha_dato": "2026-08",
         "arr": 877530,
-        "tendencia": "MRR creció ~15x desde diciembre 2023 hasta julio 2026 (32 meses de historia). Julio 2026: MRR +8.7% MoM vs junio 2026. Serie de datos más completa y confiable de todo el portafolio."
+        "tendencia": "MRR cayó -6.2% MoM en agosto 2026 (€68,592.86 vs €73,127 en julio), pese a que Total Clientes subió de 43 a 46 y Clientes MRR pagando subió de 42 a 43, con churn 0%. Posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM)."
       },
-      "situacion_actual": "Julio 2026: MRR €73,127 (ARR €877,530), 43 clientes totales / 42 con MRR. Costos del mes (€100,221) volvieron a dispararse muy por encima del MRR — segundo mes con esa señal después de oct-2025. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway con discrepancia sin resolver: 31-dic-2026 vs 1-dic-2027 según el reporte de junio-2026 (ver Discrepancias_Detectadas).",
+      "situacion_actual": "Julio 2026: MRR €73,127 (ARR €877,530), 43 clientes totales / 42 con MRR. Costos del mes (€100,221) volvieron a dispararse muy por encima del MRR — segundo mes con esa señal después de oct-2025. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway con discrepancia sin resolver: 31-dic-2026 vs 1-dic-2027 según el reporte de junio-2026 (ver Discrepancias_Detectadas). Agosto 2026: MRR bajó a €68,592.86 (-6.2% MoM) pese a que Total Clientes subió 43→46 y Clientes MRR pagando subió 42→43, con churn 0% — posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM en el Kanban).",
       "proximos_pasos": [
         "Confirmar el monto exacto invertido por Huerpel y el % de participación resultante",
         "Preguntar qué ocurrió en octubre 2025 con el gasto elevado",
@@ -63,7 +63,8 @@
       ],
       "alertas": [
         "Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes",
-        "Costos de julio 2026 (€100,221) volvieron a superar ampliamente el MRR (€73,127) — segunda vez que se repite este patrón"
+        "Costos de julio 2026 (€100,221) volvieron a superar ampliamente el MRR (€73,127) — segunda vez que se repite este patrón",
+        "Agosto 2026: MRR cayó -6.2% MoM (€68,592.86) pese a más clientes (43→46) y churn 0% — posible downgrade de ticket, no confirmado. Ver hallazgo POR-T-MTRAY1QM en el Kanban."
       ]
     },
     {
