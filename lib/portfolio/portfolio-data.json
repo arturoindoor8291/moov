@@ -1,12 +1,12 @@
 {
-  "ultima_actualizacion": "2026-09-07",
+  "ultima_actualizacion": "2026-09-17",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
     "total_invertido_confirmado_usd": 511417.98,
     "startups_total": 10,
-    "startups_sanas": 4,
-    "startups_vigilar": 4,
+    "startups_sanas": 3,
+    "startups_vigilar": 5,
     "startups_criticas": 2,
     "startups_sin_monto_confirmado": [
       "Bemycar",
@@ -150,7 +150,7 @@
     },
     {
       "nombre": "Drivana",
-      "estado": "sano",
+      "estado": "vigilar",
       "sector": "Marketplace de renta de autos peer-to-peer (P2P)",
       "paises": [
         "México"
@@ -167,17 +167,34 @@
       },
       "financiero": {
         "metrica_principal": "GTV mensual",
-        "valor": 805541,
+        "valor": 71647,
         "moneda": "USD",
-        "fecha_dato": "2026-06",
-        "tendencia": "Mayo 2026 fue el segundo mejor mes de toda la serie ($1.11M USD), pero junio cayó -27% vs. mayo. Diciembre 2025 sigue siendo el mejor mes histórico ($1.62M USD). Alta volatilidad mes a mes se mantiene como patrón estructural."
+        "fecha_dato": "2026-08",
+        "net_revenue_mensual_usd": 21767,
+        "ebitda_mensual_usd": -11467,
+        "take_rate_pct": 30.4,
+        "gtv_ytd_2026_usd": 429249,
+        "net_revenue_ytd_2026_usd": 114764,
+        "caja_neta_usd": 248000,
+        "runway_meses": 11,
+        "tendencia": "Agosto 2026: GTV $71,647 USD (mejor mes del año) y net revenue $21,767 USD. El crecimiento de net revenue en 2026 (+295% ene-ago) viene en su mayor parte de expansión de take rate (14.5% -> 30.4%, por reclasificación del seguro de costo subsidiado a línea de margen), no de volumen: el GTV lleva prácticamente plano desde mayo (70,965 en may vs 71,647 en ago, +1% en tres meses) y el take rate se estabilizó alrededor de 30% desde junio. OJO: el dato anterior de esta ficha (805,541 'USD' a jun-2026) estaba en MXN, no USD - ver Discrepancias_Detectadas."
       },
-      "situacion_actual": "Debutó en Shark Tank México (temporada 10, oct-2025). Lanzamiento de App 2.0. Reporte actualizado ahora cubre hasta jun-2026: abr-may 2026 mostraron fuerte recuperación (+33% y +22% GTV MoM) antes de la caída de junio. Caja: MXN $5.82M al cierre de jun-2026, runway de ~21.8 meses (sano).",
+      "situacion_actual": "Cierre de agosto 2026 con nota de breakeven enviada por Edson (fundador) el 17-sep-2026. Ocho meses de 2026 igualan los doce de 2025 en net revenue ($116,997 vs $115,503 a tipo de cambio constante de 17.00 MXN/USD) con 10% menos de volumen bruto. La base de costos está plana (+1% desde enero, $31,027/mes en agosto) y el margen bruto 3M es 89.2%. EBITDA de agosto: -$11,467 USD. La compañía calcula que le faltan $11.4K de net revenue mensual (414 días de renta) para breakeven de EBITDA, y proyecta alcanzarlo en 3 a 7 meses contra 11 meses de caja. Verificación independiente (17-sep-2026): la aritmética del gap está correcta y es honesta (da el rango $11.4-13.8K según normalización y modela 70% de fulfillment cuando corrió 76%), pero la tasa de crecimiento usada para proyectar (7%/mes de clientes solicitantes, medida desde enero) ya no describe al negocio: de mayo a agosto el net revenue creció 3.4%/mes, lo que pone el breakeven en ~12-13 meses, fuera de los 11 meses de caja. Además el modelo de breakeven requiere simultáneamente +14% de clientes activos y +33% de intensidad por cliente (1.24 rentas x 4.73 días, picos de mayo y junio respectivamente, nunca observados juntos), cuando en 2026 esas dos variables se han movido en sentidos opuestos: clientes activos +24% de mayo a agosto con días de renta planos.",
       "proximos_pasos": [
-        "Entender la mecánica del 'Insurance Take' negativo",
-        "Confirmar con Drivana la causa de la caída de GTV en junio 2026 (-27% vs. mayo)"
+        "Pedir a Edson el GTV mensual desestacionalizado desde mayo 2026: separar crecimiento de volumen del de take rate",
+        "Aclarar el costo de crecer: la nota dice $1,960/mes por ~95 clientes activos a $35 de CAC, pero 95 x 35 = $3,325 y el modelo de breakeven solo pide +25 activos vs. agosto",
+        "Explicar la quema de caja: el runway implica ~$22.5K/mes contra un EBITDA de -$11.5K en agosto; identificar qué explica la diferencia (capital de trabajo, float de hosts, comisión de seguro devengada no cobrada)",
+        "Explicar por qué cae la intensidad por cliente (rentas por cliente y días por renta) mientras suben los clientes activos: si es mezcla de canal de adquisición, el modelo de breakeven está mal calibrado",
+        "Pedir el breakeven desestacionalizado: Q4 es 39-42% del ingreso anual, así que llegar a breakeven en nov-dic no implica sostenerlo en Q1 2027",
+        "Entender la mecánica del 'Insurance Take' negativo (punto abierto desde jul-2026)"
       ],
-      "alertas": []
+      "alertas": [
+        "Runway pasó de ~21.8 meses (jun-2026) a ~11 meses (ago-2026) en dos meses. Parte del cambio es la corrección de unidades MXN->USD, pero la quema implicada (~$22.5K/mes) duplica el EBITDA mensual y no está explicada.",
+        "GTV prácticamente plano desde mayo 2026 (+1% en tres meses). El crecimiento de ingreso de 2026 es sobre todo expansión de take rate, que ya se agotó (estable ~30% desde junio).",
+        "El timeline de breakeven que comunica la startup (3-7 meses) es optimista por un factor de ~2x contra la tendencia de los últimos cuatro meses.",
+        "Discrepancia de unidades: las cifras históricas de esta ficha y del Dossier estaban en MXN etiquetadas como USD. Corregido a partir de ago-2026.",
+        "El reporte de agosto reexpresa el net revenue de meses previos respecto al reporte de junio (ene -10%, abr -12%, jun +7%). Los GTV sí reconcilian tras convertir a USD; los de net revenue no."
+      ]
     },
     {
       "nombre": "Ualabee",
