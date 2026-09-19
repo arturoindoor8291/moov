@@ -1,24 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { getAllTareas, getTareasUltimaActualizacion } from "@/lib/portfolio/tareasData";
-import { getColumnOverrides, getExternalTareas, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
+import { getTareasUltimaActualizacion } from "@/lib/portfolio/tareasData";
+import { getMergedTareas, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { TareaSchema, type Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 export async function GET() {
-  const [overrides, storedTareas] = await Promise.all([getColumnOverrides(), getExternalTareas()]);
-  const storedIds = new Set(storedTareas.map((t) => t.id));
-
-  // A native tarea fully edited from the panel gets "forked" into Redis
-  // (see resolveTarea in tareasStore.ts) — once that happens the stored
-  // copy is authoritative, so it's excluded here to avoid showing both.
-  const moovTareas: Tarea[] = getAllTareas()
-    .filter((t) => !storedIds.has(t.id))
-    .map((t) => {
-      const override = overrides[t.id];
-      return override ? { ...t, columna_kanban: override as Tarea["columna_kanban"] } : t;
-    });
-
-  const tareas = [...moovTareas, ...storedTareas];
+  const tareas = await getMergedTareas();
   const ultimaActualizacion = [getTareasUltimaActualizacion(), ...tareas.map((t) => t.fecha_actualizacion)].reduce(
     (max, d) => (d > max ? d : max)
   );

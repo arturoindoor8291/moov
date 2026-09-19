@@ -4,11 +4,25 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { TareaSchema, type Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { getAllTareas } from "@/lib/portfolio/tareasData";
-import { upsertExternalTarea } from "@/lib/portfolio/tareasStore";
+import { listarTareas } from "@/lib/portfolio/tareasQuery";
+import { getMergedTareas, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { checkIngestRateLimit } from "@/lib/ratelimit";
 import { verifyAccessToken } from "@/lib/mcpOAuthStore";
 
 export const runtime = "nodejs";
+
+/**
+ * Conector MCP "moov-tareas" — misma autenticación (Bearer OAuth o
+ * MCP_TAREAS_SECRET) y mismo rate limit para todas las herramientas:
+ *
+ *  - crear_tarea_moov: crea una tarea en el kanban (escritura, Redis).
+ *  - listar_tareas_moov: consulta el kanban (solo lectura). Filtros
+ *    opcionales: proyecto, estado (pendiente | en_progreso | bloqueada |
+ *    completada), responsable, actualizadas_desde (AAAA-MM-DD) y limite
+ *    (50 por defecto, 200 máx). Ordena por fecha límite y luego por
+ *    importancia. Excluye tareas confidenciales y sólo expone los campos de
+ *    TareaResumen (ver lib/portfolio/tareasQuery.ts).
+ */
 
 function getClientIP(req: NextRequest): string {
   return (
@@ -36,6 +50,20 @@ const CreateTareaMcpSchema = {
   fecha_limite: z.string().nullable().default(null),
   confidencial: z.boolean().default(false),
   etiquetas: z.array(z.string()).default([]),
+};
+
+const ListTareasMcpSchema = {
+  proyecto: z.string().optional().describe("Filtra por proyecto/empresa dueño (coincidencia parcial, sin acentos ni mayúsculas)."),
+  estado: TareaSchema.shape.columna_kanban
+    .optional()
+    .describe("Columna del kanban: pendiente, en_progreso (en curso), bloqueada o completada."),
+  responsable: z.string().optional().describe("Filtra por responsable (coincidencia parcial)."),
+  actualizadas_desde: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Formato AAAA-MM-DD")
+    .optional()
+    .describe("Solo tareas actualizadas en o después de esta fecha (AAAA-MM-DD)."),
+  limite: z.number().int().min(1).max(200).default(50).describe("Máximo de tareas a regresar (50 por defecto, 200 máximo)."),
 };
 
 /**
@@ -105,6 +133,35 @@ function buildServer(): McpServer {
       return {
         content: [{ type: "text" as const, text: `Tarea ${id} creada en el board de MOOV: "${validated.data.tarea}".` }],
       };
+    }
+  );
+
+  server.registerTool(
+    "listar_tareas_moov",
+    {
+      title: "Listar tareas del board de MOOV",
+      description:
+        "Consulta (solo lectura) el kanban consolidado de apply.moov.vc/admin/tareas. Ordena por fecha límite y " +
+        "luego por importancia; las tareas sin fecha límite válida van al final. Las tareas marcadas como " +
+        "confidenciales nunca se incluyen.",
+      inputSchema: ListTareasMcpSchema,
+      annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+    },
+    async (args) => {
+      let tareas;
+      try {
+        tareas = await getMergedTareas();
+      } catch (err) {
+        console.error("[mcp] failed to read tareas:", err);
+        return {
+          content: [{ type: "text" as const, text: "No se pudieron leer las tareas (error de almacenamiento)." }],
+          isError: true,
+        };
+      }
+
+      const resultado = listarTareas(tareas, args);
+      const payload = { total: resultado.total, devueltas: resultado.tareas.length, tareas: resultado.tareas };
+      return { content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }] };
     }
   );
 

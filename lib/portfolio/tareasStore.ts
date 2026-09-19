@@ -108,3 +108,23 @@ export async function resolveTarea(id: string): Promise<Tarea | null> {
   const override = overrides[id];
   return override ? { ...native, columna_kanban: override as Tarea["columna_kanban"] } : native;
 }
+
+/**
+ * The board as /admin/tareas shows it: native tareas (with legacy column
+ * overrides applied) plus everything stored in Redis. A native tarea that
+ * was forked into Redis is authoritative there, so the native copy is
+ * excluded to avoid returning both.
+ */
+export async function getMergedTareas(): Promise<Tarea[]> {
+  const [overrides, storedTareas] = await Promise.all([getColumnOverrides(), getExternalTareas()]);
+  const storedIds = new Set(storedTareas.map((t) => t.id));
+
+  const moovTareas: Tarea[] = getAllTareas()
+    .filter((t) => !storedIds.has(t.id))
+    .map((t) => {
+      const override = overrides[t.id];
+      return override ? { ...t, columna_kanban: override as Tarea["columna_kanban"] } : t;
+    });
+
+  return [...moovTareas, ...storedTareas];
+}
