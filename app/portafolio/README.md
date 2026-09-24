@@ -5,7 +5,27 @@ ninguna llamada a APIs externas en tiempo de ejecución (ni Claude, ni Google
 Drive) — todos los datos vienen de un único archivo JSON que se actualiza
 periódicamente.
 
-## Flujo real de actualización
+## Dashboard v2 (schema v2, vigente)
+
+El dashboard **no lee directamente** `portfolio-data.json`. Lee `lib/portfolio/portfolio-v2.json`, un archivo **derivado** que se genera así:
+
+```
+portfolio-data.json (Cowork, v1)  ┐
+excel-bluebox-seed.json (Excel)   ├─ npm run portafolio:migrar ─▶ portfolio-v2.json ─▶ páginas
+oportunidades-inversion.json      ┘   (lib/portfolio/migracion.ts)   (schemaV2.ts, validado en build)
+```
+
+- **Se captura** (v1 + seed): montos, instrumentos, alertas, series. **Se calcula** (`lib/portfolio/fondoV2.ts`, funciones puras con tests): fondo, NAV, MOIC, TVPI, DPI, RVPI, IRR, concentración, semáforo sugerido, completitud, frescura y lectura del comité. Nada del fondo se captura aparte de las startups.
+- `npm run build` ejecuta `portafolio:migrar` primero (`prebuild`), así que el flujo de Cowork (copiar el v1, commit, push) no cambia. En Vercel no existe `cowork/`; el embudo de scouting conserva el valor ya guardado en el v2.
+- `npm run portafolio:validar` valida el v2, avisa si quedó desfasado del v1, muestra completitud y discrepancias abiertas.
+- `npm test` corre los tests de cálculo (reproducen el Excel al 4Q 2025). `npx playwright test tests/portafolio.spec.ts` corre las pruebas de humo.
+- Cada cifra lleva su procedencia (punto verde = documento, azul = reporte de la startup, gris = Excel o estimado, vacío = no reportado). Las discrepancias conocidas están en `DISCREPANCIAS` de `migracion.ts` y se ven en `/portafolio/pendientes`.
+- Series mensuales nuevas: agregar `financiero.serie_mensual` en el v1 (ver `cowork/PROPUESTA_skill_moov-portfolio-core_v2.md`).
+- Vistas: `/portafolio` (Startups, tabla y tarjetas), `/portafolio/overview` (Fondo, con selector de lente a valor justo o a costo), `/portafolio/startups/[id]` (ficha) y `/portafolio/pendientes`. Los filtros y el orden viven en la URL (`?lente=costo&orden=runway`), sin JavaScript de cliente.
+
+Las secciones de abajo describen el v1, que sigue siendo el archivo que edita Cowork.
+
+## Flujo real de actualización (v1)
 
 Los datos **no se escriben a mano** — los produce Cowork (Claude con acceso
 a Google Drive) investigando los documentos fuente del portafolio:

@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "portafolio:migrar": "node --no-warnings scripts/migrar-portafolio-v2.ts",
+    "portafolio:validar": "node --no-warnings scripts/validar-portafolio.ts",
+    "prebuild": "npm run portafolio:migrar"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
@@ -40,6 +44,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.7"
   }
 }

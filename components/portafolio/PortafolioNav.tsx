@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface PortafolioNavProps {
-  active: "dashboard" | "overview" | "usuarios";
+  active: "dashboard" | "overview" | "pendientes" | "usuarios";
 }
 
 interface CurrentUser {
@@ -48,6 +48,12 @@ export default function PortafolioNav({ active }: PortafolioNavProps) {
           >
             Fondo
           </Link>
+          <Link
+            href="/portafolio/pendientes"
+            style={{ ...s.link, ...(active === "pendientes" ? s.linkActive : {}) }}
+          >
+            Pendientes
+          </Link>
           {user?.role === "admin" && (
             <Link
               href="/portafolio/usuarios"
@@ -79,13 +85,15 @@ const s: Record<string, React.CSSProperties> = {
   inner: {
     maxWidth: "1280px",
     margin: "0 auto",
-    padding: "0 24px",
-    height: "56px",
+    padding: "8px 16px",
+    minHeight: "56px",
+    flexWrap: "wrap",
+    gap: "8px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  left: { display: "flex", alignItems: "center", gap: "20px" },
+  left: { display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap" },
   right: { display: "flex", alignItems: "center", gap: "14px" },
   logo: {
     fontSize: "18px",

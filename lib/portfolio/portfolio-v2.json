@@ -1,0 +1,4511 @@
+{
+  "schema_version": 2,
+  "generado_de": {
+    "v1_actualizacion": "2026-09-17",
+    "excel_periodo": "4Q 2025"
+  },
+  "parametros": {
+    "nombre": "MOOV",
+    "entidad": "Grupo Huerpel",
+    "tamano_usd": 1000000,
+    "vintage": 2023,
+    "gastos_salen_del_fondo": true,
+    "gastos_inversion": [
+      {
+        "concepto": "Fee SPV Leasy - Mobility VC",
+        "monto_usd": 6000,
+        "periodo": "1Q 2025",
+        "tag": "SPV Fee"
+      },
+      {
+        "concepto": "Fee SPV Ualabee - Mobility VC",
+        "monto_usd": 4500,
+        "periodo": "3Q 2025",
+        "tag": "SPV Fee"
+      },
+      {
+        "concepto": "Fee SPV Mobi - Mobility VC",
+        "monto_usd": 7000,
+        "periodo": "3Q 2025",
+        "tag": "SPV Fee"
+      }
+    ],
+    "reservas_followon_usd": null,
+    "tipo_cambio_trimestral": {
+      "1Q 2023": 17.1,
+      "2Q 2023": 17.13,
+      "3Q 2023": 17.02,
+      "4Q 2023": 16.96,
+      "1Q 2024": 16.678,
+      "2Q 2024": 18.3773,
+      "3Q 2024": 19.629,
+      "4Q 2024": 20.2683,
+      "1Q 2025": 20.3182,
+      "2Q 2025": 19.49,
+      "3Q 2025": 18.55,
+      "4Q 2025": 18.1
+    },
+    "tipo_cambio_eur_usd_estimado": 1.15,
+    "objetivos_construccion": {
+      "core": 3,
+      "adyacente": 5,
+      "transformacional": 2,
+      "graduation_rate": 0.2,
+      "parent_engagement": 0.4,
+      "son_objetivos": false
+    },
+    "politica_valuacion": "Marcar a costo por defecto. Subir solo con una ronda con precio y con participación de un inversionista institucional nuevo. Un cap de SAFE no es una ronda con precio. Una dilución no es una pérdida. Marcar a la baja ante crisis de caja, sin runway o sin reportes.",
+    "fecha_corte_excel": "2025-12-31",
+    "fecha_corte_vista": "2026-09",
+    "historico_excel": {
+      "tvpi": {
+        "1Q 2023": 1,
+        "2Q 2023": 1,
+        "3Q 2023": 1,
+        "4Q 2023": 1,
+        "1Q 2024": 1,
+        "2Q 2024": 0.967876,
+        "3Q 2024": 0.973542,
+        "4Q 2024": 0.973542,
+        "1Q 2025": 0.962959,
+        "2Q 2025": 0.942674,
+        "3Q 2025": 0.973941,
+        "4Q 2025": 1.004596
+      },
+      "irr_anualizada": {
+        "3Q 2023": 0,
+        "4Q 2023": 0,
+        "1Q 2024": 0,
+        "2Q 2024": -0.032501,
+        "3Q 2024": -0.026014,
+        "4Q 2024": -0.020921,
+        "1Q 2025": -0.017499,
+        "2Q 2025": -0.015041,
+        "3Q 2025": -0.002172,
+        "4Q 2025": 0.016222
+      },
+      "nav": {
+        "1Q 2023": 300000,
+        "2Q 2023": 300000,
+        "3Q 2023": 416936,
+        "4Q 2023": 416936,
+        "1Q 2024": 416936,
+        "2Q 2024": 451936,
+        "3Q 2024": 551936,
+        "4Q 2024": 551936,
+        "1Q 2025": 551936,
+        "2Q 2025": 551936,
+        "3Q 2025": 764489.6193,
+        "4Q 2025": 988920.5189
+      },
+      "capital": {
+        "1Q 2023": 300000,
+        "2Q 2023": 300000,
+        "3Q 2023": 416936,
+        "4Q 2023": 416936,
+        "1Q 2024": 416936,
+        "2Q 2024": 466936,
+        "3Q 2024": 566936,
+        "4Q 2024": 566936,
+        "1Q 2025": 566936,
+        "2Q 2025": 566936,
+        "3Q 2025": 766976,
+        "4Q 2025": 966976
+      },
+      "gastos_acumulados": {
+        "2Q 2023": 0,
+        "3Q 2023": 0,
+        "4Q 2023": 0,
+        "1Q 2024": 0,
+        "2Q 2024": 0,
+        "3Q 2024": 0,
+        "4Q 2024": 0,
+        "1Q 2025": 6000,
+        "2Q 2025": 17500,
+        "3Q 2025": 17500,
+        "4Q 2025": 17500
+      }
+    },
+    "ultima_actualizacion": "2026-09-17"
+  },
+  "startups": [
+    {
+      "id": "bemycar",
+      "nombre": "Bemycar",
+      "estado_asignado": "sano",
+      "override_estado": null,
+      "sector": "SaaS B2B automotriz (dashboards IA, enriquecimiento de leads)",
+      "sector_grupo": "SaaS automotriz",
+      "subsegmento": null,
+      "paises": [
+        "España",
+        "México",
+        "Colombia",
+        "Perú",
+        "Portugal"
+      ],
+      "hq": "México",
+      "modelo_negocio": "SaaS",
+      "etapa": "Seed",
+      "tipo_portafolio": "core",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": null,
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2023-11-29",
+        "periodo": "3Q 2023",
+        "instrumento": "Equity directo (compra de participaciones + Pacto de Socios)",
+        "entidad": "Bemy Technology S.L. (España)",
+        "monto_usd": {
+          "valor": 16936,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "monto_documento_usd": null,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 1376910,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1.23,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 2600000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "participacion_actual_pct": {
+          "valor": 1.132678,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Bemycar)"
+        },
+        "base_marca": "cap_safe",
+        "base_marca_nota": "Subida a 2.6M por un SAFE de 205,723 USD a cap de 2.6M (3Q 2025). Un cap de SAFE no es una ronda con precio.",
+        "fecha_ultima_marca": "2025-08-15",
+        "documento_localizado": false
+      },
+      "rondas": [
+        {
+          "nombre": "SAFE",
+          "fecha": "3Q 2025",
+          "monto_usd": 205723,
+          "valuacion_usd": 2600000,
+          "instrumento": "SAFE",
+          "dilucion_pct": null,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        }
+      ],
+      "serie_trimestral": [],
+      "serie_mensual": [
+        {
+          "periodo": "2026-08",
+          "moneda_original": "EUR",
+          "tipo_cambio_a_usd": 0.8695652173913044,
+          "tipo_cambio_fuente": "estimado",
+          "revenue_original": 68592.86,
+          "revenue_usd": {
+            "valor": 78882,
+            "fuente": "estimado",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "MRR usado como proxy de ingreso mensual, convertido a 1.15 USD/EUR (TC estimado)."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": [
+            {
+              "nombre": "MRR (EUR)",
+              "valor": 68592.86,
+              "unidad": "EUR"
+            }
+          ]
+        }
+      ],
+      "kpi_principal": {
+        "nombre": "MRR",
+        "valor": 68592.86,
+        "moneda": "EUR",
+        "fecha_dato": "2026-08",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2026-08",
+        "frecuencia": "mensual",
+        "al_corriente": false,
+        "nota_monitoring": null
+      },
+      "highlights": [],
+      "situacion_actual": "Julio 2026: MRR €73,127 (ARR €877,530), 43 clientes totales / 42 con MRR. Costos del mes (€100,221) volvieron a dispararse muy por encima del MRR — segundo mes con esa señal después de oct-2025. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway con discrepancia sin resolver: 31-dic-2026 vs 1-dic-2027 según el reporte de junio-2026 (ver Discrepancias_Detectadas). Agosto 2026: MRR bajó a €68,592.86 (-6.2% MoM) pese a que Total Clientes subió 43→46 y Clientes MRR pagando subió 42→43, con churn 0% — posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM en el Kanban).",
+      "tendencia": "MRR cayó -6.2% MoM en agosto 2026 (€68,592.86 vs €73,127 en julio), pese a que Total Clientes subió de 43 a 46 y Clientes MRR pagando subió de 42 a 43, con churn 0%. Posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM).",
+      "alertas": [
+        {
+          "texto": "Costos de octubre 2025 casi duplicaron el MRR de ese mismo mes",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Costos de julio 2026 (€100,221) volvieron a superar ampliamente el MRR (€73,127) — segunda vez que se repite este patrón",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Agosto 2026: MRR cayó -6.2% MoM (€68,592.86) pese a más clientes (43→46) y churn 0% — posible downgrade de ticket, no confirmado. Ver hallazgo POR-T-MTRAY1QM en el Kanban.",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Confirmar el monto exacto invertido por Huerpel y el % de participación resultante",
+          "responsable": null
+        },
+        {
+          "texto": "Preguntar qué ocurrió en octubre 2025 con el gasto elevado",
+          "responsable": null
+        },
+        {
+          "texto": "Preguntar qué ocurrió en julio 2026 con el gasto elevado (€100,221 vs MRR de €73,127)",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Monto exacto invertido por Huerpel NO confirmado. Adhesión formal al Pacto de Socios el 19-sep-2025 (el Pacto original es de oct-2023).",
+      "contexto_v1": {
+        "arr": 877530
+      }
+    },
+    {
+      "id": "autolab",
+      "nombre": "Autolab",
+      "estado_asignado": "vigilar",
+      "override_estado": null,
+      "sector": "Marketplace de reparación y mantenimiento de flotillas vehiculares",
+      "sector_grupo": "Mantenimiento",
+      "subsegmento": "Maintenance",
+      "paises": [
+        "México",
+        "Colombia"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Marketplace take-rate",
+      "etapa": "Bridge Serie A",
+      "tipo_portafolio": "adyacente",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": "Andrea",
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": null,
+        "periodo": "3Q 2024",
+        "instrumento": null,
+        "entidad": null,
+        "monto_usd": {
+          "valor": 100000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "monto_documento_usd": null,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 9000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1.1,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 12000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "participacion_actual_pct": {
+          "valor": 0.99537,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Autolab)"
+        },
+        "base_marca": "ronda_pricing",
+        "base_marca_nota": "Bridge Serie A a pre-money de 12M (equity directo, 4Q 2025) según Excel; sin documento ni inversionista institucional verificado.",
+        "fecha_ultima_marca": "2025-11-15",
+        "documento_localizado": false
+      },
+      "rondas": [
+        {
+          "nombre": "Serie A",
+          "fecha": "4Q 2024",
+          "monto_usd": 1500000,
+          "valuacion_usd": 16000000,
+          "instrumento": "Nota Convertible",
+          "dilucion_pct": 9.4,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        },
+        {
+          "nombre": "Bridge Serie A",
+          "fecha": "4Q 2025",
+          "monto_usd": 1250000,
+          "valuacion_usd": 12000000,
+          "instrumento": "Equity Directo",
+          "dilucion_pct": 10.4,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        }
+      ],
+      "serie_trimestral": [
+        {
+          "periodo": "3Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 325900,
+          "revenue_usd": {
+            "valor": 325900,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1207000,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -286800,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 314700,
+          "revenue_usd": {
+            "valor": 314700,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1582600,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -458600,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 320600,
+          "revenue_usd": {
+            "valor": 320600,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1937000,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -237500,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 313400,
+          "revenue_usd": {
+            "valor": 313400,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1857000,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -270200,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 462400,
+          "revenue_usd": {
+            "valor": 462400,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 428600,
+          "revenue_usd": {
+            "valor": 428600,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [],
+      "kpi_principal": {
+        "nombre": "% Cumplimiento GTV vs. presupuesto",
+        "valor": 1.04,
+        "moneda": "%",
+        "fecha_dato": "2025-Q3",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2025-09",
+        "frecuencia": "trimestral",
+        "al_corriente": false,
+        "nota_monitoring": "Están por enviarlo"
+      },
+      "highlights": [
+        "🚀 Cierre de ronda y conversión de notas: \nAutolab informa sobre el cierre de su última ronda de inversión con las siguientes condiciones: \n* Valuación Pre-money: $12M USD.\n* Estructura de la ronda: $1.25M USD totales ($950K nuevos + $300K de SAFE previo), con un option pool del 15%.\n* Oportunidad de conversión para Flecha: Se sugiere convertir las notas actuales ahora para aprovechar una valuación preferencial de $9M USD (gracias al 25% de descuento). Documentos ya en proceso de firma.  \n* Objetivo financiero: El presupuesto está diseñado para alcanzar el breakeven, con proyección de EBITDA positivo en Q2 y Cash Flow positivo en Q4 del 2026."
+      ],
+      "situacion_actual": "Arturo (Huerpel) es ahora el punto de contacto de Autolab, reemplazando a Blue Box (que queda como apoyo ocasional). Equipo de 21 personas. Inicio de 2026 complicado por impago de Grupo Salinas/Tiendas Neto y pérdida del cliente Koji. Prioridad actual: llegar a breakeven antes de fin de año (reportan estar cerca). Ronda cerrada \"el año pasado\" de $900K USD para financiar 2026 — posible extensión de la nota convertible de ~$600-700K mencionada anteriormente, sin confirmar (ver discrepancia). Evaluando oportunidad de colaboración en México con el operador colombiano Call Mecánica para reabrir el modelo de usuario final bajo la marca Autolab.",
+      "tendencia": "Colombia alcanzó EBITDA positivo (+$5K USD) en julio 2025, tras pérdidas de $70-80K a inicios de año. Take rate México subió de 14-15% a más de 18%.",
+      "alertas": [
+        {
+          "texto": "Sin instrumento legal localizado",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Cifras financieras absolutas no confiables (solo % de cumplimiento)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Cliente Grupo Salinas/Tiendas Neto dejó de pagar; cartera grande pendiente de cobro (ago-2026)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Perdieron al cliente Koji por centralización de operaciones en agencia (ago-2026)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Discrepancia sin resolver: monto de ronda cerrada ($900K, ago-2026) vs. extensión de nota convertible mencionada antes ($600-700K, jul-2025)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Localizar el instrumento legal de inversión de Huerpel",
+          "responsable": null
+        },
+        {
+          "texto": "Pedir cifras absolutas de GTV/Net Revenue en texto plano, no solo gráficas",
+          "responsable": null
+        },
+        {
+          "texto": "Confirmar con Chava si el monto de $900K corresponde a la misma extensión de nota convertible ($600-700K) o es una ronda distinta",
+          "responsable": null
+        },
+        {
+          "texto": "Arturo presenta la propuesta de colaboración México a José Arturo (comité) antes de retomar con Chava",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": "Postura de Huerpel sobre la operación B2C-MX conjunta de Autolab y Call Mecánica.",
+      "notas_legales": "Instrumento de inversión NO localizado en la carpeta de Autolab - hallazgo de riesgo confirmado, no es una búsqueda pendiente.",
+      "contexto_v1": {
+        "arr_objetivo": 3000000
+      }
+    },
+    {
+      "id": "ruedata",
+      "nombre": "Ruedata",
+      "estado_asignado": "vigilar",
+      "override_estado": null,
+      "sector": "SaaS de gestión predictiva de llantas para flotas comerciales",
+      "sector_grupo": "Flotas",
+      "subsegmento": "Fleet management",
+      "paises": [
+        "México",
+        "Brasil",
+        "USA"
+      ],
+      "hq": "México",
+      "modelo_negocio": "SaaS",
+      "etapa": "Seed",
+      "tipo_portafolio": "core",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": "Alex Gar",
+      "relacion_con_grupo": "Corriendo una prueba piloto con el equipo de operaciones y multillantas Nieto",
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2024",
+        "periodo": "2Q 2024",
+        "instrumento": "SAFE (ronda Seed 2024)",
+        "entidad": "Ruedata Inc.",
+        "monto_usd": {
+          "valor": 50000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Ruedata)"
+        },
+        "monto_documento_usd": null,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Ruedata)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 10152944,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Ruedata)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "valuacion_actual_usd": {
+          "valor": 13165488,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Ruedata)"
+        },
+        "participacion_actual_pct": {
+          "valor": 0.417656,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Ruedata)"
+        },
+        "base_marca": "cap_safe",
+        "base_marca_nota": "Nota convertible de 2M a cap de 13.17M (2Q 2025). No es ronda con precio.",
+        "fecha_ultima_marca": "2025-05-15",
+        "documento_localizado": false
+      },
+      "rondas": [
+        {
+          "nombre": "Nota convertible",
+          "fecha": "2Q 2025",
+          "monto_usd": 2000000,
+          "valuacion_usd": 13165488,
+          "instrumento": "Nota convertible",
+          "dilucion_pct": null,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        }
+      ],
+      "serie_trimestral": [
+        {
+          "periodo": "2Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 451820,
+          "revenue_usd": {
+            "valor": 451820,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 398082,
+          "revenue_usd": {
+            "valor": 398082,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 383971,
+          "revenue_usd": {
+            "valor": 383971,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 377766,
+          "revenue_usd": {
+            "valor": 377766,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 476697,
+          "revenue_usd": {
+            "valor": 476697,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 404055,
+          "revenue_usd": {
+            "valor": 404055,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 411695,
+          "revenue_usd": {
+            "valor": 411695,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [
+        {
+          "periodo": "2026-06",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 153694,
+          "revenue_usd": {
+            "valor": 153694,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-06",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "MRR Billed usado como proxy de ingreso mensual."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": [
+            {
+              "nombre": "MRR Billed",
+              "valor": 153694,
+              "unidad": "USD"
+            }
+          ]
+        }
+      ],
+      "kpi_principal": {
+        "nombre": "MRR Billed",
+        "valor": 153694,
+        "moneda": "USD",
+        "fecha_dato": "2026-06",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2026-06",
+        "frecuencia": "mensual",
+        "al_corriente": true,
+        "nota_monitoring": "Actualizado"
+      },
+      "highlights": [],
+      "situacion_actual": "Q2 2026: llegaron a Cash Positive Operations en junio (meta que se habian fijado desde Q1), aunque con ayuda de cobranza atrasada de Traxion - julio/agosto deberian ser cash positive de forma estructural. Pipeline activo en USA: piloto pagado CEVA Logistics (2 plantas, $400K ACV potencial), ABARTA Coca-Cola pasa a produccion pagada en agosto y abrio puerta a Coca-Cola United (piloto oct-2026), partnership con Doran (TPMS) con primer piloto conjunto en agosto (Home City Ice). En Mexico: GEPP expande a $50K MRR (cuenta mas grande), FEMSA evaluando piloto ($60K MRR potencial, Q3), ADO firmo piloto en julio. Perdieron Mansfield (piloto no pagado) y TVA (por falta de certificacion SOC 2, prioridad Q3) en Q2. Definiciones de MRR siguen sin unificacion formal aunque el update de Q2 usa consistentemente 'MRR Billed' (ver Discrepancias_Detectadas).",
+      "tendencia": "MRR Billed subio de $142,999 (feb-2026) a $153,694 (jun-2026), crecimiento mensual modesto y consistente. New MRR de Q2 2026 fue solo 44% de la meta trimestral (~$17K vs $38K), con USA aportando $0. Cash Positive Operations alcanzado en junio 2026 (con matiz: ayudado por cobranza de cuentas por cobrar atrasadas, principalmente Traxion).",
+      "alertas": [
+        {
+          "texto": "New MRR growth de Q2 2026 fue solo 44% de la meta trimestral (USA aporto $0)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Cash positive de junio ayudado por cobranza atrasada - vigilar sostenibilidad estructural",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Definiciones de MRR aun sin unificacion formal confirmada por la startup",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Aclarar con Ruedata la definicion unica de MRR a usar de forma permanente",
+          "responsable": null
+        },
+        {
+          "texto": "Confirmar si julio/agosto se sostienen cash positive sin el efecto de cobranza atrasada",
+          "responsable": null
+        },
+        {
+          "texto": "Dar seguimiento a certificacion SOC 2 (prioridad Q3, causo perdida de TVA)",
+          "responsable": null
+        },
+        {
+          "texto": "Dar seguimiento a cierre de partnerships Bosch FleetME y Geotab Order Now (prioridad Q3)",
+          "responsable": null
+        },
+        {
+          "texto": "Vigilar si la meta Q3 2026 de $180K MRR es alcanzable (New MRR de Q2 fue solo 44% de su propia meta)",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Posición exacta de Huerpel no aislada en el cap table Pro Forma (feb-2025).",
+      "contexto_v1": {}
+    },
+    {
+      "id": "drivana",
+      "nombre": "Drivana",
+      "estado_asignado": "vigilar",
+      "override_estado": null,
+      "sector": "Marketplace de renta de autos peer-to-peer (P2P)",
+      "sector_grupo": "Car sharing",
+      "subsegmento": "Mobility Tech, Car Sharing, P2P",
+      "paises": [
+        "México"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Marketplace take-rate",
+      "etapa": "Seed (ronda en curso)",
+      "tipo_portafolio": "adyacente",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": "Luis Ángel",
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2025-04-15",
+        "periodo": "3Q 2025",
+        "instrumento": "SAFE",
+        "entidad": "Drivana Corp. (Delaware, EE.UU.)",
+        "monto_usd": {
+          "valor": 50000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "monto_documento_usd": 50000,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 5000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "tipo_valuacion": "cap",
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 5000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "participacion_actual_pct": {
+          "valor": 1,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Drivana)"
+        },
+        "base_marca": "a_costo",
+        "base_marca_nota": "SAFE a cap de 5M; sin marca posterior.",
+        "fecha_ultima_marca": null,
+        "documento_localizado": true
+      },
+      "rondas": [],
+      "serie_trimestral": [
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 363917,
+          "revenue_usd": {
+            "valor": 363917,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1",
+            "nota": "Etiquetado USD en el Excel pero probablemente MXN (D-09). Si fuera MXN: ≈ 19,618 USD al TC 18.55.",
+            "en_duda": true
+          },
+          "gtv_usd": {
+            "valor": 1881963,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "en_duda": true
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 1214711,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "en_duda": true
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 770399,
+          "revenue_usd": {
+            "valor": 770399,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1",
+            "nota": "Etiquetado USD en el Excel pero probablemente MXN (D-09). Si fuera MXN: ≈ 42,563 USD al TC 18.1.",
+            "en_duda": true
+          },
+          "gtv_usd": {
+            "valor": 2843222,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "en_duda": true
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 1257305,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "en_duda": true
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [
+        {
+          "periodo": "2026-08",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": null,
+          "revenue_usd": {
+            "valor": 21767,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "Net revenue mensual."
+          },
+          "gtv_usd": {
+            "valor": 71647,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -11467,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": 248000,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)"
+          },
+          "runway_meses": {
+            "valor": 11,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-08",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "Bajó de ~21.8 a ~11 meses en dos meses (D-12)."
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": [
+            {
+              "nombre": "Take rate",
+              "valor": 30.4,
+              "unidad": "%"
+            }
+          ]
+        }
+      ],
+      "kpi_principal": {
+        "nombre": "GTV mensual",
+        "valor": 71647,
+        "moneda": "USD",
+        "fecha_dato": "2026-08",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2026-08",
+        "frecuencia": "mensual",
+        "al_corriente": true,
+        "nota_monitoring": "Actualizado"
+      },
+      "highlights": [],
+      "situacion_actual": "Cierre de agosto 2026 con nota de breakeven enviada por Edson (fundador) el 17-sep-2026. Ocho meses de 2026 igualan los doce de 2025 en net revenue ($116,997 vs $115,503 a tipo de cambio constante de 17.00 MXN/USD) con 10% menos de volumen bruto. La base de costos está plana (+1% desde enero, $31,027/mes en agosto) y el margen bruto 3M es 89.2%. EBITDA de agosto: -$11,467 USD. La compañía calcula que le faltan $11.4K de net revenue mensual (414 días de renta) para breakeven de EBITDA, y proyecta alcanzarlo en 3 a 7 meses contra 11 meses de caja. Verificación independiente (17-sep-2026): la aritmética del gap está correcta y es honesta (da el rango $11.4-13.8K según normalización y modela 70% de fulfillment cuando corrió 76%), pero la tasa de crecimiento usada para proyectar (7%/mes de clientes solicitantes, medida desde enero) ya no describe al negocio: de mayo a agosto el net revenue creció 3.4%/mes, lo que pone el breakeven en ~12-13 meses, fuera de los 11 meses de caja. Además el modelo de breakeven requiere simultáneamente +14% de clientes activos y +33% de intensidad por cliente (1.24 rentas x 4.73 días, picos de mayo y junio respectivamente, nunca observados juntos), cuando en 2026 esas dos variables se han movido en sentidos opuestos: clientes activos +24% de mayo a agosto con días de renta planos.",
+      "tendencia": "Agosto 2026: GTV $71,647 USD (mejor mes del año) y net revenue $21,767 USD. El crecimiento de net revenue en 2026 (+295% ene-ago) viene en su mayor parte de expansión de take rate (14.5% -> 30.4%, por reclasificación del seguro de costo subsidiado a línea de margen), no de volumen: el GTV lleva prácticamente plano desde mayo (70,965 en may vs 71,647 en ago, +1% en tres meses) y el take rate se estabilizó alrededor de 30% desde junio. OJO: el dato anterior de esta ficha (805,541 'USD' a jun-2026) estaba en MXN, no USD - ver Discrepancias_Detectadas.",
+      "alertas": [
+        {
+          "texto": "Runway pasó de ~21.8 meses (jun-2026) a ~11 meses (ago-2026) en dos meses. Parte del cambio es la corrección de unidades MXN->USD, pero la quema implicada (~$22.5K/mes) duplica el EBITDA mensual y no está explicada.",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "GTV prácticamente plano desde mayo 2026 (+1% en tres meses). El crecimiento de ingreso de 2026 es sobre todo expansión de take rate, que ya se agotó (estable ~30% desde junio).",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "El timeline de breakeven que comunica la startup (3-7 meses) es optimista por un factor de ~2x contra la tendencia de los últimos cuatro meses.",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Discrepancia de unidades: las cifras históricas de esta ficha y del Dossier estaban en MXN etiquetadas como USD. Corregido a partir de ago-2026.",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "El reporte de agosto reexpresa el net revenue de meses previos respecto al reporte de junio (ene -10%, abr -12%, jun +7%). Los GTV sí reconcilian tras convertir a USD; los de net revenue no.",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Pedir a Edson el GTV mensual desestacionalizado desde mayo 2026: separar crecimiento de volumen del de take rate",
+          "responsable": null
+        },
+        {
+          "texto": "Aclarar el costo de crecer: la nota dice $1,960/mes por ~95 clientes activos a $35 de CAC, pero 95 x 35 = $3,325 y el modelo de breakeven solo pide +25 activos vs. agosto",
+          "responsable": null
+        },
+        {
+          "texto": "Explicar la quema de caja: el runway implica ~$22.5K/mes contra un EBITDA de -$11.5K en agosto; identificar qué explica la diferencia (capital de trabajo, float de hosts, comisión de seguro devengada no cobrada)",
+          "responsable": null
+        },
+        {
+          "texto": "Explicar por qué cae la intensidad por cliente (rentas por cliente y días por renta) mientras suben los clientes activos: si es mezcla de canal de adquisición, el modelo de breakeven está mal calibrado",
+          "responsable": null
+        },
+        {
+          "texto": "Pedir el breakeven desestacionalizado: Q4 es 39-42% del ingreso anual, así que llegar a breakeven en nov-dic no implica sostenerlo en Q1 2027",
+          "responsable": null
+        },
+        {
+          "texto": "Entender la mecánica del 'Insurance Take' negativo (punto abierto desde jul-2026)",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": "Postura de Huerpel ante la ronda en curso (term sheet pendiente) con el escenario de breakeven a 12-13 meses.",
+      "notas_legales": "SAFE firmado y localizado sin ambigüedad - una de las posiciones mejor documentadas del portafolio.",
+      "contexto_v1": {
+        "net_revenue_mensual_usd": 21767,
+        "ebitda_mensual_usd": -11467,
+        "take_rate_pct": 30.4,
+        "gtv_ytd_2026_usd": 429249,
+        "net_revenue_ytd_2026_usd": 114764,
+        "caja_neta_usd": 248000,
+        "runway_meses": 11
+      }
+    },
+    {
+      "id": "ualabee",
+      "nombre": "Ualabee",
+      "estado_asignado": "critico",
+      "override_estado": null,
+      "sector": "SaaS de datos de movilidad urbana para gobiernos",
+      "sector_grupo": "Datos urbanos",
+      "subsegmento": null,
+      "paises": [
+        "México",
+        "Argentina"
+      ],
+      "hq": "México",
+      "modelo_negocio": "SaaS",
+      "etapa": "Seed",
+      "tipo_portafolio": "transformacional",
+      "vehiculo": "spv",
+      "spv_nombre": "Blue Mobility Ventures",
+      "responsable_moov": null,
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": true,
+      "inversion": {
+        "fecha": "2025-03-17",
+        "periodo": "3Q 2025",
+        "instrumento": "SAFE",
+        "entidad": "uMobility Corp. (Delaware, EE.UU.)",
+        "monto_usd": {
+          "valor": 75035,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "monto_documento_usd": 80000,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 7500000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "tipo_valuacion": "cap",
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1.0005,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 7500000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "participacion_actual_pct": {
+          "valor": 1.000467,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Ualabee)"
+        },
+        "base_marca": "a_costo",
+        "base_marca_nota": "SAFE a cap de 7.5M; sin marca posterior.",
+        "fecha_ultima_marca": null,
+        "documento_localizado": false
+      },
+      "rondas": [],
+      "serie_trimestral": [
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 87124,
+          "revenue_usd": {
+            "valor": 87124,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1",
+            "nota": "Unidad y periodo por verificar (D-10, D-11)."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -151155,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 170165,
+          "revenue_usd": {
+            "valor": 170165,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1",
+            "nota": "Unidad y periodo por verificar (D-10, D-11)."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -75670,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [
+        {
+          "periodo": "2026-05",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 35000,
+          "revenue_usd": {
+            "valor": 35000,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-05",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "MRR usado como proxy de ingreso mensual."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": [
+            {
+              "nombre": "MRR",
+              "valor": 35000,
+              "unidad": "USD"
+            }
+          ]
+        }
+      ],
+      "kpi_principal": {
+        "nombre": "MRR",
+        "valor": 35000,
+        "moneda": "USD",
+        "fecha_dato": "2026-05",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2026-05",
+        "frecuencia": "mensual",
+        "al_corriente": true,
+        "nota_monitoring": "Pendiente actualizar"
+      },
+      "highlights": [],
+      "situacion_actual": "🔴 CRISIS DE CAJA ACTIVA: el CEO reportó directamente (jun-2026) que le faltan $50,000 USD para cerrar la caja de julio 2026. Daniel Stern (Blue Mobility Ventures) preguntó si desde México se puede apoyar. Alianza activa con Waze para el Mundial FIFA 2026.",
+      "tendencia": "MRR +43.5% en Q1 2026, pero con runway crítico de 3 meses.",
+      "alertas": [
+        {
+          "texto": "Crisis de caja activa desde junio 2026",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Runway de solo 3 meses",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Descuento del SAFE (80%) requiere verificación",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Confirmar el estatus actual de la caja de julio 2026",
+          "responsable": null
+        },
+        {
+          "texto": "Decidir la postura del fondo sobre si apoyar y de qué forma",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": "Postura del comité ante la crisis de caja (faltan 50,000 USD según el CEO) y la ronda puente.",
+      "notas_legales": "Vehículo: Blue Mobility Ventures (SPV). Descuento de 80% en el documento parece atípico - verificar contra el original.",
+      "contexto_v1": {
+        "arr": 420000
+      }
+    },
+    {
+      "id": "mobi",
+      "nombre": "Mobi",
+      "estado_asignado": "critico",
+      "override_estado": null,
+      "sector": "Movilidad",
+      "sector_grupo": "Movilidad",
+      "subsegmento": null,
+      "paises": [
+        "Paraguay"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Desconocido - sin documentación suficiente",
+      "etapa": "Seed",
+      "tipo_portafolio": "adyacente",
+      "vehiculo": "spv",
+      "spv_nombre": "Blue Mobility Ventures",
+      "responsable_moov": null,
+      "relacion_con_grupo": null,
+      "parent_engagement": null,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2025-07-31",
+        "periodo": "3Q 2025",
+        "instrumento": null,
+        "entidad": "MOBI BMV SPV1 2025 A Series of CGF2021 (vehículo Blue Mobility Ventures)",
+        "monto_usd": {
+          "valor": 75005,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "monto_documento_usd": 75035,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 7500000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1.0001,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 7500000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "participacion_actual_pct": {
+          "valor": 1.000067,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Mobi)"
+        },
+        "base_marca": "a_costo",
+        "base_marca_nota": "Sin marca; solo existe el comprobante de transferencia.",
+        "fecha_ultima_marca": null,
+        "documento_localizado": false
+      },
+      "rondas": [],
+      "serie_trimestral": [],
+      "serie_mensual": [],
+      "kpi_principal": {
+        "nombre": null,
+        "valor": null,
+        "moneda": null,
+        "fecha_dato": null,
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": null,
+        "frecuencia": "ninguna",
+        "al_corriente": false,
+        "nota_monitoring": null
+      },
+      "highlights": [],
+      "situacion_actual": "La startup con MENOS información de todo el portafolio - ni instrumento legal completo ni reporte financiero de ningún tipo.",
+      "tendencia": "Sin ningún reporte financiero localizado.",
+      "alertas": [
+        {
+          "texto": "Sin instrumento legal localizado",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Sin ningún reporte financiero",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Startup con menos documentación de todo el portafolio",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Localizar el SAFE o contrato de inversión firmado (prioridad legal más urgente del portafolio)",
+          "responsable": null
+        },
+        {
+          "texto": "Solicitar el primer reporte de KPIs/financiero",
+          "responsable": null
+        },
+        {
+          "texto": "Solicitar cualquier material descriptivo del negocio (deck, AOI)",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Solo existe el comprobante de transferencia. NO se localizó ningún SAFE o contrato de inversión firmado.",
+      "contexto_v1": {}
+    },
+    {
+      "id": "leasy",
+      "nombre": "Leasy",
+      "estado_asignado": "sano",
+      "override_estado": null,
+      "sector": "Fintech - financiamiento de vehículos rent-to-own para economía gig",
+      "sector_grupo": "Fintech",
+      "subsegmento": "Fintech, Alternative Lending",
+      "paises": [
+        "Perú",
+        "México"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Fintech",
+      "etapa": "Serie A",
+      "tipo_portafolio": "adyacente",
+      "vehiculo": "spv",
+      "spv_nombre": "Mobility VC",
+      "responsable_moov": "Alex Gar",
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2025-12-10",
+        "periodo": "4Q 2025",
+        "instrumento": "Equity / SPV (Serie A)",
+        "entidad": "LEASY A Series of MobilityVC LLC (vehículo Blue Mobility Ventures)",
+        "monto_usd": {
+          "valor": 100000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "monto_documento_usd": 106382.98,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 35000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "tipo_valuacion": "pre_money",
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 0.286,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 35000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "participacion_actual_pct": {
+          "valor": 0.285714,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (SPV Leasy)"
+        },
+        "base_marca": "a_costo",
+        "base_marca_nota": "Entrada a 35M (Excel); el JSON de Cowork dice pre-money 53M (ver D-03).",
+        "fecha_ultima_marca": null,
+        "documento_localizado": false
+      },
+      "rondas": [],
+      "serie_trimestral": [
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 319266.69,
+          "revenue_usd": {
+            "valor": 319266.69,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1",
+            "nota": "Unidad y periodo por verificar (D-10, D-11)."
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 3843559,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [],
+      "kpi_principal": {
+        "nombre": "ARR",
+        "valor": 9400000,
+        "moneda": "USD",
+        "fecha_dato": "2024",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2025-12",
+        "frecuencia": "trimestral",
+        "al_corriente": true,
+        "nota_monitoring": "Actualizado"
+      },
+      "highlights": [],
+      "situacion_actual": "Modelo intensivo en capital: efectivo cayó -70% entre 2023 y 2024 mientras los activos en autos crecieron fuerte. Depende de deuda de terceros (Lendable, Percent). En medio de una Serie A de $7M USD.",
+      "tendencia": "Crecimiento promedio de 89% anual en los últimos 5 años.",
+      "alertas": [
+        {
+          "texto": "Discrepancia en margen neto 2024 (8.7% vs 20%)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Contrato legal no localizado",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Localizar el contrato/SAFE firmado de la posición de Huerpel",
+          "responsable": null
+        },
+        {
+          "texto": "Confirmar cuál margen neto 2024 es el correcto (8.7% o 20%)",
+          "responsable": null
+        },
+        {
+          "texto": "Vigilar las condiciones de la deuda con Lendable y Percent",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Solo existe el comprobante de transferencia. Falta el contrato/SAFE firmado. Descuento del 20% exclusivo para el SPV de MobilityVC.",
+      "contexto_v1": {
+        "ebitda": 3900000,
+        "margen_ebitda_pct": 0.62
+      }
+    },
+    {
+      "id": "vera-ai",
+      "nombre": "Vera AI",
+      "estado_asignado": "vigilar",
+      "override_estado": null,
+      "sector": "Retail-tech (IA para ventas en tienda física)",
+      "sector_grupo": "Retail-tech",
+      "subsegmento": null,
+      "paises": [
+        "USA"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Etapa temprana / piloto",
+      "etapa": "Piloto",
+      "tipo_portafolio": "core",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": null,
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2025-11-19",
+        "periodo": "4Q 2025",
+        "instrumento": "SAFE",
+        "entidad": "City Returns, LLC (Delaware, EE.UU.)",
+        "monto_usd": {
+          "valor": 100000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "monto_documento_usd": 100000,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 6000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "tipo_valuacion": "cap",
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1.67,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 6000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "participacion_actual_pct": {
+          "valor": 1.666667,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Vera AI)"
+        },
+        "base_marca": "a_costo",
+        "base_marca_nota": "SAFE a cap de 6M; sin marca posterior.",
+        "fecha_ultima_marca": null,
+        "documento_localizado": true
+      },
+      "rondas": [],
+      "serie_trimestral": [
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 52500,
+          "revenue_usd": {
+            "valor": 52500,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [],
+      "kpi_principal": {
+        "nombre": "Revenue acumulado",
+        "valor": 45000,
+        "moneda": "USD",
+        "fecha_dato": "2025-06",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2025-12",
+        "frecuencia": "trimestral",
+        "al_corriente": false,
+        "nota_monitoring": null
+      },
+      "highlights": [],
+      "situacion_actual": "Etapa de piloto. Es esperable que aún no tenga reportes financieros recurrentes, a diferencia de otros casos del portafolio donde la ausencia de reportes sí es un problema.",
+      "tendencia": "69% de crecimiento promedio mes a mes, pero sobre una base muy pequeña - no interpretar como señal fuerte todavía.",
+      "alertas": [],
+      "proximos_pasos": [
+        {
+          "texto": "Solicitar el primer reporte de avance del piloto",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Documentación legal completa y sin ambigüedad.",
+      "contexto_v1": {}
+    },
+    {
+      "id": "kigo",
+      "nombre": "Kigo",
+      "estado_asignado": "sano",
+      "override_estado": null,
+      "sector": "Marketplace de estacionamientos digitales, parquímetros y control de accesos",
+      "sector_grupo": "Smart cities",
+      "subsegmento": "Smart Cities",
+      "paises": [
+        "México"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Marketplace",
+      "etapa": "Serie A (SAFE)",
+      "tipo_portafolio": "transformacional",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": "Andrea",
+      "relacion_con_grupo": "Se utiliza la solución para el estacionamiento de la central de Querétaro. ",
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2023",
+        "periodo": "1Q 2023",
+        "instrumento": null,
+        "entidad": "Cargo Móvil S.A. de C.V. (México) / Kigo Holdings LLC (Delaware, desde 2023)",
+        "monto_usd": {
+          "valor": 300000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "monto_documento_usd": null,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 15000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 2,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 15000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "participacion_actual_pct": {
+          "valor": 2,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Kigo)"
+        },
+        "base_marca": "cap_safe",
+        "base_marca_nota": "SAFE a cap de 15M (Excel). Sin ronda con precio; marca sin cambio en 12 trimestres.",
+        "fecha_ultima_marca": "2023-08-15",
+        "documento_localizado": false
+      },
+      "rondas": [
+        {
+          "nombre": "Serie A",
+          "fecha": "3Q 2023",
+          "monto_usd": 1000000,
+          "valuacion_usd": 15000000,
+          "instrumento": "SAFE",
+          "dilucion_pct": 6.7,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        }
+      ],
+      "serie_trimestral": [
+        {
+          "periodo": "1Q 2023",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 17.1,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 27859000,
+          "revenue_usd": {
+            "valor": 1629181.29,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4386932.807017543,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 71590.23391812865,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2023",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 17.13,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 32034000,
+          "revenue_usd": {
+            "valor": 1870052.54,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4721830.414477525,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -30878.633975481614,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2023",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 17.02,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.0148,
+          "revenue_usd": {
+            "valor": 2528319.62,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 5290270.387779083,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 212420.5640423032,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 88,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2023",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 16.96,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": -0.4653,
+          "revenue_usd": {
+            "valor": 2574823.11,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 9130588.443396226,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 64335.84905660377,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 88,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2024",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 16.678,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.0818,
+          "revenue_usd": {
+            "valor": 1400047.97,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4173162.2496702243,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 10193.068713274972,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 88,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2024",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 18.3773,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.289,
+          "revenue_usd": {
+            "valor": 1374521.83,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4146419.7678657905,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -35369.722429301364,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 88,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2024",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 19.629,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": -0.188,
+          "revenue_usd": {
+            "valor": 1658770.19,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4498446.176575474,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 103418.41153395486,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 88,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2024",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 20.2683,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.0356,
+          "revenue_usd": {
+            "valor": 1304500.13,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4302284.848753965,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -7894.100639915533,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 117,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2025",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 20.3182,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.185,
+          "revenue_usd": {
+            "valor": 1347578.43,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 4330544.634859387,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 110738.15593901034,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 108,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2025",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 19.49,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.208,
+          "revenue_usd": {
+            "valor": 1664682.5,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 5135967.162647512,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 142637.24987172912,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": 128,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 18.55,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 0.172,
+          "revenue_usd": {
+            "valor": 2112770.08,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 7466307.2776280325,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": 18.1,
+          "tipo_cambio_fuente": "excel_bluebox",
+          "revenue_original": 45934157,
+          "revenue_usd": {
+            "valor": 2537798.73,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 9458563.535911601,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [],
+      "kpi_principal": {
+        "nombre": "Revenue anual",
+        "valor": 145906550,
+        "moneda": "MXN",
+        "fecha_dato": "2025",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2025-12",
+        "frecuencia": "trimestral",
+        "al_corriente": false,
+        "nota_monitoring": "No disponible"
+      },
+      "highlights": [
+        "Kigo reporta que le rechazaron una línea de crédito para seguir financiandose sin diluirse por Viwala. Sin embargo, se negoció exitosamente una línea de crédito de $1M USD con ZKTeco tras ganar el Premier Rapid Breakthrough Award en un viaje en China. ",
+        "Se tiene un enfoque claro en estandarizar y documentar las buenas prácticas para impulsar al equipo con AI, dando que el día de hoy es muy dispar el uso en Kigo. "
+      ],
+      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja.",
+      "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva).",
+      "alertas": [
+        {
+          "texto": "Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio",
+          "severidad": "alta",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Localizar el instrumento de inversión específico de Huerpel",
+          "responsable": null
+        },
+        {
+          "texto": "Confirmar en qué entidad (México o Delaware) está la posición",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": null,
+      "notas_legales": "Ronda de $30M MXN en 2023 confirma a Grupo Huerpel como inversionista, pero el instrumento y monto exacto NO están localizados. Confirmar en cuál de las dos entidades está registrada la posición.",
+      "contexto_v1": {}
+    },
+    {
+      "id": "partrunner",
+      "nombre": "Partrunner",
+      "estado_asignado": "vigilar",
+      "override_estado": null,
+      "sector": "Logística last-mile para carga voluminosa ('big & bulky')",
+      "sector_grupo": "Logística",
+      "subsegmento": "Last mile delivery",
+      "paises": [
+        "México",
+        "USA"
+      ],
+      "hq": "México",
+      "modelo_negocio": "Marketplace take-rate",
+      "etapa": "Serie A (lanzada may-2025)",
+      "tipo_portafolio": "adyacente",
+      "vehiculo": "directa",
+      "spv_nombre": null,
+      "responsable_moov": "Alex Gar",
+      "relacion_con_grupo": null,
+      "parent_engagement": false,
+      "crisis_caja_reportada": false,
+      "inversion": {
+        "fecha": "2023-07-17",
+        "periodo": "3Q 2023",
+        "instrumento": "Convertible Promissory Note",
+        "entidad": "Partrunner Deliveries, Inc. (Delaware, EE.UU.)",
+        "monto_usd": {
+          "valor": 100000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "monto_documento_usd": 100000,
+        "monto_comprometido_usd": {
+          "valor": 0,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "valuacion_entrada_usd": {
+          "valor": 10000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "tipo_valuacion": null,
+        "descuento_pct": {
+          "valor": null,
+          "fuente": "no_disponible",
+          "fecha_dato": null
+        },
+        "participacion_entrada_pct": {
+          "valor": 1,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "valuacion_actual_usd": {
+          "valor": 10000000,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "participacion_actual_pct": {
+          "valor": 0.85,
+          "fuente": "excel_bluebox",
+          "fecha_dato": "2025-12",
+          "referencia": "Inversion directa (Partrunner)"
+        },
+        "base_marca": "otra",
+        "base_marca_nota": "Marca por dilución (1.0% a 0.85%) con valuación sin cambio; una dilución no es una pérdida.",
+        "fecha_ultima_marca": null,
+        "documento_localizado": true
+      },
+      "rondas": [
+        {
+          "nombre": "Seed +",
+          "fecha": "2Q 2024",
+          "monto_usd": 1500000,
+          "valuacion_usd": 10000000,
+          "instrumento": "Nota Convertible",
+          "dilucion_pct": 15,
+          "participo_moov": null,
+          "fuente": "excel_bluebox"
+        }
+      ],
+      "serie_trimestral": [
+        {
+          "periodo": "3Q 2023",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 188338,
+          "revenue_usd": {
+            "valor": 188338,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 839423,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -161949,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2023",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 201692,
+          "revenue_usd": {
+            "valor": 201692,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1275510,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -113468,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2023-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 196945,
+          "revenue_usd": {
+            "valor": 196945,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1094796,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -127502,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 257784,
+          "revenue_usd": {
+            "valor": 257784,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1461411,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -126740,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 299828,
+          "revenue_usd": {
+            "valor": 299828,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1530001,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -141197,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2024",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 317225,
+          "revenue_usd": {
+            "valor": 317225,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1856155,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -95378,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2024-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "1Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 290604,
+          "revenue_usd": {
+            "valor": 290604,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 1391285,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -116717,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-03"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "2Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 374685,
+          "revenue_usd": {
+            "valor": 374685,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 2030619,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -7681,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-06"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "3Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 525940,
+          "revenue_usd": {
+            "valor": 525940,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 2673903,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": -3462,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-09"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        },
+        {
+          "periodo": "4Q 2025",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": 621854.36,
+          "revenue_usd": {
+            "valor": 621854.36,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12",
+            "referencia": "Inversion directa, Tabla 1"
+          },
+          "gtv_usd": {
+            "valor": 3508671,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12"
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": 7189,
+            "fuente": "excel_bluebox",
+            "fecha_dato": "2025-12"
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "serie_mensual": [
+        {
+          "periodo": "2025-06",
+          "moneda_original": "USD",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": null,
+          "revenue_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gtv_usd": {
+            "valor": 765000,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2025-06",
+            "referencia": "portfolio-data.json (Cowork)",
+            "nota": "GMV mensual, 2025-06."
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": []
+        }
+      ],
+      "kpi_principal": {
+        "nombre": "GMV mensual",
+        "valor": 765000,
+        "moneda": "USD",
+        "fecha_dato": "2025-06",
+        "definicion": null
+      },
+      "reporte": {
+        "ultimo_periodo_reportado": "2025-12",
+        "frecuencia": "mensual",
+        "al_corriente": true,
+        "nota_monitoring": "Actualizado"
+      },
+      "highlights": [
+        "Cierre de Cuentas: Se lograron convertir dos cotizaciones retrasadas en victorias comerciales: Decathlon y Flekk.",
+        "Se lanzó el programa de Dispatchers para mejorar el control en tiempo real y se integró SkyViewer para visibilidad GPS.",
+        "Flota Digital: Se afiliaron más de 10 flotas a través de su equipo de agentes de IA.",
+        "Necesidades de Capital: Actualmente buscan activamente conexiones con socios financieros, bancos o fintechs en México y EE. UU. para habilitar líneas de crédito, factoraje o revolventes para capital de trabajo (basado en sus ingresos generados en México)."
+      ],
+      "situacion_actual": "Financieramente sana y creciendo, con el mejor historial de reportes de todo el portafolio (42+ reportes mensuales desde 2023). Dato financiero desactualizado (más de 12 meses).",
+      "tendencia": "Crecimiento fuerte y sostenido, take rate estable 17-21%. Lanzaron formalmente su Serie A en mayo 2025.",
+      "alertas": [
+        {
+          "texto": "Firma del waiver legal 2026 sin confirmar",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        },
+        {
+          "texto": "Dato financiero desactualizado (>12 meses)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-09-17"
+        }
+      ],
+      "proximos_pasos": [
+        {
+          "texto": "Confirmar si el waiver legal de 2026 ya se firmó",
+          "responsable": null
+        },
+        {
+          "texto": "Solicitar el reporte financiero más reciente (2026)",
+          "responsable": null
+        }
+      ],
+      "decision_pendiente": "Firma del waiver 2026 que extiende el vencimiento de la nota y elimina el umbral mínimo de conversión.",
+      "notas_legales": "Waiver de 2026 extiende el vencimiento y elimina el umbral mínimo de conversión, pero no se confirmó si Huerpel ya lo firmó.",
+      "contexto_v1": {}
+    }
+  ],
+  "discrepancias": [
+    {
+      "id": "D-01",
+      "startup": null,
+      "campo": "Capital desplegado",
+      "valor_a": "966,976 USD (directas 716,936 + SPV 250,040)",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "511,417.98 USD confirmados con documento",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Brecha de 455,558 USD: Kigo 300,000 + Autolab 100,000 + Ruedata 50,000 + Bemycar 16,936 = 466,936 sin monto confirmado, menos diferencias en 3 SPV.",
+      "afecta": "monto",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Localizar contratos y comprobantes de Kigo, Autolab, Ruedata y Bemycar."
+    },
+    {
+      "id": "D-02",
+      "startup": null,
+      "campo": "Montos de los 3 SPV",
+      "valor_a": "Ualabee 80,000 · Mobi 75,035 · Leasy 106,382.98",
+      "fuente_a": "JSON Cowork (comprobantes)",
+      "valor_b": "Ualabee 75,035 · Mobi 75,005 · Leasy 100,000",
+      "fuente_b": "Excel Bluebox",
+      "impacto": "El monto de Mobi en el JSON es igual al de Ualabee en el Excel: posible cruce. Las diferencias podrían ser fees de SPV (Leasy 6,000, Ualabee 4,500, Mobi 7,000) pero no coinciden exacto.",
+      "afecta": "monto",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Verificar contra los comprobantes de transferencia."
+    },
+    {
+      "id": "D-03",
+      "startup": "Leasy",
+      "campo": "Valuación de entrada",
+      "valor_a": "Pre-money 53,000,000 con 20% de descuento exclusivo del SPV",
+      "fuente_a": "JSON Cowork",
+      "valor_b": "35,000,000",
+      "fuente_b": "Excel Bluebox",
+      "impacto": "Cambia la participación implícita (0.286% en el Excel) y el valor de la posición.",
+      "afecta": "valuacion",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Verificar contra el documento del SPV."
+    },
+    {
+      "id": "D-04",
+      "startup": "Autolab",
+      "campo": "Ronda y monto de la posición",
+      "valor_a": "Ronda cerrada de 900K USD (ago 2026) y nota convertible de 600 a 700K (jul 2025); instrumento de MOOV no localizado",
+      "fuente_a": "JSON Cowork",
+      "valor_b": "Bridge Serie A 1.25M (950K nuevos + 300K de SAFE previo) a pre-money 12M; Serie A previa: nota convertible 1.5M a cap 16M (4Q 2024); MOOV 100,000 USD entrada a 9M",
+      "fuente_b": "Excel Bluebox",
+      "impacto": "La marca de 12M (MOIC 1.19x) depende de cuál ronda es la vigente y de que el instrumento exista.",
+      "afecta": "valuacion",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Confirmar con Chava si son la misma ronda y localizar el instrumento."
+    },
+    {
+      "id": "D-05",
+      "startup": "Bemycar",
+      "campo": "Marca y monto invertido",
+      "valor_a": "Marca a 2.6M (MOIC 1.74x) y participación 1.13%",
+      "fuente_a": "Excel Bluebox (SAFE 205,723 a cap 2.6M)",
+      "valor_b": "Monto invertido no confirmado; segunda ronda de 355,738 EUR (jul 2025)",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Un cap de SAFE no es ronda con precio: el MOIC depende de ello. No está claro si la ronda en EUR y el SAFE son lo mismo.",
+      "afecta": "valuacion",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Verificar si es la misma ronda y con qué valuación."
+    },
+    {
+      "id": "D-06",
+      "startup": "Bemycar",
+      "campo": "Hoja contaminada en el Excel",
+      "valor_a": "Segmento last mile, KPIs de rutas y highlights de Partrunner (Decathlon, Flekk); revenue 4Q25 = 22,223 (conteo de rutas)",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "SaaS B2B automotriz con MRR en EUR; revenue 203,485.69 USD en la tabla resumen",
+      "fuente_b": "JSON Cowork / Excel (tabla resumen)",
+      "impacto": "El revenue agregado de 5.33M del Excel incluye ese 22,223: sin él el agregado es 5.52M. No se importó la serie ni los highlights de Bemycar.",
+      "afecta": "revenue",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Pedir a Bemycar su reporte trimestral y reconstruir la hoja."
+    },
+    {
+      "id": "D-07",
+      "startup": "Partrunner",
+      "campo": "Marca a la baja",
+      "valor_a": "MOIC 0.85x por dilución (1.0% a 0.85%) con valuación sin cambio en 10M",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "Serie A lanzada en mayo 2025",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Diluirse en una ronda suele venir con valuación mayor: 0.85x probablemente subestima.",
+      "afecta": "valuacion",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Obtener valuación y resultado de la Serie A."
+    },
+    {
+      "id": "D-08",
+      "startup": "Kigo",
+      "campo": "Marca sin cambio e instrumento",
+      "valor_a": "Marca fija en 15M por 12 trimestres con revenue de 1.63M a 2.54M USD trimestrales",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "Instrumento y monto no localizados; ronda de 30M MXN en 2023",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Marca posiblemente rezagada; falta confirmar entidad (Cargo Móvil S.A. de C.V. o Kigo Holdings LLC).",
+      "afecta": "monto",
+      "material": true,
+      "estado": "abierta",
+      "accion": "Localizar el instrumento y confirmar la entidad."
+    },
+    {
+      "id": "D-09",
+      "startup": "Drivana",
+      "campo": "Moneda del revenue",
+      "valor_a": "770,399 en 4Q 2025 etiquetado USD (+111.7% QoQ)",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "Cifras históricas estaban en MXN etiquetadas como USD; net revenue mensual 21,767 USD (ago 2026)",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Si es MXN el QoQ cambia de significado. Los datos de Drivana del Excel se excluyen de agregados hasta verificar.",
+      "afecta": "revenue",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Verificar y convertir."
+    },
+    {
+      "id": "D-10",
+      "startup": "Ualabee",
+      "campo": "Consistencia de ingresos",
+      "valor_a": "Revenue 4Q 2025 = 170,165 (~57K/mes)",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "MRR de 35,000 USD (may 2026); descuento SAFE de 80% por verificar",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Puede ser ingreso no recurrente.",
+      "afecta": "revenue",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Verificar y revisar el SAFE original."
+    },
+    {
+      "id": "D-11",
+      "startup": "Leasy",
+      "campo": "Escala de ingresos",
+      "valor_a": "Revenue 4Q 2025 = 319,267",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "ARR 9.4M USD (2024); margen neto 2024 con dos versiones (8.7% y 20%)",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Si son trimestrales no cuadran (9.4M/4 ≈ 2.35M por trimestre).",
+      "afecta": "revenue",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Verificar unidad y periodo."
+    },
+    {
+      "id": "D-12",
+      "startup": "Drivana",
+      "campo": "Caja y runway",
+      "valor_a": "Runway de ~21.8 a ~11 meses en dos meses",
+      "fuente_a": "JSON Cowork (jun vs ago 2026)",
+      "valor_b": "Quema implícita de 22.5K/mes vs EBITDA de -11.5K/mes",
+      "fuente_b": "JSON Cowork",
+      "impacto": "Parte por corrección de unidades; la quema implícita no está explicada.",
+      "afecta": "estado",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Pedir a Edson el flujo de efectivo y la conciliación EBITDA-caja."
+    },
+    {
+      "id": "D-13",
+      "startup": null,
+      "campo": "Frescura del dato",
+      "valor_a": "Partrunner y Vera AI: dato financiero 2025-06 en el JSON",
+      "fuente_a": "JSON Cowork",
+      "valor_b": "Excel llega a 4Q 2025",
+      "fuente_b": "Excel Bluebox",
+      "impacto": "Se usa el más reciente y se etiqueta su fuente.",
+      "afecta": "calidad",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Pedir el reporte más reciente."
+    },
+    {
+      "id": "D-14",
+      "startup": null,
+      "campo": "Errores del Excel",
+      "valor_a": "#DIV/0! en 1Q y 2Q 2026 y columnas de Ualabee; 'Fair market value acumulado' (113.8M) sin significado",
+      "fuente_a": "Excel Bluebox",
+      "valor_b": "—",
+      "fuente_b": "—",
+      "impacto": "No se replican en el dashboard. Además el dry powder del Excel se contradice: 33,024 (fila 80) vs 15,524 (C19), y su TVPI usa (NAV - gastos) / capital = 1.0046 en lugar de NAV / (capital + gastos) = 1.0045.",
+      "afecta": "calidad",
+      "material": false,
+      "estado": "abierta",
+      "accion": "Ninguna: se documentan."
+    }
+  ],
+  "pipeline": [
+    {
+      "startup": "Alfred",
+      "etapa": "analisis",
+      "estado_origen": "prospecto_externo_en_analisis"
+    },
+    {
+      "startup": "Karvia",
+      "etapa": "first_assessment",
+      "estado_origen": "prospecto_externo_research_inicial"
+    }
+  ]
+}
