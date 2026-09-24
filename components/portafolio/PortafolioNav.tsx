@@ -48,12 +48,14 @@ export default function PortafolioNav({ active }: PortafolioNavProps) {
           >
             Fondo
           </Link>
-          <Link
-            href="/portafolio/pendientes"
-            style={{ ...s.link, ...(active === "pendientes" ? s.linkActive : {}) }}
-          >
-            Pendientes
-          </Link>
+          {user?.role === "admin" && (
+            <Link
+              href="/portafolio/pendientes"
+              style={{ ...s.link, ...(active === "pendientes" ? s.linkActive : {}) }}
+            >
+              Pendientes
+            </Link>
+          )}
           {user?.role === "admin" && (
             <Link
               href="/portafolio/usuarios"

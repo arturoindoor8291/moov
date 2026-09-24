@@ -7,6 +7,7 @@ const PUBLIC_ADMIN_PATHS = ["/admin/login", "/api/admin/login"];
 const PUBLIC_PORTAFOLIO_PATHS = ["/portafolio/login", "/api/portafolio/login"];
 const ADMIN_ONLY_PORTAFOLIO_PATHS = [
   "/portafolio/usuarios",
+  "/portafolio/pendientes",
   "/api/portafolio/users",
 ];
 
