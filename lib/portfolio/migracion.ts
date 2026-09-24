@@ -88,7 +88,8 @@ export function severidadHeuristica(texto: string): "alta" | "media" {
     : "media";
 }
 
-const EUR_USD_ESTIMADO = 1.15;
+/** EUR por USD: el Excel de Bluebox usa 1.18 (3Q y 4Q 2025). Para 2026 sigue siendo un estimado etiquetado. */
+const EUR_USD_ESTIMADO = 1.18;
 
 function punto(base: Partial<PuntoSerie> & { periodo: string }): PuntoSerie {
   return {
@@ -98,89 +99,144 @@ function punto(base: Partial<PuntoSerie> & { periodo: string }): PuntoSerie {
   };
 }
 
-function serieTrimestral(nombre: string, seed: Seed): PuntoSerie[] {
-  if (nombre === "Bemycar") return []; // hoja contaminada (D-06): no se importa su serie
+type V1Punto = {
+  periodo: string; moneda?: "USD" | "MXN" | "EUR"; revenue_original?: number; revenue_usd?: number; gtv_usd?: number; gross_profit_usd?: number;
+  ebitda_usd?: number; burn_usd?: number; caja_usd?: number; runway_meses?: number; clientes?: number; usuarios_activos?: number; equipo?: number;
+  kpis?: { nombre: string; valor: number | null; unidad: string }[]; referencia?: string; nota?: string;
+};
+
+const CAMPOS_FLUJO = ["revenue_usd", "gtv_usd", "gross_profit_usd", "ebitda_usd", "burn_usd"] as const;
+const CAMPOS_SALDO = ["caja_usd", "runway_meses", "clientes", "usuarios_activos", "equipo"] as const;
+type Campo = (typeof CAMPOS_FLUJO)[number] | (typeof CAMPOS_SALDO)[number];
+
+/** Punto capturado por Cowork en financiero.serie_mensual / serie_trimestral (fuente: reporte de la startup). */
+function puntoDeV1(x: V1Punto): PuntoSerie {
+  const mes = periodoAMes(x.periodo);
+  const ex = { referencia: x.referencia, ...(x.nota ? { nota: x.nota } : {}) };
+  const d = (v: number | undefined) => dato(v ?? null, "reporte_startup", mes, ex);
+  const moneda = x.moneda ?? "USD";
+  const p = punto({
+    periodo: x.periodo, moneda_original: moneda, revenue_original: x.revenue_original ?? x.revenue_usd ?? null,
+    gtv_usd: d(x.gtv_usd), gross_profit_usd: d(x.gross_profit_usd), ebitda_usd: d(x.ebitda_usd), burn_usd: d(x.burn_usd), caja_usd: d(x.caja_usd),
+    runway_meses: d(x.runway_meses), clientes: d(x.clientes), usuarios_activos: d(x.usuarios_activos), equipo: d(x.equipo),
+    kpis_propios: (x.kpis ?? []).map((k) => ({ nombre: k.nombre, valor: k.valor, unidad: k.unidad })),
+    revenue_usd: d(x.revenue_usd),
+  });
+  if (moneda === "EUR" && x.revenue_original != null) {
+    p.tipo_cambio_a_usd = 1 / EUR_USD_ESTIMADO;
+    p.tipo_cambio_fuente = "estimado";
+    p.revenue_usd = dato(Math.round(x.revenue_original * EUR_USD_ESTIMADO), "estimado", mes, { referencia: x.referencia, nota: `Reporte en EUR convertido a ${EUR_USD_ESTIMADO} USD/EUR (tipo de cambio del Excel de Bluebox; para 2026 es un estimado).` });
+  }
+  return p;
+}
+
+const trimestreDe = (mes: string) => { const [y, m] = mes.split("-").map(Number); return `${Math.ceil(m / 3)}Q ${y}`; };
+
+/** Agrega meses a trimestres solo cuando están los 3 meses; flujos se suman, saldos toman el último mes. */
+function trimestresDesdeMensual(mensual: PuntoSerie[]): PuntoSerie[] {
+  const grupos = new Map<string, PuntoSerie[]>();
+  for (const p of mensual) {
+    const q = trimestreDe(p.periodo);
+    grupos.set(q, [...(grupos.get(q) ?? []), p]);
+  }
+  const out: PuntoSerie[] = [];
+  for (const [q, ps] of grupos) {
+    if (new Set(ps.map((p) => p.periodo)).size !== 3) continue;
+    ps.sort((a, b) => a.periodo.localeCompare(b.periodo));
+    const t = punto({ periodo: q, moneda_original: ps[0].moneda_original, tipo_cambio_a_usd: ps[0].tipo_cambio_a_usd, tipo_cambio_fuente: ps[0].tipo_cambio_fuente });
+    const nota = "Suma de los 3 meses reportados por la startup.";
+    for (const c of CAMPOS_FLUJO) {
+      if (ps.every((p) => p[c].valor != null)) {
+        const fuente = ps.some((p) => p[c].fuente === "estimado") ? "estimado" : "reporte_startup";
+        t[c] = dato(ps.reduce((a, p) => a + p[c].valor!, 0), fuente, periodoAMes(q), { referencia: ps[0][c].referencia, nota });
+      }
+    }
+    if (ps.every((p) => p.revenue_original != null)) t.revenue_original = ps.reduce((a, p) => a + p.revenue_original!, 0);
+    for (const c of CAMPOS_SALDO) {
+      const ult = [...ps].reverse().find((p) => p[c].valor != null);
+      if (ult) t[c] = { ...ult[c], nota: `Valor del último mes con dato (${ult.periodo}).` };
+    }
+    out.push(t);
+  }
+  return out;
+}
+
+/**
+ * Fusiona por periodo y por campo. El reporte de la startup manda sobre el Excel; el Excel solo llena lo que
+ * no tiene reporte. Si ambos existen y difieren más de 5%, el dato del reporte lleva la nota.
+ */
+function fusionar(excel: PuntoSerie[], reportes: PuntoSerie[]): PuntoSerie[] {
+  const m = new Map<string, PuntoSerie>(excel.map((p) => [p.periodo, p]));
+  for (const r of reportes) {
+    const e = m.get(r.periodo);
+    if (!e) { m.set(r.periodo, r); continue; }
+    const out: PuntoSerie = { ...e };
+    for (const c of [...CAMPOS_FLUJO, ...CAMPOS_SALDO] as Campo[]) {
+      if (r[c].valor == null) continue;
+      const previo = e[c].valor;
+      out[c] = previo != null && Math.abs(previo - r[c].valor!) / Math.max(Math.abs(r[c].valor!), 1) > 0.05
+        ? { ...r[c], nota: `${r[c].nota ? r[c].nota + " " : ""}El Excel de Bluebox decía ${Math.round(previo).toLocaleString("en-US")} para este periodo.` }
+        : r[c];
+    }
+    if (r.revenue_original != null) { out.revenue_original = r.revenue_original; out.moneda_original = r.moneda_original; out.tipo_cambio_a_usd = r.tipo_cambio_a_usd; out.tipo_cambio_fuente = r.tipo_cambio_fuente; }
+    const nombres = new Set(r.kpis_propios.map((k) => k.nombre));
+    out.kpis_propios = [...r.kpis_propios, ...e.kpis_propios.filter((k) => !nombres.has(k.nombre))];
+    m.set(r.periodo, out);
+  }
+  return [...m.values()].sort((a, b) => (periodoAMes(a.periodo) ?? "").localeCompare(periodoAMes(b.periodo) ?? ""));
+}
+
+const EXCEL_CORTE = "2025-12";
+
+/** Las hojas del Excel mezclan tasas de crecimiento (0.18) con montos: solo un número grande es un monto. */
+const limpio = (x: unknown): number | null => (typeof x === "number" && Math.abs(x) >= 1000 ? x : null);
+
+function serieExcel(nombre: string, seed: Seed): PuntoSerie[] {
+  if (nombre === "Bemycar") return []; // su serie sale del reporte mensual de la propia startup (D-06)
   const t1 = seed._tabla1[POS[nombre].hoja]?.["Revenue trimestral"] ?? {};
   const hoja = seed[nombre];
   const tc: Record<string, number> = seed._tc;
+  const fila = (...ks: string[]) => { for (const k of ks) if (hoja.serie[k]) return hoja.serie[k] as Record<string, number>; return {} as Record<string, number>; };
+  const rRev = fila("Total Revenue / Ingresos", "Total Income"), rGtv = fila("Transaccionado / GTV"), rEb = fila("EBITDA", "EBITDA (Burn)");
+  const rGp = fila("Gross Profit"), rBurn = fila("Burn Rate (Net Profit)");
+  const kigo = nombre === "Kigo";
+  // El Excel es una foto al 4Q 2025: cualquier periodo posterior en sus hojas es proyección o captura sin respaldo.
+  const periodos = [...new Set([...Object.keys(t1), ...Object.keys(rRev).filter((p) => limpio(rRev[p]) != null)])].filter((p) => (periodoAMes(p) ?? "") <= EXCEL_CORTE);
   const out: PuntoSerie[] = [];
-  const periodos = Object.keys(t1);
   for (const p of periodos) {
+    const mes = periodoAMes(p);
     const enDuda = nombre === "Drivana";
-    const rev = t1[p] as number;
-    const kigoMxn = nombre === "Kigo" ? hoja.serie["Total Revenue / Ingresos"]?.[p] ?? null : null;
-    const gtvRow = hoja.serie["Transaccionado / GTV"]?.[p] ?? null;
-    const ebitdaRow = hoja.serie["EBITDA"]?.[p] ?? hoja.serie["EBITDA (Burn)"]?.[p] ?? null;
-    const conv = (x: number | null) => (x == null ? null : nombre === "Kigo" ? x / tc[p] : x);
+    // Para las startups en USD, el dato limpio de su propia hoja gana a la Tabla 1 (que enlazaba mal, p. ej. Leasy 319,267 vs 5,778,727).
+    const revHoja = limpio(rRev[p]);
+    const revUsd = kigo ? (t1[p] ?? null) : (revHoja ?? t1[p] ?? null);
+    if (revUsd == null) continue;
     const extra: Partial<DatoNum> = enDuda
-      ? { en_duda: true, nota: `Etiquetado USD en el Excel pero probablemente MXN (D-09). Si fuera MXN: ≈ ${Math.round(rev / tc[p]).toLocaleString("en-US")} USD al TC ${tc[p]}.` }
-      : nombre === "Ualabee" || nombre === "Leasy"
-        ? { nota: "Unidad y periodo por verificar (D-10, D-11)." }
-        : {};
+      ? { en_duda: true, nota: `Etiquetado USD en el Excel pero probablemente MXN (D-09). Si fuera MXN: ≈ ${Math.round(revUsd / tc[p]).toLocaleString("en-US")} USD al TC ${tc[p]}.` }
+      : nombre === "Ualabee"
+        ? { en_duda: true, nota: "El Excel da ingresos muy por encima de lo que reporta Ualabee (D-10)." }
+        : nombre === "Autolab" && p === "4Q 2025"
+          ? { en_duda: true, nota: "Autolab no reporta el 4Q 2025 (último reporte: 3Q 2025); el Excel podría estar usando presupuesto (D-16)." }
+          : {};
+    const conv = (x: number | null) => (x == null ? null : kigo ? x / tc[p] : x);
+    const d = (x: number | null, e: Partial<DatoNum> = {}) => dato(x, "excel_bluebox", mes, { referencia: "Excel de Bluebox, hoja de la startup", ...e, ...(enDuda ? { en_duda: true } : {}) });
     out.push(punto({
-      periodo: p,
-      moneda_original: nombre === "Kigo" ? "MXN" : "USD",
-      tipo_cambio_a_usd: nombre === "Kigo" ? tc[p] : null,
-      tipo_cambio_fuente: nombre === "Kigo" ? "excel_bluebox" : null,
-      revenue_original: nombre === "Kigo" ? kigoMxn : rev,
-      revenue_usd: dato(rev, "excel_bluebox", periodoAMes(p), { referencia: `Inversion directa, Tabla 1`, ...extra }),
-      gtv_usd: dato(conv(gtvRow), "excel_bluebox", periodoAMes(p), nombre === "Drivana" ? { en_duda: true } : {}),
-      ebitda_usd: dato(conv(ebitdaRow), "excel_bluebox", periodoAMes(p), nombre === "Drivana" ? { en_duda: true } : {}),
-      equipo: dato(hoja.operativas?.["Numero de personas en el equipo Kigo"]?.[p] ?? null, "excel_bluebox", periodoAMes(p)),
+      periodo: p, moneda_original: kigo ? "MXN" : "USD", tipo_cambio_a_usd: kigo ? tc[p] : null, tipo_cambio_fuente: kigo ? "excel_bluebox" : null,
+      revenue_original: kigo ? (limpio(rRev[p]) ?? Math.round(revUsd * tc[p])) : revUsd,
+      revenue_usd: dato(revUsd, "excel_bluebox", mes, { referencia: revHoja != null && !kigo ? "Excel de Bluebox, hoja de la startup" : "Inversion directa, Tabla 1", ...extra }),
+      gtv_usd: d(conv(limpio(rGtv[p]))), gross_profit_usd: d(conv(limpio(rGp[p]))), ebitda_usd: d(conv(limpio(rEb[p]))), burn_usd: d(conv(limpio(rBurn[p]))),
+      equipo: dato(kigo ? limpio(hoja.operativas?.["Numero de personas en el equipo Kigo"]?.[p]) ?? null : null, "excel_bluebox", mes),
     }));
   }
   return out;
 }
 
-function serieMensual(nombre: string, v1: V1["startups"][number]): PuntoSerie[] {
-  const f = v1.financiero as Record<string, any>;
-  const mes = periodoAMes(f.fecha_dato as string);
-  if (!mes && !Array.isArray(f.serie_mensual)) return [];
-  const ref = "portfolio-data.json (Cowork)";
-  // Series capturadas por Cowork en financiero.serie_mensual (opcional): manda sobre los escalares.
-  const serie = f.serie_mensual as { periodo: string; moneda?: "USD" | "MXN" | "EUR"; revenue_usd?: number; gtv_usd?: number; ebitda_usd?: number; burn_usd?: number; caja_usd?: number; runway_meses?: number; clientes?: number }[] | undefined;
-  if (Array.isArray(serie) && serie.length) {
-    return serie.map((x) => punto({
-      periodo: x.periodo, moneda_original: x.moneda ?? "USD",
-      revenue_usd: dato(x.revenue_usd ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      gtv_usd: dato(x.gtv_usd ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      ebitda_usd: dato(x.ebitda_usd ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      burn_usd: dato(x.burn_usd ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      caja_usd: dato(x.caja_usd ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      runway_meses: dato(x.runway_meses ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-      clientes: dato(x.clientes ?? null, "reporte_startup", x.periodo, { referencia: ref }),
-    }));
-  }
-  if (nombre === "Drivana") {
-    return [punto({
-      periodo: mes!,
-      revenue_usd: dato(f.net_revenue_mensual_usd, "reporte_startup", mes, { referencia: ref, nota: "Net revenue mensual." }),
-      gtv_usd: dato(f.valor, "reporte_startup", mes, { referencia: ref }),
-      ebitda_usd: dato(f.ebitda_mensual_usd, "reporte_startup", mes, { referencia: ref }),
-      caja_usd: dato(f.caja_neta_usd, "reporte_startup", mes, { referencia: ref }),
-      runway_meses: dato(f.runway_meses, "reporte_startup", mes, { referencia: ref, nota: "Bajó de ~21.8 a ~11 meses en dos meses (D-12)." }),
-      kpis_propios: [{ nombre: "Take rate", valor: f.take_rate_pct, unidad: "%" }],
-    })];
-  }
-  if (nombre === "Bemycar") {
-    const usd = Math.round((f.valor as number) * EUR_USD_ESTIMADO);
-    return [punto({
-      periodo: mes!, moneda_original: "EUR", tipo_cambio_a_usd: 1 / EUR_USD_ESTIMADO, tipo_cambio_fuente: "estimado", revenue_original: f.valor,
-      revenue_usd: dato(usd, "estimado", mes, { referencia: ref, nota: `MRR usado como proxy de ingreso mensual, convertido a ${EUR_USD_ESTIMADO} USD/EUR (TC estimado).` }),
-      kpis_propios: [{ nombre: "MRR (EUR)", valor: f.valor, unidad: "EUR" }],
-    })];
-  }
-  if (nombre === "Ruedata" || nombre === "Ualabee") {
-    return [punto({
-      periodo: mes!, revenue_original: f.valor,
-      revenue_usd: dato(f.valor, "reporte_startup", mes, { referencia: ref, nota: `${f.metrica_principal} usado como proxy de ingreso mensual.` }),
-      kpis_propios: [{ nombre: String(f.metrica_principal), valor: f.valor, unidad: "USD" }],
-    })];
-  }
-  if (nombre === "Partrunner") {
-    return [punto({ periodo: mes!, gtv_usd: dato(f.valor, "reporte_startup", mes, { referencia: ref, nota: "GMV mensual, 2025-06." }) })];
-  }
-  return [];
+/** Series de una startup: Excel (foto al 4Q 2025) + reportes posteriores capturados en el v1. */
+function series(nombre: string, seed: Seed, v1: V1["startups"][number]) {
+  const f = v1.financiero as { serie_mensual?: V1Punto[]; serie_trimestral?: V1Punto[] };
+  const mensual = (f.serie_mensual ?? []).map(puntoDeV1).sort((a, b) => a.periodo.localeCompare(b.periodo));
+  const explicitos = (f.serie_trimestral ?? []).map(puntoDeV1);
+  const trimestral = fusionar(fusionar(serieExcel(nombre, seed), trimestresDesdeMensual(mensual)), explicitos);
+  return { mensual, trimestral };
 }
 
 export const DISCREPANCIAS: Discrepancia[] = [
@@ -189,15 +245,18 @@ export const DISCREPANCIAS: Discrepancia[] = [
   { id: "D-03", startup: "Leasy", campo: "Valuación de entrada", valor_a: "Pre-money 53,000,000 con 20% de descuento exclusivo del SPV", fuente_a: "JSON Cowork", valor_b: "35,000,000", fuente_b: "Excel Bluebox", impacto: "Cambia la participación implícita (0.286% en el Excel) y el valor de la posición.", afecta: "valuacion", material: true, estado: "abierta", accion: "Verificar contra el documento del SPV." },
   { id: "D-04", startup: "Autolab", campo: "Ronda y monto de la posición", valor_a: "Ronda cerrada de 900K USD (ago 2026) y nota convertible de 600 a 700K (jul 2025); instrumento de MOOV no localizado", fuente_a: "JSON Cowork", valor_b: "Bridge Serie A 1.25M (950K nuevos + 300K de SAFE previo) a pre-money 12M; Serie A previa: nota convertible 1.5M a cap 16M (4Q 2024); MOOV 100,000 USD entrada a 9M", fuente_b: "Excel Bluebox", impacto: "La marca de 12M (MOIC 1.19x) depende de cuál ronda es la vigente y de que el instrumento exista.", afecta: "valuacion", material: true, estado: "abierta", accion: "Confirmar con Chava si son la misma ronda y localizar el instrumento." },
   { id: "D-05", startup: "Bemycar", campo: "Marca y monto invertido", valor_a: "Marca a 2.6M (MOIC 1.74x) y participación 1.13%", fuente_a: "Excel Bluebox (SAFE 205,723 a cap 2.6M)", valor_b: "Monto invertido no confirmado; segunda ronda de 355,738 EUR (jul 2025)", fuente_b: "JSON Cowork", impacto: "Un cap de SAFE no es ronda con precio: el MOIC depende de ello. No está claro si la ronda en EUR y el SAFE son lo mismo.", afecta: "valuacion", material: true, estado: "abierta", accion: "Verificar si es la misma ronda y con qué valuación." },
-  { id: "D-06", startup: "Bemycar", campo: "Hoja contaminada en el Excel", valor_a: "Segmento last mile, KPIs de rutas y highlights de Partrunner (Decathlon, Flekk); revenue 4Q25 = 22,223 (conteo de rutas)", fuente_a: "Excel Bluebox", valor_b: "SaaS B2B automotriz con MRR en EUR; revenue 203,485.69 USD en la tabla resumen", fuente_b: "JSON Cowork / Excel (tabla resumen)", impacto: "El revenue agregado de 5.33M del Excel incluye ese 22,223: sin él el agregado es 5.52M. No se importó la serie ni los highlights de Bemycar.", afecta: "revenue", material: true, estado: "abierta", accion: "Pedir a Bemycar su reporte trimestral y reconstruir la hoja." },
+  { id: "D-06", startup: "Bemycar", campo: "Hoja contaminada en el Excel", valor_a: "Segmento last mile, KPIs de rutas y highlights de Partrunner (Decathlon, Flekk); revenue 4Q25 = 22,223 (conteo de rutas)", fuente_a: "Excel Bluebox", valor_b: "Los ingresos de Bemycar son 172,446 EUR en el 4Q 2025 (facturado) y 203,486 USD al tipo 1.18: el resumen del Excel sí era correcto; lo contaminado eran la serie, los KPIs de rutas y los highlights.", fuente_b: "Bemycar_Financiero_2026-08.xlsx", impacto: "Resuelta en v2: la serie de Bemycar se reconstruyó desde su reporte mensual (dic 2024 a ago 2026). Sin el conteo de rutas de 22,223, el revenue agregado del Excel pasa de 5.33M a 5.52M.", afecta: "revenue", material: false, estado: "resuelta", accion: "Ninguna: v2 usa el reporte de la propia startup." },
   { id: "D-07", startup: "Partrunner", campo: "Marca a la baja", valor_a: "MOIC 0.85x por dilución (1.0% a 0.85%) con valuación sin cambio en 10M", fuente_a: "Excel Bluebox", valor_b: "Serie A lanzada en mayo 2025", fuente_b: "JSON Cowork", impacto: "Diluirse en una ronda suele venir con valuación mayor: 0.85x probablemente subestima.", afecta: "valuacion", material: true, estado: "abierta", accion: "Obtener valuación y resultado de la Serie A." },
   { id: "D-08", startup: "Kigo", campo: "Marca sin cambio e instrumento", valor_a: "Marca fija en 15M por 12 trimestres con revenue de 1.63M a 2.54M USD trimestrales", fuente_a: "Excel Bluebox", valor_b: "Instrumento y monto no localizados; ronda de 30M MXN en 2023", fuente_b: "JSON Cowork", impacto: "Marca posiblemente rezagada; falta confirmar entidad (Cargo Móvil S.A. de C.V. o Kigo Holdings LLC).", afecta: "monto", material: true, estado: "abierta", accion: "Localizar el instrumento y confirmar la entidad." },
   { id: "D-09", startup: "Drivana", campo: "Moneda del revenue", valor_a: "770,399 en 4Q 2025 etiquetado USD (+111.7% QoQ)", fuente_a: "Excel Bluebox", valor_b: "Cifras históricas estaban en MXN etiquetadas como USD; net revenue mensual 21,767 USD (ago 2026)", fuente_b: "JSON Cowork", impacto: "Si es MXN el QoQ cambia de significado. Los datos de Drivana del Excel se excluyen de agregados hasta verificar.", afecta: "revenue", material: false, estado: "abierta", accion: "Verificar y convertir." },
-  { id: "D-10", startup: "Ualabee", campo: "Consistencia de ingresos", valor_a: "Revenue 4Q 2025 = 170,165 (~57K/mes)", fuente_a: "Excel Bluebox", valor_b: "MRR de 35,000 USD (may 2026); descuento SAFE de 80% por verificar", fuente_b: "JSON Cowork", impacto: "Puede ser ingreso no recurrente.", afecta: "revenue", material: false, estado: "abierta", accion: "Verificar y revisar el SAFE original." },
-  { id: "D-11", startup: "Leasy", campo: "Escala de ingresos", valor_a: "Revenue 4Q 2025 = 319,267", fuente_a: "Excel Bluebox", valor_b: "ARR 9.4M USD (2024); margen neto 2024 con dos versiones (8.7% y 20%)", fuente_b: "JSON Cowork", impacto: "Si son trimestrales no cuadran (9.4M/4 ≈ 2.35M por trimestre).", afecta: "revenue", material: false, estado: "abierta", accion: "Verificar unidad y periodo." },
+  { id: "D-10", startup: "Ualabee", campo: "Consistencia de ingresos", valor_a: "Revenue 4Q 2025 = 170,165 (~57K/mes)", fuente_a: "Excel Bluebox", valor_b: "Reporte Q1 2026 de Ualabee: ingresos totales de marzo 16,920 USD, MRR 30,070 USD, contratos activos 15; MRR de mayo 35,000 USD; descuento del SAFE de 80% por verificar", fuente_b: "Ualabee_Financiero_2026-06.pdf y correo del CEO", impacto: "El Excel da 87K en el 3Q y 170K en el 4Q 2025, muy por encima de ~17-30K al mes que reporta la startup. Sus cifras del Excel se marcan en duda y no entran a agregados.", afecta: "revenue", material: false, estado: "abierta", accion: "Verificar y revisar el SAFE original." },
+  { id: "D-11", startup: "Leasy", campo: "Margen neto 2024 (dos versiones)", valor_a: "Margen neto 2024 de 20% (First Assessment, jun-2026)", fuente_a: "Leasy_FA / First Assessment", valor_b: "Margen neto 2024 de 8.7% (AOI Leasy, mayo 2025); el EBITDA de 62% sí coincide", fuente_b: "AOI Leasy", impacto: "Dato histórico de 2024; no afecta el estado actual (Q1 2026 reporta utilidad neta de 1.11M USD en el trimestre).", afecta: "revenue", material: false, estado: "abierta", accion: "Confirmar con Leasy cuál cifra es la correcta." },
   { id: "D-12", startup: "Drivana", campo: "Caja y runway", valor_a: "Runway de ~21.8 a ~11 meses en dos meses", fuente_a: "JSON Cowork (jun vs ago 2026)", valor_b: "Quema implícita de 22.5K/mes vs EBITDA de -11.5K/mes", fuente_b: "JSON Cowork", impacto: "Parte por corrección de unidades; la quema implícita no está explicada.", afecta: "estado", material: false, estado: "abierta", accion: "Pedir a Edson el flujo de efectivo y la conciliación EBITDA-caja." },
   { id: "D-13", startup: null, campo: "Frescura del dato", valor_a: "Partrunner y Vera AI: dato financiero 2025-06 en el JSON", fuente_a: "JSON Cowork", valor_b: "Excel llega a 4Q 2025", fuente_b: "Excel Bluebox", impacto: "Se usa el más reciente y se etiqueta su fuente.", afecta: "calidad", material: false, estado: "abierta", accion: "Pedir el reporte más reciente." },
   { id: "D-14", startup: null, campo: "Errores del Excel", valor_a: "#DIV/0! en 1Q y 2Q 2026 y columnas de Ualabee; 'Fair market value acumulado' (113.8M) sin significado", fuente_a: "Excel Bluebox", valor_b: "—", fuente_b: "—", impacto: "No se replican en el dashboard. Además el dry powder del Excel se contradice: 33,024 (fila 80) vs 15,524 (C19), y su TVPI usa (NAV - gastos) / capital = 1.0046 en lugar de NAV / (capital + gastos) = 1.0045.", afecta: "calidad", material: false, estado: "abierta", accion: "Ninguna: se documentan." },
+  { id: "D-15", startup: "Leasy", campo: "Escala de ingresos", valor_a: "Revenue 4Q 2025 = 319,267 (Tabla 1 del Excel) y ARR 9.4M (2024) en la ficha anterior", fuente_a: "Excel Bluebox / JSON Cowork anterior", valor_b: "Ventas del 4Q 2025 de 5.78M USD y del 1Q 2026 de 6.64M USD; ARR de 27.5M USD", fuente_b: "Leasy_KPI_2026-Q1.pdf (y la propia hoja de Leasy en el Excel: 5,778,727)", impacto: "Resuelta: la Tabla 1 del Excel enlazaba mal. v2 usa el reporte de Leasy.", afecta: "revenue", material: false, estado: "resuelta", accion: "Ninguna." },
+  { id: "D-16", startup: "Autolab", campo: "Revenue 4Q 2025", valor_a: "428,600 USD (-7.3% QoQ)", fuente_a: "Excel Bluebox", valor_b: "Autolab no reporta el 4Q 2025; el último reporte es el 3Q 2025 (net revenue 462K, GTV 2.47M)", fuente_b: "Autolab_KPI_2025-Q3.pdf", impacto: "El 428,600 podría ser presupuesto. Se marca en duda y no entra a agregados ni al QoQ.", afecta: "revenue", material: false, estado: "abierta", accion: "Pedir a Chava el reporte del 4Q 2025 y del 1Q y 2Q 2026 (MV-044)." },
+  { id: "D-17", startup: "Kigo", campo: "Revenue trimestral en el Overview de Drive", valor_a: "63.7M MXN como revenue del 4Q 2025", fuente_a: "Financiero_Portfolio_Overview (Vista Trimestral)", valor_b: "63.7M MXN es el GMV de diciembre; los ingresos 2025 son 145.9M MXN (y 2024, 107.6M), consistentes con el Excel", fuente_b: "Kigo_Financiero_2025-Q4.pdf", impacto: "Se ignora el dato trimestral del Overview; v2 usa el Excel (que cuadra con el total anual del reporte).", afecta: "calidad", material: false, estado: "abierta", accion: "Corregir la etiqueta en el Overview de Drive." },
 ];
 
 export function pipelineDesde(ops: { startups?: { startup: string; estado: string }[] } | null): PortafolioV2["pipeline"] {
@@ -222,12 +281,13 @@ export function migrar(v1: V1, seed: Seed, oportunidades: Parameters<typeof pipe
     const exc = (v: number | null) => dato(v, "excel_bluebox", "2025-12", { referencia: `Inversion directa (${pos.hoja})` });
     const mesV1 = periodoAMes(f.fecha_dato as string);
     const mesExcel = n === "Mobi" ? null : periodoAMes(info["Último periodo reportado"] as string);
-    const ultimo = [mesV1, mesExcel].filter(Boolean).sort().pop() ?? null;
+    const fin = s.financiero as { serie_mensual?: V1Punto[]; serie_trimestral?: V1Punto[] };
+    const enSeries = [...(fin.serie_mensual ?? []), ...(fin.serie_trimestral ?? [])].map((x) => periodoAMes(x.periodo));
+    const ultimo = [mesV1, mesExcel, ...enSeries].filter(Boolean).sort().pop() ?? null;
     const crisis = /crisis de caja/i.test(s.situacion_actual) || s.alertas.some((a) => /crisis de caja/i.test(a));
-    const mensual = serieMensual(n, v1.startups.find((x) => x.nombre === n)!);
-    const trimestral = serieTrimestral(n, seed);
+    const { mensual, trimestral } = series(n, seed, s);
     const contexto: Record<string, unknown> = {};
-    for (const [k, v] of Object.entries(f)) if (!["metrica_principal", "valor", "moneda", "fecha_dato", "tendencia", "serie_mensual"].includes(k)) contexto[k] = v;
+    for (const [k, v] of Object.entries(f)) if (!["metrica_principal", "valor", "moneda", "fecha_dato", "tendencia", "serie_mensual", "serie_trimestral"].includes(k)) contexto[k] = v;
     const rondas: StartupV2["rondas"] = [
       ...(hoja?.rondas ?? []).map((r: any[]) => ({
         nombre: String(r[0]), fecha: r[4] ?? null, monto_usd: typeof r[1] === "number" ? r[1] : null, valuacion_usd: typeof r[2] === "number" ? r[2] : null,

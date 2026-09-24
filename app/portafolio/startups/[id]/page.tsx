@@ -31,7 +31,8 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
   const pts = (arr: PuntoSerie[]) => [...arr].sort((a, b) => a.periodo.localeCompare(b.periodo));
   const revTrim = s.serie_trimestral.filter((x) => x.revenue_usd.valor != null).map((x) => ({ periodo: x.periodo, valor: x.revenue_usd.valor!, duda: x.revenue_usd.en_duda }));
   const revMens = pts(s.serie_mensual).filter((x) => x.revenue_usd.valor != null).map((x) => ({ periodo: fechaCorta(x.periodo)!, valor: x.revenue_usd.valor! }));
-  const kpisPropios = s.serie_mensual.flatMap((x) => x.kpis_propios.map((k) => ({ ...k, periodo: x.periodo })));
+  // Un KPI propio por nombre: el del periodo más reciente (las series completas viven en el JSON).
+  const kpisPropios = [...new Map(pts(s.serie_mensual).flatMap((x) => x.kpis_propios.map((k) => ({ ...k, periodo: x.periodo }))).map((k) => [k.nombre, k])).values()];
   const eficiencia = [...s.serie_trimestral, ...s.serie_mensual].filter((x) => x.ebitda_usd.valor != null || x.burn_usd.valor != null || x.caja_usd.valor != null || x.runway_meses.valor != null);
   const row = (k: string, v: React.ReactNode) => <tr><th scope="row" style={{ ...td, color: C.muted, fontWeight: 400, width: "38%", textAlign: "left" }}>{k}</th><td style={{ ...td, ...numStyle }}>{v}</td></tr>;
   const sevColor = { alta: C.critico, media: C.vigilar, baja: C.muted } as const;
@@ -88,7 +89,13 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
               <BarrasSerie puntos={revTrim} etiqueta={`Revenue trimestral de ${s.nombre} (USD)`} />
             </>
           ) : <p style={{ fontSize: 13 }}><NoRep texto="No hay serie trimestral de revenue confiable." /></p>}
-          {revMens.length > 0 && <p style={{ fontSize: 13, margin: "12px 0 0" }}>Último dato mensual: {revMens.map((x) => `${x.periodo}: ${usdK(x.valor)}`).join(" · ")}</p>}
+          {revMens.length >= 4 && (
+            <div style={{ marginTop: 14 }}>
+              <p style={{ fontSize: 12, color: C.muted, margin: "0 0 6px" }}>Revenue mensual en USD (reporte de la startup).</p>
+              <BarrasSerie puntos={revMens} etiqueta={`Revenue mensual de ${s.nombre} (USD)`} />
+            </div>
+          )}
+          {revMens.length > 0 && revMens.length < 4 && <p style={{ fontSize: 13, margin: "12px 0 0" }}>Último dato mensual: {revMens.map((x) => `${x.periodo}: ${usdK(x.valor)}`).join(" · ")}</p>}
           {kpisPropios.length > 0 && (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
               {kpisPropios.map((k) => <div key={k.nombre + k.periodo} style={{ border: `1px solid ${C.line}`, borderRadius: 6, padding: "8px 12px" }}><div style={{ fontSize: 11, color: C.muted }}>{k.nombre} · {fechaCorta(k.periodo)}</div><div style={{ fontSize: 18, fontWeight: 700, ...numStyle }}>{k.valor == null ? "—" : num0(k.valor)} <span style={{ fontSize: 12, color: C.muted }}>{k.unidad}</span></div></div>)}

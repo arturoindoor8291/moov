@@ -1,7 +1,7 @@
 import PortafolioNav from "@/components/portafolio/PortafolioNav";
 import { BarraApilada, BarrasH, EvolucionFondo, RevenueApilado, td, th } from "@/components/portafolio/v2/charts";
 import { C, Card, H2, LenteToggle, NoRep, Punto, h1, main, numStyle, page, sub } from "@/components/portafolio/v2/ui";
-import { calcularFondo, crecimientoQoQ, lecturaComite, mesesSinDato, ultimoValor, UMBRALES, type Lente } from "@/lib/portfolio/fondoV2";
+import { calcularFondo, crecimientoQoQ, lecturaComite, mesesSinDato, trimestresComparables, ultimoValor, UMBRALES, type Lente } from "@/lib/portfolio/fondoV2";
 import { fechaCorta, meses, mult, pct1, signed, spct, usd, usdK } from "@/lib/portfolio/formatV2";
 import { getPortafolio } from "@/lib/portfolio/portafolioV2";
 import { getAllTareas } from "@/lib/portfolio/tareasData";
@@ -41,10 +41,13 @@ export default async function FondoPage({ searchParams }: { searchParams: Promis
   const dPct = (a: number, b: number) => `${spct((a / b - 1) * 100)} vs ${prev}`;
   const dir = (a: number, b: number) => (a > b ? "up" : a < b ? "down" : "flat") as "up" | "down" | "flat";
   const lectura = lecturaComite(data, f);
-  const revAgg = f.revenue;
+  const { max: maxRev, filas: revAgg } = trimestresComparables(f.revenue);
+  const ocultos = f.revenue.filter((r) => !revAgg.includes(r)).map((r) => r.periodo);
   const conRev = ss.filter((s) => s.serie_trimestral.some((p) => p.revenue_usd.valor != null && !p.revenue_usd.en_duda));
   const nombresRev = ss.filter((s) => revAgg.some((r) => r.por[s.nombre])).map((s) => s.nombre);
-  const kigoPct = (() => { const u = revAgg.at(-1); return u && u.por.Kigo ? (u.por.Kigo / u.total) * 100 : null; })();
+  const enDuda = ss.filter((s) => s.serie_trimestral.some((p) => p.revenue_usd.en_duda)).map((s) => s.nombre);
+  const ultRev = revAgg.filter((r) => Object.keys(r.por).length >= 5).at(-1) ?? revAgg.at(-1);
+  const lider = ultRev ? Object.entries(ultRev.por).sort((a, b) => b[1] - a[1])[0] : null;
   const fuenteCap = f.capitalRespaldadoPct >= 90 ? "documento" : "excel_bluebox";
   const nota = `${f.capitalRespaldadoPct.toFixed(0)}% del capital desplegado está respaldado con documento.`;
 
@@ -166,9 +169,11 @@ export default async function FondoPage({ searchParams }: { searchParams: Promis
 
         {/* 7.7 desempeño */}
         <Card style={{ marginBottom: 20 }}>
-          <H2 sub={`Suma del revenue trimestral en USD de las ${conRev.length} startups con dato confiable. Excluye Drivana (unidad en duda) y Bemycar (hoja del Excel contaminada); Mobi, Vera AI (parcial) y otras no reportan. No se muestra la suma de valuaciones de las empresas porque no significa nada para el fondo.`}>Desempeño operativo agregado</H2>
-          <RevenueApilado datos={revAgg} nombres={nombresRev} />
-          {kigoPct != null && <p style={{ fontSize: 12, color: C.muted, margin: "6px 0 0" }}>Kigo aporta {pct1(kigoPct)} del revenue agregado del último trimestre (barra azul).</p>}
+          <H2 sub={`Suma del revenue trimestral en USD de las ${conRev.length} startups con dato confiable, tomado de los reportes de cada startup (el Excel solo llena lo que no tiene reporte). Excluye los datos en duda: ${enDuda.length ? enDuda.join(", ") : "ninguno"}. Los reportes en EUR (Bemycar) se convierten a 1.18 USD por EUR, un estimado. No se muestra la suma de valuaciones de las empresas porque no significa nada para el fondo.`}>Desempeño operativo agregado</H2>
+          <RevenueApilado datos={revAgg} nombres={nombresRev} maxN={maxRev} />
+          {ocultos.length > 0 && <p style={{ fontSize: 12, color: C.muted, margin: "6px 0 0" }}>No se grafican {ocultos.join(", ")}: reportan muy pocas startups y la suma caería por falta de datos, no por desempeño. Los reportes 2026 de Leasy, Bemycar, Ruedata y Drivana están en cada ficha.</p>}
+          <p style={{ fontSize: 12, color: C.tenue, margin: "4px 0 0" }}>Comparabilidad: la composición cambia entre trimestres (por ejemplo Leasy entra a la suma desde el 2Q 2025, cuando empieza su serie); el número de startups aparece bajo cada barra.</p>
+          {lider && ultRev && <p style={{ fontSize: 12, color: C.muted, margin: "6px 0 0" }}>{lider[0]} aporta {pct1((lider[1] / ultRev.total) * 100)} del revenue agregado del {ultRev.periodo} (barra azul).</p>}
           <h3 style={{ fontSize: 13, color: C.muted, margin: "20px 0 8px", fontWeight: 600 }}>Quién crece y quién quema</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 560 }}>

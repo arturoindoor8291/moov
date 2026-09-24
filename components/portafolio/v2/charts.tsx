@@ -96,8 +96,8 @@ export function BarrasH({ titulo, filas, total }: { titulo: string; filas: { cla
 }
 
 /** Revenue trimestral apilado por startup; la de mayor peso se destaca, el resto en grises. */
-export function RevenueApilado({ datos, nombres }: { datos: { periodo: string; total: number; por: Record<string, number> }[]; nombres: string[] }) {
-  const W = 900, H = 260, L = 64, T = 14, B = 30;
+export function RevenueApilado({ datos, nombres, maxN }: { datos: { periodo: string; total: number; por: Record<string, number>; n?: number }[]; nombres: string[]; maxN?: number }) {
+  const W = 900, H = 270, L = 64, T = 14, B = 40;
   const max = Math.max(...datos.map((d) => d.total)) * 1.1;
   const bw = ((W - L - 10) / datos.length) * 0.6;
   const destacada = nombres.reduce((a, n) => (datos.at(-1)!.por[n] ?? 0) > (datos.at(-1)!.por[a] ?? 0) ? n : a, nombres[0]);
@@ -117,7 +117,8 @@ export function RevenueApilado({ datos, nombres }: { datos: { periodo: string; t
               return <rect key={n} x={cx - bw / 2} y={y0} width={bw} height={Math.max(h - 0.5, 0)} fill={n === destacada ? C.azul : `rgba(139,147,163,${k % 2 ? 0.4 : 0.6})`}><title>{`${n} ${d.periodo}: ${usdK(v)}`}</title></rect>;
             })}
             <text x={cx} y={y(d.total) - 5} fill={C.text} fontSize="10" textAnchor="middle">{usdK(d.total)}</text>
-            {(i % 2 === 0 || i === datos.length - 1) && <text x={cx} y={H - 10} fill={AX} fontSize="11" textAnchor="middle">{d.periodo.replace(" 20", " '")}</text>}
+            <text x={cx} y={H - 14} fill={AX} fontSize="11" textAnchor="middle">{d.periodo.replace(" 20", " '")}</text>
+            {d.n != null && <text x={cx} y={H - 2} fill={AX} fontSize="9" textAnchor="middle">{d.n}{maxN ? `/${maxN}` : ""} startups</text>}
           </g>
         );
       })}

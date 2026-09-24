@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-09-17",
+  "ultima_actualizacion": "2026-09-24",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -53,7 +53,849 @@
         "moneda": "EUR",
         "fecha_dato": "2026-08",
         "arr": 877530,
-        "tendencia": "MRR cayó -6.2% MoM en agosto 2026 (€68,592.86 vs €73,127 en julio), pese a que Total Clientes subió de 43 a 46 y Clientes MRR pagando subió de 42 a 43, con churn 0%. Posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM)."
+        "tendencia": "MRR cayó -6.2% MoM en agosto 2026 (€68,592.86 vs €73,127 en julio), pese a que Total Clientes subió de 43 a 46 y Clientes MRR pagando subió de 42 a 43, con churn 0%. Posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM).",
+        "serie_mensual": [
+          {
+            "periodo": "2024-12",
+            "moneda": "EUR",
+            "revenue_original": 28658.15,
+            "clientes": 34,
+            "equipo": 7,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 26269.45,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 315233.4,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 27081.1,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 31,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 79.9,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-01",
+            "moneda": "EUR",
+            "revenue_original": 30124,
+            "clientes": 35,
+            "equipo": 7,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 29532.31,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 354387.72,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 39482.82,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 35,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 91.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-02",
+            "moneda": "EUR",
+            "revenue_original": 32023.02,
+            "clientes": 36,
+            "equipo": 7,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 31043.27,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 372519.24,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 35061.39,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 35,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 77.1,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-03",
+            "moneda": "EUR",
+            "revenue_original": 33888.09,
+            "clientes": 36,
+            "equipo": 10,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 33008.29,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 396099.48,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 49291.34,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.78,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 34,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 77.2,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-04",
+            "moneda": "EUR",
+            "revenue_original": 35662.07,
+            "clientes": 38,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 33543.34,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 402520.08,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 49336.7,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 35,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 84.8,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-05",
+            "moneda": "EUR",
+            "revenue_original": 39777.63,
+            "clientes": 38,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 34560,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 414720,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 52871.5243,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 36,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 81.8,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-06",
+            "moneda": "EUR",
+            "revenue_original": 41544.95,
+            "clientes": 39,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 38093.87,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 457126.44,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 48656.61,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.63,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 37,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 80.7,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-07",
+            "moneda": "EUR",
+            "revenue_original": 36021.23,
+            "clientes": 40,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 36021.23,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 432254.76,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 68452.13,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 35,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 75.1,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-08",
+            "moneda": "EUR",
+            "revenue_original": 44135.65,
+            "clientes": 38,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 38121.12,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 457453.44,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 42989.45,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 5.0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 33,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 78.8,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-09",
+            "moneda": "EUR",
+            "revenue_original": 45322.43,
+            "clientes": 38,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 39982.43,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 479789.16,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 44029.23,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 7.89,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 33,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 79.8,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-10",
+            "moneda": "EUR",
+            "revenue_original": 46767.37,
+            "clientes": 39,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 42115.89,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 505390.68,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 73498.89,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.63,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 32,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 83.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-11",
+            "moneda": "EUR",
+            "revenue_original": 50066.27,
+            "clientes": 39,
+            "equipo": 10,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 47586.27,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 571035.24,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 45754.85,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 37,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 83.1,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2025-12",
+            "moneda": "EUR",
+            "revenue_original": 75611.86,
+            "clientes": 40,
+            "equipo": 10,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 47867.5,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 574410,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 52763.04,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.56,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 38,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 89.2,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-01",
+            "moneda": "EUR",
+            "revenue_original": 55888.26,
+            "clientes": 40,
+            "equipo": 10,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 51307.47,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 615689.64,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 84278.41,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.5,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 38,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 85.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-02",
+            "moneda": "EUR",
+            "revenue_original": 60291.23,
+            "clientes": 41,
+            "equipo": 14,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 54503.83,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 654045.96,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 51517.56,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 40,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 83.8,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-03",
+            "moneda": "EUR",
+            "revenue_original": 65665.56,
+            "clientes": 39,
+            "equipo": 14,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 62755.96,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 753071.52,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 61946.81,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 7.32,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 37,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 85.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-04",
+            "moneda": "EUR",
+            "revenue_original": 66455.09,
+            "clientes": 38,
+            "equipo": 13,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 61390.09,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 736681.08,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 95484.19,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 5.13,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 36,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 86.5,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-05",
+            "moneda": "EUR",
+            "revenue_original": 67371.2,
+            "clientes": 41,
+            "equipo": 13,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 65456.2,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 785474.4,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 53096.3,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 2.63,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 36,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 88.0,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-06",
+            "moneda": "EUR",
+            "revenue_original": 72000.73,
+            "clientes": 43,
+            "equipo": 12,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 67256.2,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 807074.4,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 57429.85,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 5.26,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 38,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 88.0,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-07",
+            "moneda": "EUR",
+            "revenue_original": 97073.47,
+            "clientes": 43,
+            "equipo": 12,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 73127.47,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 877529.64,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 100220.98,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 42,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 90.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          },
+          {
+            "periodo": "2026-08",
+            "moneda": "EUR",
+            "revenue_original": 73834.76,
+            "clientes": 46,
+            "equipo": 11,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 68592.86,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 823114.32,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Costos (con IVA)",
+                "valor": 49628.65,
+                "unidad": "EUR"
+              },
+              {
+                "nombre": "Churn mensual",
+                "valor": 0,
+                "unidad": "%"
+              },
+              {
+                "nombre": "Clientes MRR",
+                "valor": 43,
+                "unidad": "clientes"
+              },
+              {
+                "nombre": "Margen bruto",
+                "valor": 89.6,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Bemycar_Financiero_2026-08.xlsx (hoja Results)"
+          }
+        ]
       },
       "situacion_actual": "Julio 2026: MRR €73,127 (ARR €877,530), 43 clientes totales / 42 con MRR. Costos del mes (€100,221) volvieron a dispararse muy por encima del MRR — segundo mes con esa señal después de oct-2025. Cerró segunda ronda de inversión en julio 2025 (€355,738). Runway con discrepancia sin resolver: 31-dic-2026 vs 1-dic-2027 según el reporte de junio-2026 (ver Discrepancias_Detectadas). Agosto 2026: MRR bajó a €68,592.86 (-6.2% MoM) pese a que Total Clientes subió 43→46 y Clientes MRR pagando subió 42→43, con churn 0% — posible downgrade de ticket promedio, no confirmado (ver hallazgo POR-T-MTRAY1QM en el Kanban).",
       "proximos_pasos": [
@@ -91,7 +933,55 @@
         "moneda": "%",
         "fecha_dato": "2025-Q3",
         "arr_objetivo": 3000000,
-        "tendencia": "Colombia alcanzó EBITDA positivo (+$5K USD) en julio 2025, tras pérdidas de $70-80K a inicios de año. Take rate México subió de 14-15% a más de 18%."
+        "tendencia": "Colombia alcanzó EBITDA positivo (+$5K USD) en julio 2025, tras pérdidas de $70-80K a inicios de año. Take rate México subió de 14-15% a más de 18%.",
+        "serie_trimestral": [
+          {
+            "periodo": "1Q 2025",
+            "moneda": "USD",
+            "gtv_usd": 1938000,
+            "revenue_usd": 321000,
+            "burn_usd": -304000,
+            "kpis": [
+              {
+                "nombre": "Cumplimiento de GTV vs presupuesto",
+                "valor": 94,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Autolab_KPI_2025-Q3.pdf"
+          },
+          {
+            "periodo": "2Q 2025",
+            "moneda": "USD",
+            "gtv_usd": 1858000,
+            "revenue_usd": 313000,
+            "burn_usd": -270000,
+            "kpis": [
+              {
+                "nombre": "Cumplimiento de GTV vs presupuesto",
+                "valor": 100,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Autolab_KPI_2025-Q3.pdf"
+          },
+          {
+            "periodo": "3Q 2025",
+            "moneda": "USD",
+            "gtv_usd": 2473000,
+            "revenue_usd": 462000,
+            "burn_usd": -68000,
+            "kpis": [
+              {
+                "nombre": "Cumplimiento de GTV vs presupuesto",
+                "valor": 104,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Autolab_KPI_2025-Q3.pdf",
+            "nota": "Último trimestre con reporte de Autolab."
+          }
+        ]
       },
       "situacion_actual": "Arturo (Huerpel) es ahora el punto de contacto de Autolab, reemplazando a Blue Box (que queda como apoyo ocasional). Equipo de 21 personas. Inicio de 2026 complicado por impago de Grupo Salinas/Tiendas Neto y pérdida del cliente Koji. Prioridad actual: llegar a breakeven antes de fin de año (reportan estar cerca). Ronda cerrada \"el año pasado\" de $900K USD para financiar 2026 — posible extensión de la nota convertible de ~$600-700K mencionada anteriormente, sin confirmar (ver discrepancia). Evaluando oportunidad de colaboración en México con el operador colombiano Call Mecánica para reabrir el modelo de usuario final bajo la marca Autolab.",
       "proximos_pasos": [
@@ -132,7 +1022,164 @@
         "valor": 153694,
         "moneda": "USD",
         "fecha_dato": "2026-06",
-        "tendencia": "MRR Billed subio de $142,999 (feb-2026) a $153,694 (jun-2026), crecimiento mensual modesto y consistente. New MRR de Q2 2026 fue solo 44% de la meta trimestral (~$17K vs $38K), con USA aportando $0. Cash Positive Operations alcanzado en junio 2026 (con matiz: ayudado por cobranza de cuentas por cobrar atrasadas, principalmente Traxion)."
+        "tendencia": "MRR Billed subio de $142,999 (feb-2026) a $153,694 (jun-2026), crecimiento mensual modesto y consistente. New MRR de Q2 2026 fue solo 44% de la meta trimestral (~$17K vs $38K), con USA aportando $0. Cash Positive Operations alcanzado en junio 2026 (con matiz: ayudado por cobranza de cuentas por cobrar atrasadas, principalmente Traxion).",
+        "serie_mensual": [
+          {
+            "periodo": "2025-11",
+            "moneda": "USD",
+            "revenue_usd": 139258,
+            "clientes": 93,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 134843,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 46498,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2025-12",
+            "moneda": "USD",
+            "revenue_usd": 142940,
+            "clientes": 91,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 141133,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 48667,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-01",
+            "moneda": "USD",
+            "revenue_usd": 148636,
+            "clientes": 90,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 144901,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 52311,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-02",
+            "moneda": "USD",
+            "revenue_usd": 138205,
+            "clientes": 85,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 142999,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 51624,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-03",
+            "moneda": "USD",
+            "revenue_usd": 218090,
+            "clientes": 86,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 142837,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 51548,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)",
+            "equipo": 35,
+            "nota": "El total de marzo incluye facturación administrativa de contratos anuales y facturas atrasadas; no es ingreso recurrente."
+          },
+          {
+            "periodo": "2026-04",
+            "moneda": "USD",
+            "revenue_usd": 164706,
+            "clientes": 82,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 146938,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 53046,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-05",
+            "moneda": "USD",
+            "revenue_usd": 177751,
+            "clientes": 86,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 148677,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 53674,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-06",
+            "moneda": "USD",
+            "revenue_usd": 198790,
+            "clientes": 86,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 153694,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 55485,
+                "unidad": "vehículos"
+              }
+            ],
+            "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)",
+            "equipo": 28
+          }
+        ]
       },
       "situacion_actual": "Q2 2026: llegaron a Cash Positive Operations en junio (meta que se habian fijado desde Q1), aunque con ayuda de cobranza atrasada de Traxion - julio/agosto deberian ser cash positive de forma estructural. Pipeline activo en USA: piloto pagado CEVA Logistics (2 plantas, $400K ACV potencial), ABARTA Coca-Cola pasa a produccion pagada en agosto y abrio puerta a Coca-Cola United (piloto oct-2026), partnership con Doran (TPMS) con primer piloto conjunto en agosto (Home City Ice). En Mexico: GEPP expande a $50K MRR (cuenta mas grande), FEMSA evaluando piloto ($60K MRR potencial, Q3), ADO firmo piloto en julio. Perdieron Mansfield (piloto no pagado) y TVA (por falta de certificacion SOC 2, prioridad Q3) en Q2. Definiciones de MRR siguen sin unificacion formal aunque el update de Q2 usa consistentemente 'MRR Billed' (ver Discrepancias_Detectadas).",
       "proximos_pasos": [
@@ -177,7 +1224,236 @@
         "net_revenue_ytd_2026_usd": 114764,
         "caja_neta_usd": 248000,
         "runway_meses": 11,
-        "tendencia": "Agosto 2026: GTV $71,647 USD (mejor mes del año) y net revenue $21,767 USD. El crecimiento de net revenue en 2026 (+295% ene-ago) viene en su mayor parte de expansión de take rate (14.5% -> 30.4%, por reclasificación del seguro de costo subsidiado a línea de margen), no de volumen: el GTV lleva prácticamente plano desde mayo (70,965 en may vs 71,647 en ago, +1% en tres meses) y el take rate se estabilizó alrededor de 30% desde junio. OJO: el dato anterior de esta ficha (805,541 'USD' a jun-2026) estaba en MXN, no USD - ver Discrepancias_Detectadas."
+        "tendencia": "Agosto 2026: GTV $71,647 USD (mejor mes del año) y net revenue $21,767 USD. El crecimiento de net revenue en 2026 (+295% ene-ago) viene en su mayor parte de expansión de take rate (14.5% -> 30.4%, por reclasificación del seguro de costo subsidiado a línea de margen), no de volumen: el GTV lleva prácticamente plano desde mayo (70,965 en may vs 71,647 en ago, +1% en tres meses) y el take rate se estabilizó alrededor de 30% desde junio. OJO: el dato anterior de esta ficha (805,541 'USD' a jun-2026) estaba en MXN, no USD - ver Discrepancias_Detectadas.",
+        "serie_mensual": [
+          {
+            "periodo": "2025-01",
+            "moneda": "USD",
+            "gtv_usd": 18005,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-02",
+            "moneda": "USD",
+            "gtv_usd": 18976,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-03",
+            "moneda": "USD",
+            "gtv_usd": 25239,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-04",
+            "moneda": "USD",
+            "gtv_usd": 43101,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-05",
+            "moneda": "USD",
+            "gtv_usd": 34732,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-06",
+            "moneda": "USD",
+            "gtv_usd": 29815,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-07",
+            "moneda": "USD",
+            "gtv_usd": 47353,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-08",
+            "moneda": "USD",
+            "gtv_usd": 28965,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-09",
+            "moneda": "USD",
+            "gtv_usd": 24613,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-10",
+            "moneda": "USD",
+            "gtv_usd": 27578,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-11",
+            "moneda": "USD",
+            "gtv_usd": 38616,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2025-12",
+            "moneda": "USD",
+            "gtv_usd": 90430,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual): GTV en MXN del P&L convertido al tipo DOF de cada mes",
+            "nota": "GTV convertido por Cowork; no incluye net revenue mensual 2025."
+          },
+          {
+            "periodo": "2026-01",
+            "moneda": "USD",
+            "revenue_usd": 5505,
+            "gtv_usd": 38077,
+            "gross_profit_usd": 4205,
+            "ebitda_usd": -26497,
+            "clientes": 95,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 30702,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-02",
+            "moneda": "USD",
+            "revenue_usd": 7521,
+            "gtv_usd": 31865,
+            "gross_profit_usd": 6532,
+            "ebitda_usd": -20066,
+            "clientes": 98,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 26598,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-03",
+            "moneda": "USD",
+            "revenue_usd": 10382,
+            "gtv_usd": 41590,
+            "gross_profit_usd": 8635,
+            "ebitda_usd": -21132,
+            "clientes": 111,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 29767,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-04",
+            "moneda": "USD",
+            "revenue_usd": 13555,
+            "gtv_usd": 55317,
+            "gross_profit_usd": 11736,
+            "ebitda_usd": -19754,
+            "clientes": 146,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 31490,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-05",
+            "moneda": "USD",
+            "revenue_usd": 19665,
+            "gtv_usd": 70965,
+            "gross_profit_usd": 17612,
+            "ebitda_usd": -16234,
+            "clientes": 145,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 33846,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-06",
+            "moneda": "USD",
+            "revenue_usd": 16976,
+            "gtv_usd": 52930,
+            "gross_profit_usd": 15305,
+            "ebitda_usd": -15802,
+            "clientes": 106,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 31108,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-07",
+            "moneda": "USD",
+            "revenue_usd": 19395,
+            "gtv_usd": 66859,
+            "gross_profit_usd": 16980,
+            "ebitda_usd": -9687,
+            "clientes": 163,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 26667,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)"
+          },
+          {
+            "periodo": "2026-08",
+            "moneda": "USD",
+            "revenue_usd": 21767,
+            "gtv_usd": 71647,
+            "gross_profit_usd": 19561,
+            "ebitda_usd": -11467,
+            "clientes": 180,
+            "kpis": [
+              {
+                "nombre": "Base de costos",
+                "valor": 31027,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Take rate",
+                "valor": 30.4,
+                "unidad": "%"
+              }
+            ],
+            "referencia": "Drivana_Financiero_2026-08.pdf (nota de cierre de agosto 2026)",
+            "caja_usd": 248000,
+            "runway_meses": 11
+          }
+        ]
       },
       "situacion_actual": "Cierre de agosto 2026 con nota de breakeven enviada por Edson (fundador) el 17-sep-2026. Ocho meses de 2026 igualan los doce de 2025 en net revenue ($116,997 vs $115,503 a tipo de cambio constante de 17.00 MXN/USD) con 10% menos de volumen bruto. La base de costos está plana (+1% desde enero, $31,027/mes en agosto) y el margen bruto 3M es 89.2%. EBITDA de agosto: -$11,467 USD. La compañía calcula que le faltan $11.4K de net revenue mensual (414 días de renta) para breakeven de EBITDA, y proyecta alcanzarlo en 3 a 7 meses contra 11 meses de caja. Verificación independiente (17-sep-2026): la aritmética del gap está correcta y es honesta (da el rango $11.4-13.8K según normalización y modela 70% de fulfillment cuando corrió 76%), pero la tasa de crecimiento usada para proyectar (7%/mes de clientes solicitantes, medida desde enero) ya no describe al negocio: de mayo a agosto el net revenue creció 3.4%/mes, lo que pone el breakeven en ~12-13 meses, fuera de los 11 meses de caja. Además el modelo de breakeven requiere simultáneamente +14% de clientes activos y +33% de intensidad por cliente (1.24 rentas x 4.73 días, picos de mayo y junio respectivamente, nunca observados juntos), cuando en 2026 esas dos variables se han movido en sentidos opuestos: clientes activos +24% de mayo a agosto con días de renta planos.",
       "proximos_pasos": [
@@ -220,7 +1496,74 @@
         "moneda": "USD",
         "fecha_dato": "2026-05",
         "arr": 420000,
-        "tendencia": "MRR +43.5% en Q1 2026, pero con runway crítico de 3 meses."
+        "tendencia": "MRR +43.5% en Q1 2026, pero con runway crítico de 3 meses.",
+        "serie_mensual": [
+          {
+            "periodo": "2026-03",
+            "moneda": "USD",
+            "revenue_usd": 16920,
+            "burn_usd": -57000,
+            "runway_meses": 3,
+            "equipo": 15,
+            "clientes": 15,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 30070,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "MAU",
+                "valor": 42218,
+                "unidad": "usuarios"
+              },
+              {
+                "nombre": "Cuentas por cobrar",
+                "valor": 24250,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Ualabee_Financiero_2026-06.pdf (Reporte Q1 2026)",
+            "nota": "Clientes = contratos activos. Ingresos totales del mes, no MRR."
+          },
+          {
+            "periodo": "2026-05",
+            "moneda": "USD",
+            "clientes": 19,
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 35000,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 420000,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "MRR en negociación final",
+                "valor": 42000,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Correo del CEO a Blue Mobility Ventures, 17-jun-2026"
+          }
+        ],
+        "serie_trimestral": [
+          {
+            "periodo": "3Q 2025",
+            "moneda": "USD",
+            "kpis": [
+              {
+                "nombre": "MRR",
+                "valor": 29000,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Financiero_Portfolio_Overview (Vista Trimestral)"
+          }
+        ]
       },
       "situacion_actual": "🔴 CRISIS DE CAJA ACTIVA: el CEO reportó directamente (jun-2026) que le faltan $50,000 USD para cerrar la caja de julio 2026. Daniel Stern (Blue Mobility Ventures) preguntó si desde México se puede apoyar. Alianza activa con Waze para el Mundial FIFA 2026.",
       "proximos_pasos": [
@@ -290,14 +1633,262 @@
       },
       "financiero": {
         "metrica_principal": "ARR",
-        "valor": 9400000,
+        "valor": 27500000,
         "moneda": "USD",
-        "fecha_dato": "2024",
-        "ebitda": 3900000,
-        "margen_ebitda_pct": 0.62,
-        "tendencia": "Crecimiento promedio de 89% anual en los últimos 5 años."
+        "fecha_dato": "2026-03",
+        "ebitda": 4487173,
+        "margen_ebitda_pct": 0.675,
+        "tendencia": "Q1 2026 (reporte a inversionistas): ARR 27.5M USD (+10.4% vs Q4), ventas del trimestre 6.64M USD (+15% vs Q4 2025 y +120% vs Q1 2025, 9% sobre presupuesto), EBITDA 4.49M USD (13% sobre presupuesto), utilidad neta 1.11M USD (+148% vs Q1 2025), caja final 7.7M USD, equipo de 181 personas. Meta 2026: ~5,000 autos, más de 30M USD de ventas y 4-5M de utilidad neta. Antes esta ficha traía el ARR de 2024 (9.4M USD, EBITDA 3.9M, margen 62%); ese dato quedó superado.",
+        "serie_mensual": [
+          {
+            "periodo": "2025-04",
+            "moneda": "USD",
+            "revenue_usd": 1116580,
+            "ebitda_usd": 753586,
+            "caja_usd": 2156875,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 172109,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 1806,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-05",
+            "moneda": "USD",
+            "revenue_usd": 1226588,
+            "ebitda_usd": 852081,
+            "caja_usd": 3392332,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 211840,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 1917,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-06",
+            "moneda": "USD",
+            "revenue_usd": 1247655,
+            "ebitda_usd": 803080,
+            "caja_usd": 3966301,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 80617,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2050,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-07",
+            "moneda": "USD",
+            "revenue_usd": 1537275,
+            "ebitda_usd": 985949,
+            "caja_usd": 3613875,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 215045,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2152,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-08",
+            "moneda": "USD",
+            "revenue_usd": 1575759,
+            "ebitda_usd": 1061860,
+            "caja_usd": 4118928,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 249572,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2238,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-09",
+            "moneda": "USD",
+            "revenue_usd": 1670130,
+            "ebitda_usd": 1108358,
+            "caja_usd": 4349940,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 253417,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2414,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-10",
+            "moneda": "USD",
+            "revenue_usd": 1867880,
+            "ebitda_usd": 1274642,
+            "caja_usd": 4152579,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 358212,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2539,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-11",
+            "moneda": "USD",
+            "revenue_usd": 1835940,
+            "ebitda_usd": 1229427,
+            "caja_usd": 5385114,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 240837,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2609,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2025-12",
+            "moneda": "USD",
+            "revenue_usd": 2074906,
+            "ebitda_usd": 1395839,
+            "caja_usd": 8397503,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 424168,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2774,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2026-01",
+            "moneda": "USD",
+            "revenue_usd": 2315485,
+            "ebitda_usd": 1631131,
+            "caja_usd": 6851171,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 547226,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 2938,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2026-02",
+            "moneda": "USD",
+            "revenue_usd": 2061213,
+            "ebitda_usd": 1373439,
+            "caja_usd": 7937943,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 256805,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 3042,
+                "unidad": "autos"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)"
+          },
+          {
+            "periodo": "2026-03",
+            "moneda": "USD",
+            "revenue_usd": 2266188,
+            "ebitda_usd": 1482603,
+            "caja_usd": 7705421,
+            "kpis": [
+              {
+                "nombre": "Utilidad neta",
+                "valor": 310575,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Autos en flota",
+                "valor": 3130,
+                "unidad": "autos"
+              },
+              {
+                "nombre": "ARR",
+                "valor": 27500000,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Leasy_KPI_2026-Q1.pdf (LTM Consolidated P&L, Leasy Holdings + Perú + Dryft + México)",
+            "equipo": 181
+          }
+        ]
       },
-      "situacion_actual": "Modelo intensivo en capital: efectivo cayó -70% entre 2023 y 2024 mientras los activos en autos crecieron fuerte. Depende de deuda de terceros (Lendable, Percent). En medio de una Serie A de $7M USD.",
+      "situacion_actual": "Q1 2026: crecimiento y rentabilidad por encima de presupuesto (ventas +9%, EBITDA +13%) con 3,130 autos en flota. Expansión: lanzó Ecuador (Quito) y El Salvador (San Salvador) y prepara Panamá y Guatemala; abrió Monterrey y arrancó Dryft en CDMX y Lima. Financiamiento: renegoció con Lendable a 14% de interés (ahorro de ~1M USD en 2026), tiene term sheets preliminares de BBVA (México) e IFC (Perú) a ~8% en USD y arrancó suave la Serie B (data room y deck listos). Sigue siendo un modelo intensivo en capital y deuda (facilidad de 100M USD, 30.5M dispuestos). Modelo intensivo en capital: efectivo cayó -70% entre 2023 y 2024 mientras los activos en autos crecieron fuerte. Depende de deuda de terceros (Lendable, Percent). En medio de una Serie A de $7M USD.",
       "proximos_pasos": [
         "Localizar el contrato/SAFE firmado de la posición de Huerpel",
         "Confirmar cuál margen neto 2024 es el correcto (8.7% o 20%)",
@@ -360,7 +1951,33 @@
         "valor": 145906550,
         "moneda": "MXN",
         "fecha_dato": "2025",
-        "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva)."
+        "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva).",
+        "serie_trimestral": [
+          {
+            "periodo": "4Q 2025",
+            "moneda": "MXN",
+            "usuarios_activos": 671000,
+            "kpis": [
+              {
+                "nombre": "MAU transaccionales",
+                "valor": 396000,
+                "unidad": "usuarios"
+              },
+              {
+                "nombre": "Ingresos 2025 (año completo)",
+                "valor": 145906550,
+                "unidad": "MXN"
+              },
+              {
+                "nombre": "Ingresos 2024 (año completo)",
+                "valor": 107601239,
+                "unidad": "MXN"
+              }
+            ],
+            "referencia": "Kigo_Financiero_2025-Q4.pdf",
+            "nota": "Usuarios activos = diciembre 2025. El GMV de diciembre fue 63.7M MXN (no es revenue trimestral)."
+          }
+        ]
       },
       "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja.",
       "proximos_pasos": [
@@ -394,7 +2011,51 @@
         "valor": 765000,
         "moneda": "USD",
         "fecha_dato": "2025-06",
-        "tendencia": "Crecimiento fuerte y sostenido, take rate estable 17-21%. Lanzaron formalmente su Serie A en mayo 2025."
+        "tendencia": "Crecimiento fuerte y sostenido, take rate estable 17-21%. Lanzaron formalmente su Serie A en mayo 2025.",
+        "serie_mensual": [
+          {
+            "periodo": "2024-09",
+            "moneda": "USD",
+            "gtv_usd": 495000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-01",
+            "moneda": "USD",
+            "gtv_usd": 535000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-02",
+            "moneda": "USD",
+            "gtv_usd": 405000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-03",
+            "moneda": "USD",
+            "gtv_usd": 450000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-04",
+            "moneda": "USD",
+            "gtv_usd": 507000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-05",
+            "moneda": "USD",
+            "gtv_usd": 735000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          },
+          {
+            "periodo": "2025-06",
+            "moneda": "USD",
+            "gtv_usd": 765000,
+            "referencia": "Financiero_Portfolio_Overview (Vista Mensual, GMV)"
+          }
+        ]
       },
       "situacion_actual": "Financieramente sana y creciendo, con el mejor historial de reportes de todo el portafolio (42+ reportes mensuales desde 2023). Dato financiero desactualizado (más de 12 meses).",
       "proximos_pasos": [

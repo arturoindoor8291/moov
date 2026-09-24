@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import raw from "./portfolio-v2.json";
 import { PortafolioV2Schema } from "./schemaV2";
-import { calcularFondo, categoriaInstrumento, completitud, crecimientoQoQ, estadoSugerido, lecturaComite, revenueAgregado } from "./fondoV2";
+import { trimestresComparables, calcularFondo, categoriaInstrumento, completitud, crecimientoQoQ, estadoSugerido, lecturaComite, revenueAgregado } from "./fondoV2";
 import { migrar, periodoAMes, severidadHeuristica } from "./migracion";
 import { readFileSync } from "node:fs";
 
@@ -50,15 +50,55 @@ describe("lente A costo (solo documento)", () => {
   });
 });
 
-describe("revenue agregado", () => {
-  it("excluye Drivana (en duda) y Bemycar (hoja contaminada)", () => {
+describe("series: el reporte de la startup manda sobre el Excel", () => {
+  const trim = (n: string, q: string) => get(n).serie_trimestral.find((p) => p.periodo === q)!;
+  it("Bemycar se reconstruye desde su reporte: 4Q 2025 = 172,446 EUR x 1.18 = 203,485 USD (igual que el resumen del Excel)", () => {
+    expect(trim("Bemycar", "4Q 2025").revenue_original).toBeCloseTo(172445.5, 1);
+    expect(trim("Bemycar", "4Q 2025").revenue_usd.valor).toBe(203485);
+    expect(trim("Bemycar", "4Q 2025").revenue_usd.fuente).toBe("estimado");
+    expect(get("Bemycar").serie_mensual).toHaveLength(21);
+  });
+  it("Leasy: ventas 4Q 2025 = 5.78M y 1Q 2026 = 6.64M (no los 319,267 de la Tabla 1 del Excel)", () => {
+    expect(trim("Leasy", "4Q 2025").revenue_usd.valor).toBeCloseTo(5778726, -1);
+    expect(trim("Leasy", "1Q 2026").revenue_usd.valor).toBeCloseTo(6642886, -1);
+    expect(crecimientoQoQ(get("Leasy"))!.pct).toBeCloseTo(14.96, 1);
+  });
+  it("Ruedata y Drivana traen 1Q y 2Q 2026 desde sus reportes", () => {
+    expect(trim("Ruedata", "2Q 2026").revenue_usd.valor).toBe(541247);
+    expect(trim("Drivana", "2Q 2026").revenue_usd.valor).toBe(50196);
+    expect(crecimientoQoQ(get("Drivana"))!.pct).toBeGreaterThan(100);
+  });
+  it("Kigo: el monto original en MXN es un monto real, no una tasa de crecimiento", () => {
+    for (const p of get("Kigo").serie_trimestral) expect(Math.abs(p.revenue_original!)).toBeGreaterThan(1e6);
+    expect(trim("Kigo", "4Q 2025").revenue_original).toBeCloseTo(45934157, -1);
+  });
+  it("Autolab 4Q 2025 y Drivana/Ualabee del Excel quedan en duda", () => {
+    expect(trim("Autolab", "4Q 2025").revenue_usd.en_duda).toBe(true);
+    expect(trim("Drivana", "4Q 2025").revenue_usd.en_duda).toBe(true);
+    expect(trim("Ualabee", "4Q 2025").revenue_usd.en_duda).toBe(true);
+  });
+  it("el Excel no aporta periodos posteriores al 4Q 2025", () => {
+    expect(get("Vera AI").serie_trimestral.every((p) => (periodoAMes(p.periodo) ?? "") <= "2025-12")).toBe(true);
+  });
+  it("agregado: sin datos en duda; Leasy y Kigo dominan el revenue", () => {
     const r = revenueAgregado(data.startups).find((x) => x.periodo === "4Q 2025")!;
     expect(r.por.Drivana).toBeUndefined();
-    expect(r.por.Bemycar).toBeUndefined();
-    expect(r.por.Kigo).toBeCloseTo(2537798.7, 0);
+    expect(r.por.Ualabee).toBeUndefined();
+    expect(r.por.Leasy).toBeGreaterThan(5e6);
+    expect(r.por.Bemycar).toBe(203485);
   });
-  it("QoQ de Kigo 4Q 2025 = +20.1%", () => expect(crecimientoQoQ(get("Kigo"))!.pct).toBeCloseTo(20.12, 1));
-  it("Drivana no tiene QoQ hasta verificar unidad", () => expect(crecimientoQoQ(get("Drivana"))).toBeNull());
+  it("Drivana: el crecimiento sale del reporte (23K a 50K USD), no de las cifras MXN del Excel", () =>
+    expect(crecimientoQoQ(get("Drivana"))!.periodo).toBe("2Q 2026"));
+});
+
+describe("cobertura del revenue agregado", () => {
+  it("no grafica trimestres donde reportan muy pocas startups (2026 parcial)", () => {
+    const { max, filas } = trimestresComparables(revenueAgregado(data.startups));
+    expect(max).toBeGreaterThanOrEqual(6);
+    expect(filas.every((f) => f.n >= max * 0.6)).toBe(true);
+    expect(filas.map((f) => f.periodo)).not.toContain("2Q 2026");
+    expect(filas.map((f) => f.periodo)).toContain("4Q 2025");
+  });
 });
 
 describe("semáforo sugerido", () => {

@@ -65,7 +65,13 @@ export function revenueAgregado(ss: StartupV2[]) {
       porTrim.set(p.periodo, e);
     }
   }
-  return [...porTrim.entries()].sort((a, b) => (periodoAMes(a[0]) ?? "").localeCompare(periodoAMes(b[0]) ?? "")).map(([periodo, v]) => ({ periodo, ...v }));
+  return [...porTrim.entries()].sort((a, b) => (periodoAMes(a[0]) ?? "").localeCompare(periodoAMes(b[0]) ?? "")).map(([periodo, v]) => ({ periodo, ...v, n: Object.keys(v.por).length }));
+}
+
+/** Solo trimestres donde reporta al menos `minPct` de las startups que más reportan: si no, la suma cae por falta de datos, no por desempeño. */
+export function trimestresComparables(agg: ReturnType<typeof revenueAgregado>, minPct = 0.6) {
+  const max = Math.max(...agg.map((a) => a.n), 0);
+  return { max, filas: agg.filter((a) => a.n >= max * minPct) };
 }
 
 // ---------- calidad de datos ----------

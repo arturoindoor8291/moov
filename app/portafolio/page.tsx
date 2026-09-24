@@ -5,6 +5,7 @@ import { C, Card, EstadoBadge, LenteToggle, NoRep, Punto, Valor, h1, href, main,
 import { calcularFondo, completitud, crecimientoQoQ, estadoSugerido, mesesSinDato, posicion, ultimoValor, type Lente } from "@/lib/portfolio/fondoV2";
 import { fechaCorta, meses, mult, num0, pct1, spct, usdK } from "@/lib/portfolio/formatV2";
 import { semaforoFrescura } from "@/lib/portfolio/calculos";
+import { periodoAMes } from "@/lib/portfolio/migracion";
 import { getPortafolio } from "@/lib/portfolio/portafolioV2";
 import type { DatoNum, StartupV2 } from "@/lib/portfolio/schemaV2";
 
@@ -12,13 +13,22 @@ export const dynamic = "force-dynamic";
 
 type SP = { q?: string; estado?: string; sector?: string; tipo?: string; vehiculo?: string; altas?: string; vista?: string; orden?: string; lente?: string };
 
+/** Entre EBITDA y burn, el dato de periodo más reciente (empate: EBITDA). */
+function masReciente<T extends { punto: { periodo: string } } | null>(a: T, b: T): T {
+  if (!a) return b;
+  if (!b) return a;
+  return (periodoAMes(b.punto.periodo) ?? "") > (periodoAMes(a.punto.periodo) ?? "") ? b : a;
+}
+
 function fila(s: StartupV2, lente: Lente, corte: string, disc: ReturnType<typeof getPortafolio>["discrepancias"]) {
   const p = posicion(s, lente);
   const inv = s.inversion;
   const monto: DatoNum = lente === "costo"
     ? { valor: inv.monto_documento_usd, fuente: inv.monto_documento_usd == null ? "no_disponible" : "documento", fecha_dato: inv.fecha }
     : inv.monto_usd;
-  const rev = ultimoValor(s, "revenue_usd");
+  // Para cada cifra se prefiere el último dato confiable; solo si no hay ninguno se muestra uno en duda (con ⚠).
+  const uv = (c: Parameters<typeof ultimoValor>[1]) => ultimoValor(s, c, { sinDuda: true }) ?? ultimoValor(s, c);
+  const rev = uv("revenue_usd");
   const qoq = crecimientoQoQ(s);
   const m = mesesSinDato(s, corte);
   const c = completitud(s);
@@ -27,8 +37,8 @@ function fila(s: StartupV2, lente: Lente, corte: string, disc: ReturnType<typeof
   const take = s.serie_mensual.flatMap((x) => x.kpis_propios).find((k) => k.nombre === "Take rate");
   return {
     s, p, monto, rev, qoq, m, c, altas, sug, take,
-    gtv: ultimoValor(s, "gtv_usd"), cli: ultimoValor(s, "clientes") ?? ultimoValor(s, "usuarios_activos"),
-    ebitda: ultimoValor(s, "ebitda_usd") ?? ultimoValor(s, "burn_usd"), caja: ultimoValor(s, "caja_usd"), runway: ultimoValor(s, "runway_meses"),
+    gtv: uv("gtv_usd"), cli: uv("clientes") ?? uv("usuarios_activos"),
+    ebitda: masReciente(uv("ebitda_usd"), uv("burn_usd")), caja: uv("caja_usd"), runway: uv("runway_meses"),
     moic: p.monto_usd && p.valor_posicion_usd != null ? p.valor_posicion_usd / p.monto_usd : null,
   };
 }
