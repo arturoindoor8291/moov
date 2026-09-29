@@ -6,7 +6,7 @@ import AdminNav from "@/components/admin/AdminNav";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
 import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
-import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
+import { COLUMNA_LABEL, TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
 import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
 import { descendantIds } from "@/lib/portfolio/tareaTree";
@@ -40,6 +40,8 @@ export default function AdminTareasPage() {
   const [importanciaFilter, setImportanciaFilter] = useState<"all" | NivelImportancia>("all");
   const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
   const [tipoFilter, setTipoFilter] = useState<"all" | TipoTarea>("all");
+  const [estadoFilter, setEstadoFilter] = useState<"all" | Tarea["columna_kanban"]>("all");
+  const [responsableFilter, setResponsableFilter] = useState("all");
   const [hideCompletadas, setHideCompletadas] = useState(false);
   const [saveError, setSaveError] = useState("");
   const [view, setView] = useState<"kanban" | "tabla">("kanban");
@@ -88,6 +90,15 @@ export default function AdminTareasPage() {
     [tareas]
   );
 
+  // Usuarios conocidos (/admin/usuarios) más cualquier otro responsable ya
+  // usado en los datos (contrapartes externas sin cuenta) — así el filtro
+  // cubre a quien sea que ya tenga tareas asignadas.
+  const responsables = useMemo(
+    () =>
+      Array.from(new Set([...usuarioNombres, ...tareas.map((t) => t.responsable)].filter(Boolean))).sort(),
+    [tareas, usuarioNombres]
+  );
+
   // Aislar un proyecto: clic lo selecciona y el tablero solo muestra sus
   // tareas; clic de nuevo sobre el mismo lo quita y vuelve a mostrar todos.
   const selectProyecto = useCallback((proyecto: string) => {
@@ -101,10 +112,31 @@ export default function AdminTareasPage() {
       const matchImportancia = importanciaFilter === "all" || t.nivel_importancia === importanciaFilter;
       const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
       const matchTipo = tipoFilter === "all" || t.tipo_tarea === tipoFilter;
+      const matchEstado = estadoFilter === "all" || t.columna_kanban === estadoFilter;
+      const matchResponsable = responsableFilter === "all" || t.responsable === responsableFilter;
       const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
-      return matchProyecto && matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
+      return (
+        matchProyecto &&
+        matchStartup &&
+        matchImportancia &&
+        matchUrgencia &&
+        matchTipo &&
+        matchEstado &&
+        matchResponsable &&
+        matchCompletada
+      );
     });
-  }, [tareas, selectedProyecto, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
+  }, [
+    tareas,
+    selectedProyecto,
+    startupFilter,
+    importanciaFilter,
+    urgenciaFilter,
+    tipoFilter,
+    estadoFilter,
+    responsableFilter,
+    hideCompletadas,
+  ]);
 
   const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
     let previousColumn: Tarea["columna_kanban"] | undefined;
@@ -264,6 +296,26 @@ export default function AdminTareasPage() {
             {(Object.keys(TIPO_TAREA_LABEL) as TipoTarea[]).map((tipo) => (
               <option key={tipo} value={tipo}>
                 {TIPO_TAREA_LABEL[tipo]}
+              </option>
+            ))}
+          </select>
+          <select
+            value={estadoFilter}
+            onChange={(e) => setEstadoFilter(e.target.value as "all" | Tarea["columna_kanban"])}
+            style={s.select}
+          >
+            <option value="all">Todo estado</option>
+            {(Object.keys(COLUMNA_LABEL) as Tarea["columna_kanban"][]).map((col) => (
+              <option key={col} value={col}>
+                {COLUMNA_LABEL[col]}
+              </option>
+            ))}
+          </select>
+          <select value={responsableFilter} onChange={(e) => setResponsableFilter(e.target.value)} style={s.select}>
+            <option value="all">Todo responsable</option>
+            {responsables.map((r) => (
+              <option key={r} value={r}>
+                {r}
               </option>
             ))}
           </select>

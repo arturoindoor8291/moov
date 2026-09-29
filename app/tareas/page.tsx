@@ -7,6 +7,7 @@ import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
 import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
+import { COLUMNA_LABEL, TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
 import { descendantIds } from "@/lib/portfolio/tareaTree";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
@@ -40,6 +41,12 @@ export default function TareasPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedProyecto, setSelectedProyecto] = useState<string | null>(null);
+  const [soloMias, setSoloMias] = useState(false);
+  const [importanciaFilter, setImportanciaFilter] = useState<"all" | Tarea["nivel_importancia"]>("all");
+  const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | Tarea["nivel_urgencia"]>("all");
+  const [tipoFilter, setTipoFilter] = useState<"all" | Tarea["tipo_tarea"]>("all");
+  const [estadoFilter, setEstadoFilter] = useState<"all" | Tarea["columna_kanban"]>("all");
+  const [responsableFilter, setResponsableFilter] = useState("all");
   const [saveError, setSaveError] = useState("");
   const [view, setView] = useState<"kanban" | "tabla">("kanban");
   // undefined = modal closed, null = creating a new tarea, Tarea = editing
@@ -72,10 +79,40 @@ export default function TareasPage() {
     return me.proyectos;
   }, [me, tareas]);
 
+  // Responsables ya usados entre las tareas visibles para este usuario —
+  // no hay endpoint de usuarios accesible desde /tareas, así que el filtro
+  // se arma con quien ya tenga alguna tarea asignada.
+  const responsables = useMemo(
+    () => Array.from(new Set(tareas.map((t) => t.responsable).filter(Boolean))).sort(),
+    [tareas]
+  );
+
   const filtered = useMemo(() => {
-    if (selectedProyecto === null) return tareas;
-    return tareas.filter((t) => canonicalProyecto(t.proyecto) === selectedProyecto);
-  }, [tareas, selectedProyecto]);
+    let result = tareas;
+    if (selectedProyecto !== null) {
+      result = result.filter((t) => canonicalProyecto(t.proyecto) === selectedProyecto);
+    }
+    if (soloMias && me) {
+      const mine = [me.name, me.email].filter(Boolean).map((v) => v.trim().toLowerCase());
+      result = result.filter((t) => mine.includes(t.responsable.trim().toLowerCase()));
+    }
+    if (importanciaFilter !== "all") result = result.filter((t) => t.nivel_importancia === importanciaFilter);
+    if (urgenciaFilter !== "all") result = result.filter((t) => t.nivel_urgencia === urgenciaFilter);
+    if (tipoFilter !== "all") result = result.filter((t) => t.tipo_tarea === tipoFilter);
+    if (estadoFilter !== "all") result = result.filter((t) => t.columna_kanban === estadoFilter);
+    if (responsableFilter !== "all") result = result.filter((t) => t.responsable === responsableFilter);
+    return result;
+  }, [
+    tareas,
+    selectedProyecto,
+    soloMias,
+    me,
+    importanciaFilter,
+    urgenciaFilter,
+    tipoFilter,
+    estadoFilter,
+    responsableFilter,
+  ]);
 
   const selectProyecto = useCallback((proyecto: string) => {
     setSelectedProyecto((cur) => (cur === proyecto ? null : proyecto));
@@ -197,6 +234,12 @@ export default function TareasPage() {
           </div>
           {proyectoOptions.length > 0 && (
             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <button
+                onClick={() => setSoloMias((v) => !v)}
+                style={{ ...s.viewToggleBtn, ...(soloMias ? s.viewToggleBtnActive : {}), border: `1px solid ${theme.border}`, borderRadius: "8px" }}
+              >
+                Asignadas a mí
+              </button>
               <div style={s.viewToggle}>
                 <button
                   onClick={() => setView("kanban")}
@@ -219,6 +262,64 @@ export default function TareasPage() {
         </div>
 
         <ProyectoSummaryChips tareas={tareas} selectedProyecto={selectedProyecto} onSelect={selectProyecto} />
+
+        {tareas.length > 0 && (
+          <div style={s.controls}>
+            <select
+              value={importanciaFilter}
+              onChange={(e) => setImportanciaFilter(e.target.value as "all" | Tarea["nivel_importancia"])}
+              style={s.select}
+            >
+              <option value="all">Toda importancia</option>
+              <option value="alta">🔴 Alta</option>
+              <option value="media">🟡 Media</option>
+              <option value="baja">⚪ Baja</option>
+            </select>
+            <select
+              value={urgenciaFilter}
+              onChange={(e) => setUrgenciaFilter(e.target.value as "all" | Tarea["nivel_urgencia"])}
+              style={s.select}
+            >
+              <option value="all">Toda urgencia</option>
+              <option value="inmediata">🔺 Inmediata</option>
+              <option value="esta_semana">🟠 Esta semana</option>
+              <option value="este_mes">🔵 Este mes</option>
+              <option value="sin_urgencia_definida">⚪ Sin urgencia definida</option>
+            </select>
+            <select
+              value={tipoFilter}
+              onChange={(e) => setTipoFilter(e.target.value as "all" | Tarea["tipo_tarea"])}
+              style={s.select}
+            >
+              <option value="all">Todo tipo</option>
+              {(Object.keys(TIPO_TAREA_LABEL) as Tarea["tipo_tarea"][]).map((tipo) => (
+                <option key={tipo} value={tipo}>
+                  {TIPO_TAREA_LABEL[tipo]}
+                </option>
+              ))}
+            </select>
+            <select
+              value={estadoFilter}
+              onChange={(e) => setEstadoFilter(e.target.value as "all" | Tarea["columna_kanban"])}
+              style={s.select}
+            >
+              <option value="all">Todo estado</option>
+              {(Object.keys(COLUMNA_LABEL) as Tarea["columna_kanban"][]).map((col) => (
+                <option key={col} value={col}>
+                  {COLUMNA_LABEL[col]}
+                </option>
+              ))}
+            </select>
+            <select value={responsableFilter} onChange={(e) => setResponsableFilter(e.target.value)} style={s.select}>
+              <option value="all">Todo responsable</option>
+              {responsables.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {saveError && <p style={s.saveError}>{saveError}</p>}
 
@@ -341,6 +442,22 @@ const s: Record<string, React.CSSProperties> = {
     color: "#fff",
     cursor: "pointer",
     whiteSpace: "nowrap",
+  },
+  controls: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    flexWrap: "wrap",
+    marginBottom: "24px",
+  },
+  select: {
+    background: theme.surface2,
+    border: `1px solid ${theme.border}`,
+    borderRadius: "8px",
+    padding: "10px 14px",
+    fontSize: "14px",
+    color: theme.text,
+    outline: "none",
   },
   saveError: {
     fontSize: "13px",
