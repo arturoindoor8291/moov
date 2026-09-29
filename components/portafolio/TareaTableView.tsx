@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { COLUMNA_LABEL, TIPO_TAREA_LABEL } from "./TareaCard";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { formatFechaLimite } from "@/lib/portfolio/format";
@@ -13,12 +13,20 @@ import {
   urgenciaColor,
 } from "./tareasTheme";
 
+interface NuevaActividadInput {
+  proyecto: string;
+  parent_id: string | null;
+  tarea: string;
+}
+
 interface TareaTableViewProps {
   tareas: Tarea[];
   onColumnChange: (id: string, columna: Tarea["columna_kanban"]) => void;
   onEdit: (tarea: Tarea) => void;
-  onAddRoot: (proyecto: string) => void;
-  onAddSub: (parent: Tarea) => void;
+  // Crea la actividad y persiste — igual que Notion: la fila nueva aparece
+  // en su lugar en la tabla con solo el nombre por escribir, nunca en un
+  // diálogo aparte. Debe resolver con la tarea ya guardada (o rechazar).
+  onCreateTarea: (input: NuevaActividadInput) => Promise<Tarea>;
 }
 
 const COLS = "minmax(240px, 1fr) 160px 64px 64px 150px 130px 110px 90px";
@@ -29,7 +37,7 @@ const COLS = "minmax(240px, 1fr) 160px 64px 64px 150px 130px 110px 90px";
  * sub-actividades que pidió Arturo. Misma base de datos que el kanban —
  * solo cambia cómo se lee.
  */
-export default function TareaTableView({ tareas, onColumnChange, onEdit, onAddRoot, onAddSub }: TareaTableViewProps) {
+export default function TareaTableView({ tareas, onColumnChange, onEdit, onCreateTarea }: TareaTableViewProps) {
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
 
   const grupos = useMemo(() => {
@@ -52,6 +60,15 @@ export default function TareaTableView({ tareas, onColumnChange, onEdit, onAddRo
     });
   }
 
+  function expand(id: string) {
+    setCollapsed((prev) => {
+      if (!prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+  }
+
   return (
     <div style={s.wrap}>
       {grupos.map(([proyecto, items]) => (
@@ -61,35 +78,42 @@ export default function TareaTableView({ tareas, onColumnChange, onEdit, onAddRo
           items={items}
           collapsed={collapsed}
           onToggleCollapsed={toggleCollapsed}
+          onExpand={expand}
           onColumnChange={onColumnChange}
           onEdit={onEdit}
-          onAddRoot={onAddRoot}
-          onAddSub={onAddSub}
+          onCreateTarea={onCreateTarea}
         />
       ))}
     </div>
   );
 }
 
+type Row = { kind: "tarea"; tarea: Tarea; depth: number } | { kind: "draft"; depth: number };
+
 function ProyectoGroup({
   proyecto,
   items,
   collapsed,
   onToggleCollapsed,
+  onExpand,
   onColumnChange,
   onEdit,
-  onAddRoot,
-  onAddSub,
+  onCreateTarea,
 }: {
   proyecto: string;
   items: Tarea[];
   collapsed: Set<string>;
   onToggleCollapsed: (id: string) => void;
+  onExpand: (id: string) => void;
   onColumnChange: (id: string, columna: Tarea["columna_kanban"]) => void;
   onEdit: (tarea: Tarea) => void;
-  onAddRoot: (proyecto: string) => void;
-  onAddSub: (parent: Tarea) => void;
+  onCreateTarea: (input: NuevaActividadInput) => Promise<Tarea>;
 }) {
+  // parentId === undefined = sin fila nueva en este proyecto ahora mismo.
+  const [draftParentId, setDraftParentId] = useState<string | null | undefined>(undefined);
+  const [draftValue, setDraftValue] = useState("");
+  const [saving, setSaving] = useState(false);
+
   const childrenOf = useMemo(() => {
     const byId = new Set(items.map((t) => t.id));
     const map = new Map<string | null, Tarea[]>();
@@ -102,14 +126,50 @@ function ProyectoGroup({
     return map;
   }, [items]);
 
-  const rows: { tarea: Tarea; depth: number }[] = [];
+  const rows: Row[] = [];
   function walk(parentId: string | null, depth: number) {
     for (const t of childrenOf.get(parentId) ?? []) {
-      rows.push({ tarea: t, depth });
-      if (!collapsed.has(t.id)) walk(t.id, depth + 1);
+      rows.push({ kind: "tarea", tarea: t, depth });
+      if (!collapsed.has(t.id)) {
+        walk(t.id, depth + 1);
+        if (draftParentId === t.id) rows.push({ kind: "draft", depth: depth + 1 });
+      }
     }
   }
   walk(null, 0);
+  if (draftParentId === null) rows.push({ kind: "draft", depth: 0 });
+
+  function startAddRoot() {
+    setDraftParentId(null);
+    setDraftValue("");
+  }
+
+  function startAddSub(parent: Tarea) {
+    onExpand(parent.id);
+    setDraftParentId(parent.id);
+    setDraftValue("");
+  }
+
+  function cancelDraft() {
+    setDraftParentId(undefined);
+    setDraftValue("");
+  }
+
+  async function commitDraft() {
+    const nombre = draftValue.trim();
+    if (!nombre || draftParentId === undefined) {
+      cancelDraft();
+      return;
+    }
+    setSaving(true);
+    try {
+      await onCreateTarea({ proyecto, parent_id: draftParentId, tarea: nombre });
+      cancelDraft();
+    } catch {
+      // Deja la fila abierta con lo que el usuario escribió para reintentar.
+      setSaving(false);
+    }
+  }
 
   return (
     <div style={s.group}>
@@ -118,7 +178,7 @@ function ProyectoGroup({
         <span style={s.groupTitle}>{proyecto}</span>
         <span style={s.groupCount}>{items.length}</span>
         <div style={{ flexGrow: 1 }} />
-        <button onClick={() => onAddRoot(proyecto)} style={s.addRootBtn}>
+        <button onClick={startAddRoot} style={s.addRootBtn}>
           + Actividad principal
         </button>
       </div>
@@ -137,13 +197,27 @@ function ProyectoGroup({
       {rows.length === 0 ? (
         <p style={s.empty}>Sin actividades.</p>
       ) : (
-        rows.map(({ tarea, depth }) => {
+        rows.map((row, i) => {
+          if (row.kind === "draft") {
+            return (
+              <DraftRow
+                key={`draft-${i}`}
+                depth={row.depth}
+                value={draftValue}
+                saving={saving}
+                onChange={setDraftValue}
+                onCommit={commitDraft}
+                onCancel={cancelDraft}
+              />
+            );
+          }
+          const { tarea, depth } = row;
           const hasChildren = (childrenOf.get(tarea.id) ?? []).length > 0;
           return (
             <div key={tarea.id} style={s.row}>
               <div style={{ display: "flex", alignItems: "center", gap: "4px", minWidth: 0 }}>
-                {Array.from({ length: depth }).map((_, i) => (
-                  <span key={i} style={s.guide} />
+                {Array.from({ length: depth }).map((_, gi) => (
+                  <span key={gi} style={s.guide} />
                 ))}
                 <button
                   onClick={() => hasChildren && onToggleCollapsed(tarea.id)}
@@ -191,13 +265,71 @@ function ProyectoGroup({
 
               <span style={s.cellMuted}>{tarea.fecha_limite ? formatFechaLimite(tarea.fecha_limite) : "—"}</span>
 
-              <button onClick={() => onAddSub(tarea)} style={s.addSubBtn} title="Agregar sub-actividad">
+              <button onClick={() => startAddSub(tarea)} style={s.addSubBtn} title="Agregar sub-actividad">
                 + sub
               </button>
             </div>
           );
         })
       )}
+    </div>
+  );
+}
+
+function DraftRow({
+  depth,
+  value,
+  saving,
+  onChange,
+  onCommit,
+  onCancel,
+}: {
+  depth: number;
+  value: string;
+  saving: boolean;
+  onChange: (v: string) => void;
+  onCommit: () => void;
+  onCancel: () => void;
+}) {
+  const committing = useRef(false);
+
+  return (
+    <div style={s.row}>
+      <div style={{ display: "flex", alignItems: "center", gap: "4px", minWidth: 0 }}>
+        {Array.from({ length: depth }).map((_, i) => (
+          <span key={i} style={s.guide} />
+        ))}
+        <span style={{ width: "14px", flexShrink: 0 }} />
+        <input
+          autoFocus
+          value={value}
+          disabled={saving}
+          placeholder="Nombre de la actividad…"
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              committing.current = true;
+              onCommit();
+            } else if (e.key === "Escape") {
+              committing.current = true;
+              onCancel();
+            }
+          }}
+          onBlur={() => {
+            // Enter/Escape ya resolvieron la fila; evita commitear dos veces.
+            if (committing.current) return;
+            onCommit();
+          }}
+          style={s.draftInput}
+        />
+      </div>
+      <span style={s.cellMuted}>—</span>
+      <span style={s.centerCell} />
+      <span style={s.centerCell} />
+      <span style={s.cellMuted}>—</span>
+      <span style={s.cellMuted}>—</span>
+      <span style={s.cellMuted}>—</span>
+      <span />
     </div>
   );
 }
@@ -270,6 +402,16 @@ const s: Record<string, React.CSSProperties> = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     minWidth: 0,
+  },
+  draftInput: {
+    all: "unset",
+    boxSizing: "border-box",
+    fontSize: "13px",
+    color: theme.text,
+    minWidth: 0,
+    flexGrow: 1,
+    borderBottom: `1px solid ${theme.accent}`,
+    padding: "1px 0",
   },
   cellMuted: { fontSize: "12px", color: theme.textMuted, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" },
   centerCell: { display: "flex", justifyContent: "center" },

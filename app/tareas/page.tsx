@@ -44,7 +44,6 @@ export default function TareasPage() {
   const [view, setView] = useState<"kanban" | "tabla">("kanban");
   // undefined = modal closed, null = creating a new tarea, Tarea = editing
   const [modalTarea, setModalTarea] = useState<Tarea | null | undefined>(undefined);
-  const [createDefaults, setCreateDefaults] = useState<Partial<TareaFormValues> | undefined>(undefined);
 
   const fetchAll = useCallback(async () => {
     try {
@@ -124,24 +123,40 @@ export default function TareasPage() {
     setModalTarea(undefined);
   }, []);
 
-  const handleAddRoot = useCallback((proyecto: string) => {
-    setCreateDefaults({ proyecto, parent_id: null });
-    setModalTarea(null);
-  }, []);
+  // Creación inline desde la vista de Tabla, sin abrir el modal — la fila
+  // aparece en su lugar en la tabla con solo el nombre por escribir.
+  const handleCreateInline = useCallback(
+    async (input: { proyecto: string; parent_id: string | null; tarea: string }) => {
+      const res = await fetch("/api/tareas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          proyecto: input.proyecto,
+          parent_id: input.parent_id,
+          tarea: input.tarea,
+          tipo_tarea: "compromiso_propio",
+          nivel_importancia: "media",
+          nivel_urgencia: "sin_urgencia_definida",
+        }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      const saved: Tarea = await res.json();
+      setTareas((prev) => [saved, ...prev]);
+      return saved;
+    },
+    []
+  );
 
-  const handleAddSub = useCallback((parent: Tarea) => {
-    setCreateDefaults({ proyecto: parent.proyecto, parent_id: parent.id });
-    setModalTarea(null);
-  }, []);
-
-  const modalProyecto = modalTarea ? modalTarea.proyecto : createDefaults?.proyecto;
+  // Solo aplica al editar (la creación ya no pasa por el modal): opciones
+  // de "actividad principal" dentro del mismo proyecto, sin la tarea misma
+  // ni sus descendientes (evita un ciclo).
   const parentOptions = useMemo(() => {
-    if (!modalProyecto) return undefined;
-    const excluded = modalTarea ? new Set([modalTarea.id, ...descendantIds(tareas, modalTarea.id)]) : new Set<string>();
+    if (!modalTarea) return undefined;
+    const excluded = new Set([modalTarea.id, ...descendantIds(tareas, modalTarea.id)]);
     return tareas
-      .filter((t) => canonicalProyecto(t.proyecto) === canonicalProyecto(modalProyecto) && !excluded.has(t.id))
+      .filter((t) => canonicalProyecto(t.proyecto) === canonicalProyecto(modalTarea.proyecto) && !excluded.has(t.id))
       .map((t) => ({ id: t.id, tarea: t.tarea }));
-  }, [tareas, modalTarea, modalProyecto]);
+  }, [tareas, modalTarea]);
 
   async function handleLogout() {
     await fetch("/api/tareas/logout", { method: "POST" });
@@ -196,13 +211,7 @@ export default function TareasPage() {
                   Tabla
                 </button>
               </div>
-              <button
-                onClick={() => {
-                  setCreateDefaults(undefined);
-                  setModalTarea(null);
-                }}
-                style={s.newBtn}
-              >
+              <button onClick={() => setModalTarea(null)} style={s.newBtn}>
                 + Nueva tarea
               </button>
             </div>
@@ -224,36 +233,25 @@ export default function TareasPage() {
             tareas={filtered}
             tareasById={tareasById}
             onColumnChange={handleColumnChange}
-            onEdit={(t) => {
-              setCreateDefaults(undefined);
-              setModalTarea(t);
-            }}
+            onEdit={(t) => setModalTarea(t)}
           />
         ) : (
           <TareaTableView
             tareas={filtered}
             onColumnChange={handleColumnChange}
-            onEdit={(t) => {
-              setCreateDefaults(undefined);
-              setModalTarea(t);
-            }}
-            onAddRoot={handleAddRoot}
-            onAddSub={handleAddSub}
+            onEdit={(t) => setModalTarea(t)}
+            onCreateTarea={handleCreateInline}
           />
         )}
 
         {modalTarea !== undefined && (
           <TareaFormModal
             tarea={modalTarea}
-            onClose={() => {
-              setModalTarea(undefined);
-              setCreateDefaults(undefined);
-            }}
+            onClose={() => setModalTarea(undefined)}
             onSave={handleSaveTarea}
             proyectoOptions={proyectoOptions}
             hideConfidencial
             parentOptions={parentOptions}
-            createDefaults={createDefaults}
           />
         )}
       </main>

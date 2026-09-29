@@ -72,9 +72,6 @@ interface TareaFormModalProps {
   // principal" (ya excluye la tarea misma y sus descendientes, para no
   // crear un ciclo — ver lib/portfolio/tareaTree.ts).
   parentOptions?: { id: string; tarea: string }[];
-  // Al crear desde "+ Actividad principal" o "+ sub" en la vista de tabla,
-  // precarga proyecto y/o parent_id. Solo aplica cuando tarea === null.
-  createDefaults?: Partial<TareaFormValues>;
   // Nombres conocidos (usuarios de /admin/usuarios) para autocompletar
   // Responsable — sigue siendo texto libre, así que también acepta
   // contrapartes externas que no tienen cuenta.
@@ -88,17 +85,10 @@ export default function TareaFormModal({
   proyectoOptions,
   hideConfidencial,
   parentOptions,
-  createDefaults,
   usuarioOptions,
 }: TareaFormModalProps) {
   const [values, setValues] = useState<TareaFormValues>(
-    tarea
-      ? valuesFromTarea(tarea)
-      : {
-          ...EMPTY_VALUES,
-          proyecto: proyectoOptions?.[0] ?? EMPTY_VALUES.proyecto,
-          ...createDefaults,
-        }
+    tarea ? valuesFromTarea(tarea) : { ...EMPTY_VALUES, proyecto: proyectoOptions?.[0] ?? EMPTY_VALUES.proyecto }
   );
   const [etiquetasText, setEtiquetasText] = useState(tarea ? tarea.etiquetas.join(", ") : "");
   const [saving, setSaving] = useState(false);
