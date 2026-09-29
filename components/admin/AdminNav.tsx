@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface AdminNavProps {
-  active: "dashboard" | "portfolio" | "tareas";
+  active: "dashboard" | "portfolio" | "tareas" | "usuarios";
 }
 
 export default function AdminNav({ active }: AdminNavProps) {
@@ -39,6 +39,12 @@ export default function AdminNav({ active }: AdminNavProps) {
             style={{ ...s.link, ...(active === "tareas" ? s.linkActive : {}) }}
           >
             Tareas
+          </Link>
+          <Link
+            href="/admin/usuarios"
+            style={{ ...s.link, ...(active === "usuarios" ? s.linkActive : {}) }}
+          >
+            Usuarios
           </Link>
         </div>
         <button onClick={handleLogout} style={s.logout}>

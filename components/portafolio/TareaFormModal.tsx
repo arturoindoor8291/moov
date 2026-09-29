@@ -58,10 +58,27 @@ interface TareaFormModalProps {
   tarea: Tarea | null; // null = creating a new tarea
   onClose: () => void;
   onSave: (values: TareaFormValues, id: string | null) => Promise<void>;
+  // Cuando se pasa, el campo Proyecto es un select limitado a estas
+  // opciones (uso de /tareas, donde el usuario solo tiene acceso a sus
+  // proyectos asignados) en vez del texto libre que usa /admin/tareas.
+  proyectoOptions?: string[];
+  // Oculta el checkbox de confidencial — los usuarios externos de /tareas
+  // no pueden marcar tareas como sensibles (el API también lo bloquea).
+  hideConfidencial?: boolean;
 }
 
-export default function TareaFormModal({ tarea, onClose, onSave }: TareaFormModalProps) {
-  const [values, setValues] = useState<TareaFormValues>(tarea ? valuesFromTarea(tarea) : EMPTY_VALUES);
+export default function TareaFormModal({
+  tarea,
+  onClose,
+  onSave,
+  proyectoOptions,
+  hideConfidencial,
+}: TareaFormModalProps) {
+  const [values, setValues] = useState<TareaFormValues>(
+    tarea
+      ? valuesFromTarea(tarea)
+      : { ...EMPTY_VALUES, proyecto: proyectoOptions?.[0] ?? EMPTY_VALUES.proyecto }
+  );
   const [etiquetasText, setEtiquetasText] = useState(tarea ? tarea.etiquetas.join(", ") : "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -102,13 +119,28 @@ export default function TareaFormModal({ tarea, onClose, onSave }: TareaFormModa
         <div style={s.row}>
           <label style={s.field}>
             <span style={s.label}>Proyecto *</span>
-            <input
-              style={s.input}
-              value={values.proyecto}
-              onChange={(e) => update("proyecto", e.target.value)}
-              placeholder="MOOV / Portafolio"
-              required
-            />
+            {proyectoOptions ? (
+              <select
+                style={s.input}
+                value={values.proyecto}
+                onChange={(e) => update("proyecto", e.target.value)}
+                required
+              >
+                {proyectoOptions.map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                style={s.input}
+                value={values.proyecto}
+                onChange={(e) => update("proyecto", e.target.value)}
+                placeholder="MOOV / Portafolio"
+                required
+              />
+            )}
           </label>
           <label style={s.field}>
             <span style={s.label}>Startup</span>
@@ -238,15 +270,17 @@ export default function TareaFormModal({ tarea, onClose, onSave }: TareaFormModa
           />
         </label>
 
-        <label style={s.checkboxRow}>
-          <input
-            type="checkbox"
-            checked={values.confidencial}
-            onChange={(e) => update("confidencial", e.target.checked)}
-            style={s.checkbox}
-          />
-          🔒 Sensible / confidencial
-        </label>
+        {!hideConfidencial && (
+          <label style={s.checkboxRow}>
+            <input
+              type="checkbox"
+              checked={values.confidencial}
+              onChange={(e) => update("confidencial", e.target.checked)}
+              style={s.checkbox}
+            />
+            🔒 Sensible / confidencial
+          </label>
+        )}
 
         {error && <p style={s.error}>{error}</p>}
 

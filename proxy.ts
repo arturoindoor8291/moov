@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
 import { verifyPortfolioToken } from "@/lib/portfolioAuth";
+import { verifyTareasToken } from "@/lib/tareasAuth";
 
 const PUBLIC_ADMIN_PATHS = ["/admin/login", "/api/admin/login"];
 
@@ -11,6 +12,8 @@ const ADMIN_ONLY_PORTAFOLIO_PATHS = [
   "/api/portafolio/users",
 ];
 
+const PUBLIC_TAREAS_PATHS = ["/tareas/login", "/api/tareas/login"];
+
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -18,6 +21,8 @@ export async function proxy(req: NextRequest) {
     pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
   const isPortafolioPath =
     pathname.startsWith("/portafolio") || pathname.startsWith("/api/portafolio");
+  const isTareasPath =
+    pathname.startsWith("/tareas") || pathname.startsWith("/api/tareas");
 
   if (isAdminPath) {
     return handleAdminAuth(req, pathname);
@@ -25,6 +30,10 @@ export async function proxy(req: NextRequest) {
 
   if (isPortafolioPath) {
     return handlePortafolioAuth(req, pathname);
+  }
+
+  if (isTareasPath) {
+    return handleTareasAuth(req, pathname);
   }
 
   return NextResponse.next();
@@ -95,11 +104,40 @@ async function handlePortafolioAuth(req: NextRequest, pathname: string) {
   return NextResponse.next();
 }
 
+async function handleTareasAuth(req: NextRequest, pathname: string) {
+  const isPublic = PUBLIC_TAREAS_PATHS.some((p) => pathname.startsWith(p));
+  if (isPublic) return NextResponse.next();
+
+  const token = req.cookies.get("tareas_token")?.value;
+  if (!token) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const loginUrl = new URL("/tareas/login", req.url);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  const user = await verifyTareasToken(token);
+  if (!user) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const loginUrl = new URL("/tareas/login", req.url);
+    const response = NextResponse.redirect(loginUrl);
+    response.cookies.delete("tareas_token");
+    return response;
+  }
+
+  return NextResponse.next();
+}
+
 export const config = {
   matcher: [
     "/admin/:path*",
     "/api/admin/:path*",
     "/portafolio/:path*",
     "/api/portafolio/:path*",
+    "/tareas/:path*",
+    "/api/tareas/:path*",
   ],
 };
