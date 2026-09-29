@@ -1,7 +1,7 @@
 "use client";
 
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
-import { isVencida, proyectoColor, theme } from "./tareasTheme";
+import { canonicalProyecto, isVencida, proyectoColor, theme } from "./tareasTheme";
 
 interface ProyectoStat {
   proyecto: string;
@@ -12,25 +12,28 @@ interface ProyectoStat {
 
 interface ProyectoSummaryChipsProps {
   tareas: Tarea[];
-  activeProyectos: Set<string>;
-  onToggle: (proyecto: string) => void;
+  selectedProyecto: string | null;
+  onSelect: (proyecto: string) => void;
 }
 
 /**
- * Fila de chips por proyecto, al estilo R2D2: cada chip trae su cuenta de
- * abiertas/bloqueadas/vencidas y se puede apagar/prender para aislar
- * proyectos sin perder de vista cuántos quedan fuera de foco.
+ * Una tarjeta por proyecto real (agrupando las variantes de texto libre con
+ * canonicalProyecto — "AutoCare"/"Mitaller" caen en "Mi Taller", etc.), al
+ * estilo R2D2. Actúa como filtro de aislar: clic selecciona ese proyecto y
+ * el tablero de abajo solo muestra sus tareas; clic de nuevo lo quita y
+ * vuelve a mostrar todos.
  */
-export default function ProyectoSummaryChips({ tareas, activeProyectos, onToggle }: ProyectoSummaryChipsProps) {
+export default function ProyectoSummaryChips({ tareas, selectedProyecto, onSelect }: ProyectoSummaryChipsProps) {
   const stats = new Map<string, ProyectoStat>();
   for (const t of tareas) {
-    const cur = stats.get(t.proyecto) ?? { proyecto: t.proyecto, abiertas: 0, bloqueadas: 0, vencidas: 0 };
+    const proyecto = canonicalProyecto(t.proyecto);
+    const cur = stats.get(proyecto) ?? { proyecto, abiertas: 0, bloqueadas: 0, vencidas: 0 };
     if (t.columna_kanban !== "completada") {
       cur.abiertas += 1;
       if (t.columna_kanban === "bloqueada") cur.bloqueadas += 1;
       if (isVencida(t.fecha_limite)) cur.vencidas += 1;
     }
-    stats.set(t.proyecto, cur);
+    stats.set(proyecto, cur);
   }
   const ordered = Array.from(stats.values()).sort((a, b) => a.proyecto.localeCompare(b.proyecto));
 
@@ -39,17 +42,18 @@ export default function ProyectoSummaryChips({ tareas, activeProyectos, onToggle
   return (
     <div style={s.row}>
       {ordered.map((p) => {
-        const isActive = activeProyectos.has(p.proyecto);
+        const isActive = selectedProyecto === p.proyecto;
+        const isDimmed = selectedProyecto !== null && !isActive;
         const color = proyectoColor(p.proyecto);
         return (
           <button
             key={p.proyecto}
-            onClick={() => onToggle(p.proyecto)}
+            onClick={() => onSelect(p.proyecto)}
             aria-pressed={isActive}
             style={{
               ...s.chip,
               border: `1.5px solid ${isActive ? color : theme.border}`,
-              opacity: isActive ? 1 : 0.45,
+              opacity: isDimmed ? 0.45 : 1,
             }}
           >
             <div style={s.chipHeader}>

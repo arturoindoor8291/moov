@@ -7,7 +7,7 @@ import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
-import { theme } from "@/components/portafolio/tareasTheme";
+import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 type NivelImportancia = Tarea["nivel_importancia"];
@@ -33,7 +33,7 @@ export default function AdminTareasPage() {
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [activeProyectos, setActiveProyectos] = useState<string[]>([]);
+  const [selectedProyecto, setSelectedProyecto] = useState<string | null>(null);
   const [startupFilter, setStartupFilter] = useState("all");
   const [importanciaFilter, setImportanciaFilter] = useState<"all" | NivelImportancia>("all");
   const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
@@ -64,7 +64,7 @@ export default function AdminTareasPage() {
   const tareasById = useMemo(() => new Map(tareas.map((t) => [t.id, t])), [tareas]);
 
   const proyectos = useMemo(
-    () => Array.from(new Set(tareas.map((t) => t.proyecto))).sort(),
+    () => Array.from(new Set(tareas.map((t) => canonicalProyecto(t.proyecto)))).sort(),
     [tareas]
   );
 
@@ -73,23 +73,15 @@ export default function AdminTareasPage() {
     [tareas]
   );
 
-  // Aislar un proyecto: si está activo se apaga; si el toggle deja la
-  // lista vacía, se vuelve a todos (nunca un tablero en blanco por error).
-  const toggleProyecto = useCallback(
-    (proyecto: string) => {
-      setActiveProyectos((cur) => {
-        const base = cur.length > 0 ? cur : proyectos;
-        const has = base.includes(proyecto);
-        const next = has ? base.filter((p) => p !== proyecto) : base.concat([proyecto]);
-        return next.length === 0 ? proyectos : next;
-      });
-    },
-    [proyectos]
-  );
+  // Aislar un proyecto: clic lo selecciona y el tablero solo muestra sus
+  // tareas; clic de nuevo sobre el mismo lo quita y vuelve a mostrar todos.
+  const selectProyecto = useCallback((proyecto: string) => {
+    setSelectedProyecto((cur) => (cur === proyecto ? null : proyecto));
+  }, []);
 
   const filtered = useMemo(() => {
     return tareas.filter((t) => {
-      const matchProyecto = activeProyectos.length === 0 || activeProyectos.includes(t.proyecto);
+      const matchProyecto = selectedProyecto === null || canonicalProyecto(t.proyecto) === selectedProyecto;
       const matchStartup = startupFilter === "all" || t.startup === startupFilter;
       const matchImportancia = importanciaFilter === "all" || t.nivel_importancia === importanciaFilter;
       const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
@@ -97,7 +89,7 @@ export default function AdminTareasPage() {
       const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
       return matchProyecto && matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
     });
-  }, [tareas, activeProyectos, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
+  }, [tareas, selectedProyecto, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
 
   const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
     let previousColumn: Tarea["columna_kanban"] | undefined;
@@ -165,11 +157,7 @@ export default function AdminTareasPage() {
           </button>
         </div>
 
-        <ProyectoSummaryChips
-          tareas={tareas}
-          activeProyectos={new Set(activeProyectos.length > 0 ? activeProyectos : proyectos)}
-          onToggle={toggleProyecto}
-        />
+        <ProyectoSummaryChips tareas={tareas} selectedProyecto={selectedProyecto} onSelect={selectProyecto} />
 
         <div style={s.controls}>
           <select value={startupFilter} onChange={(e) => setStartupFilter(e.target.value)} style={s.select}>
