@@ -4,9 +4,11 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
+import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
 import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
+import { descendantIds } from "@/lib/portfolio/tareaTree";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 interface TareasMe {
@@ -39,8 +41,10 @@ export default function TareasPage() {
   const [error, setError] = useState("");
   const [selectedProyecto, setSelectedProyecto] = useState<string | null>(null);
   const [saveError, setSaveError] = useState("");
+  const [view, setView] = useState<"kanban" | "tabla">("kanban");
   // undefined = modal closed, null = creating a new tarea, Tarea = editing
   const [modalTarea, setModalTarea] = useState<Tarea | null | undefined>(undefined);
+  const [createDefaults, setCreateDefaults] = useState<Partial<TareaFormValues> | undefined>(undefined);
 
   const fetchAll = useCallback(async () => {
     try {
@@ -120,6 +124,25 @@ export default function TareasPage() {
     setModalTarea(undefined);
   }, []);
 
+  const handleAddRoot = useCallback((proyecto: string) => {
+    setCreateDefaults({ proyecto, parent_id: null });
+    setModalTarea(null);
+  }, []);
+
+  const handleAddSub = useCallback((parent: Tarea) => {
+    setCreateDefaults({ proyecto: parent.proyecto, parent_id: parent.id });
+    setModalTarea(null);
+  }, []);
+
+  const modalProyecto = modalTarea ? modalTarea.proyecto : createDefaults?.proyecto;
+  const parentOptions = useMemo(() => {
+    if (!modalProyecto) return undefined;
+    const excluded = modalTarea ? new Set([modalTarea.id, ...descendantIds(tareas, modalTarea.id)]) : new Set<string>();
+    return tareas
+      .filter((t) => canonicalProyecto(t.proyecto) === canonicalProyecto(modalProyecto) && !excluded.has(t.id))
+      .map((t) => ({ id: t.id, tarea: t.tarea }));
+  }, [tareas, modalTarea, modalProyecto]);
+
   async function handleLogout() {
     await fetch("/api/tareas/logout", { method: "POST" });
     router.push("/tareas/login");
@@ -158,9 +181,31 @@ export default function TareasPage() {
             </p>
           </div>
           {proyectoOptions.length > 0 && (
-            <button onClick={() => setModalTarea(null)} style={s.newBtn}>
-              + Nueva tarea
-            </button>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <div style={s.viewToggle}>
+                <button
+                  onClick={() => setView("kanban")}
+                  style={{ ...s.viewToggleBtn, ...(view === "kanban" ? s.viewToggleBtnActive : {}) }}
+                >
+                  Kanban
+                </button>
+                <button
+                  onClick={() => setView("tabla")}
+                  style={{ ...s.viewToggleBtn, ...(view === "tabla" ? s.viewToggleBtnActive : {}) }}
+                >
+                  Tabla
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  setCreateDefaults(undefined);
+                  setModalTarea(null);
+                }}
+                style={s.newBtn}
+              >
+                + Nueva tarea
+              </button>
+            </div>
           )}
         </div>
 
@@ -174,22 +219,41 @@ export default function TareasPage() {
           <p style={{ ...s.empty, color: theme.danger }}>{error}</p>
         ) : tareas.length === 0 ? (
           <p style={s.empty}>Todavía no tienes proyectos asignados. Pide a tu administrador que te dé acceso.</p>
-        ) : (
+        ) : view === "kanban" ? (
           <TareasKanbanBoard
             tareas={filtered}
             tareasById={tareasById}
             onColumnChange={handleColumnChange}
-            onEdit={(t) => setModalTarea(t)}
+            onEdit={(t) => {
+              setCreateDefaults(undefined);
+              setModalTarea(t);
+            }}
+          />
+        ) : (
+          <TareaTableView
+            tareas={filtered}
+            onColumnChange={handleColumnChange}
+            onEdit={(t) => {
+              setCreateDefaults(undefined);
+              setModalTarea(t);
+            }}
+            onAddRoot={handleAddRoot}
+            onAddSub={handleAddSub}
           />
         )}
 
         {modalTarea !== undefined && (
           <TareaFormModal
             tarea={modalTarea}
-            onClose={() => setModalTarea(undefined)}
+            onClose={() => {
+              setModalTarea(undefined);
+              setCreateDefaults(undefined);
+            }}
             onSave={handleSaveTarea}
             proyectoOptions={proyectoOptions}
             hideConfidencial
+            parentOptions={parentOptions}
+            createDefaults={createDefaults}
           />
         )}
       </main>
@@ -250,6 +314,25 @@ const s: Record<string, React.CSSProperties> = {
     letterSpacing: "-0.01em",
   },
   subtitle: { fontSize: "13px", color: theme.textMuted, margin: 0 },
+  viewToggle: {
+    display: "flex",
+    border: `1px solid ${theme.border}`,
+    borderRadius: "8px",
+    overflow: "hidden",
+  },
+  viewToggleBtn: {
+    background: theme.surface2,
+    border: "none",
+    padding: "9px 14px",
+    fontSize: "13px",
+    color: theme.textMuted,
+    cursor: "pointer",
+  },
+  viewToggleBtnActive: {
+    background: theme.surface3,
+    color: theme.text,
+    fontWeight: 600,
+  },
   newBtn: {
     background: theme.accent,
     border: "none",

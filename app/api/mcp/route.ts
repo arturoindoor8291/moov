@@ -108,6 +108,7 @@ function buildServer(): McpServer {
         fuente: { tipo: "mcp", referencia: "Conector MCP claude.ai", fecha: today, link: null },
         enlaces: [],
         depende_de: [],
+        parent_id: null,
         checklist: [],
         historial: [{ fecha: today, nota: "Tarea creada vía conector MCP de claude.ai." }],
       };

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { verifyTareasToken } from "@/lib/tareasAuth";
 import { getTareasUltimaActualizacion } from "@/lib/portfolio/tareasData";
-import { getMergedTareas, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
+import { getMergedTareas, resolveTarea, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { canonicalProyecto } from "@/lib/portfolio/proyectos";
 import { TareaSchema, type Tarea } from "@/lib/portfolio/portfolioSchemas";
 
@@ -49,6 +49,7 @@ const CreateTareaSchema = z.object({
   responsable: z.string().default(""),
   fecha_limite: z.string().nullable().default(null),
   etiquetas: z.array(z.string()).default([]),
+  parent_id: z.string().nullable().default(null),
 });
 
 /**
@@ -79,6 +80,16 @@ export async function POST(req: NextRequest) {
   const allowed = user.role === "admin" || user.proyectos.includes(canonicalProyecto(parsed.data.proyecto));
   if (!allowed) {
     return NextResponse.json({ message: "No puedes crear tareas fuera de tus proyectos" }, { status: 403 });
+  }
+
+  if (parsed.data.parent_id) {
+    const parent = await resolveTarea(parsed.data.parent_id);
+    if (!parent || parent.confidencial || canonicalProyecto(parent.proyecto) !== canonicalProyecto(parsed.data.proyecto)) {
+      return NextResponse.json(
+        { message: "La actividad principal debe existir y ser del mismo proyecto" },
+        { status: 400 }
+      );
+    }
   }
 
   const today = new Date().toISOString().slice(0, 10);

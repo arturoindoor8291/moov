@@ -27,6 +27,7 @@ const CreateTareaSchema = z.object({
   fecha_limite: z.string().nullable().default(null),
   confidencial: z.boolean().default(false),
   etiquetas: z.array(z.string()).default([]),
+  parent_id: z.string().nullable().default(null),
 });
 
 /**

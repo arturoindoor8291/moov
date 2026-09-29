@@ -18,6 +18,7 @@ export interface TareaFormValues {
   fecha_limite: string | null;
   confidencial: boolean;
   etiquetas: string[];
+  parent_id: string | null;
 }
 
 function valuesFromTarea(t: Tarea): TareaFormValues {
@@ -35,6 +36,7 @@ function valuesFromTarea(t: Tarea): TareaFormValues {
     fecha_limite: t.fecha_limite,
     confidencial: t.confidencial,
     etiquetas: t.etiquetas,
+    parent_id: t.parent_id,
   };
 }
 
@@ -52,6 +54,7 @@ const EMPTY_VALUES: TareaFormValues = {
   fecha_limite: null,
   confidencial: false,
   etiquetas: [],
+  parent_id: null,
 };
 
 interface TareaFormModalProps {
@@ -65,6 +68,17 @@ interface TareaFormModalProps {
   // Oculta el checkbox de confidencial — los usuarios externos de /tareas
   // no pueden marcar tareas como sensibles (el API también lo bloquea).
   hideConfidencial?: boolean;
+  // Actividades del mismo proyecto que se pueden elegir como "actividad
+  // principal" (ya excluye la tarea misma y sus descendientes, para no
+  // crear un ciclo — ver lib/portfolio/tareaTree.ts).
+  parentOptions?: { id: string; tarea: string }[];
+  // Al crear desde "+ Actividad principal" o "+ sub" en la vista de tabla,
+  // precarga proyecto y/o parent_id. Solo aplica cuando tarea === null.
+  createDefaults?: Partial<TareaFormValues>;
+  // Nombres conocidos (usuarios de /admin/usuarios) para autocompletar
+  // Responsable — sigue siendo texto libre, así que también acepta
+  // contrapartes externas que no tienen cuenta.
+  usuarioOptions?: string[];
 }
 
 export default function TareaFormModal({
@@ -73,11 +87,18 @@ export default function TareaFormModal({
   onSave,
   proyectoOptions,
   hideConfidencial,
+  parentOptions,
+  createDefaults,
+  usuarioOptions,
 }: TareaFormModalProps) {
   const [values, setValues] = useState<TareaFormValues>(
     tarea
       ? valuesFromTarea(tarea)
-      : { ...EMPTY_VALUES, proyecto: proyectoOptions?.[0] ?? EMPTY_VALUES.proyecto }
+      : {
+          ...EMPTY_VALUES,
+          proyecto: proyectoOptions?.[0] ?? EMPTY_VALUES.proyecto,
+          ...createDefaults,
+        }
   );
   const [etiquetasText, setEtiquetasText] = useState(tarea ? tarea.etiquetas.join(", ") : "");
   const [saving, setSaving] = useState(false);
@@ -151,6 +172,24 @@ export default function TareaFormModal({
             />
           </label>
         </div>
+
+        {parentOptions && (
+          <label style={s.field}>
+            <span style={s.label}>Actividad principal (opcional)</span>
+            <select
+              style={s.input}
+              value={values.parent_id ?? ""}
+              onChange={(e) => update("parent_id", e.target.value || null)}
+            >
+              <option value="">Ninguna — actividad de primer nivel</option>
+              {parentOptions.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.tarea}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
 
         <label style={s.field}>
           <span style={s.label}>Título *</span>
@@ -247,7 +286,15 @@ export default function TareaFormModal({
               style={s.input}
               value={values.responsable}
               onChange={(e) => update("responsable", e.target.value)}
+              list={usuarioOptions ? "responsable-options" : undefined}
             />
+            {usuarioOptions && (
+              <datalist id="responsable-options">
+                {usuarioOptions.map((nombre) => (
+                  <option key={nombre} value={nombre} />
+                ))}
+              </datalist>
+            )}
           </label>
           <label style={s.field}>
             <span style={s.label}>Fecha límite</span>

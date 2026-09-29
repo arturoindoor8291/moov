@@ -72,6 +72,19 @@ export async function PATCH(
       );
     }
   }
+  if (parsed.data.parent_id !== undefined && parsed.data.parent_id !== null) {
+    if (parsed.data.parent_id === id) {
+      return NextResponse.json({ message: "Una actividad no puede ser su propia principal" }, { status: 400 });
+    }
+    const parent = await resolveTarea(parsed.data.parent_id);
+    const proyectoFinal = parsed.data.proyecto ?? current.proyecto;
+    if (!parent || parent.confidencial || canonicalProyecto(parent.proyecto) !== canonicalProyecto(proyectoFinal)) {
+      return NextResponse.json(
+        { message: "La actividad principal debe existir y ser del mismo proyecto" },
+        { status: 400 }
+      );
+    }
+  }
 
   const today = new Date().toISOString().slice(0, 10);
   const updated: Tarea = {

@@ -146,6 +146,12 @@ export const TareaSchema = z.object({
   fuente: FuenteTareaSchema,
   enlaces: z.array(EnlaceSchema),
   depende_de: z.array(z.string()),
+  // Jerarquía de actividades para la vista de tabla (OKR → actividades →
+  // sub-actividades): id de la tarea de la que esta es sub-fila, o null si
+  // es una fila de primer nivel. Distinto de depende_de (que es "bloqueada
+  // por", no anidamiento). Opcional con default null para no romper
+  // registros existentes en tareas-data.json y Redis que no lo traen.
+  parent_id: z.string().nullable().default(null),
   etiquetas: z.array(z.string()),
   confidencial: z.boolean(),
   checklist: z.array(ChecklistItemSchema),

@@ -4,10 +4,12 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import AdminNav from "@/components/admin/AdminNav";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
+import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
 import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
+import { descendantIds } from "@/lib/portfolio/tareaTree";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 type NivelImportancia = Tarea["nivel_importancia"];
@@ -40,8 +42,11 @@ export default function AdminTareasPage() {
   const [tipoFilter, setTipoFilter] = useState<"all" | TipoTarea>("all");
   const [hideCompletadas, setHideCompletadas] = useState(false);
   const [saveError, setSaveError] = useState("");
+  const [view, setView] = useState<"kanban" | "tabla">("kanban");
+  const [usuarioNombres, setUsuarioNombres] = useState<string[]>([]);
   // undefined = modal closed, null = creating a new tarea, Tarea = editing
   const [modalTarea, setModalTarea] = useState<Tarea | null | undefined>(undefined);
+  const [createDefaults, setCreateDefaults] = useState<Partial<TareaFormValues> | undefined>(undefined);
 
   const fetchTareas = useCallback(async () => {
     try {
@@ -60,6 +65,17 @@ export default function AdminTareasPage() {
   useEffect(() => {
     fetchTareas();
   }, [fetchTareas]);
+
+  useEffect(() => {
+    fetch("/api/admin/tareas-usuarios")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.users) setUsuarioNombres(data.users.map((u: { name: string }) => u.name).filter(Boolean));
+      })
+      .catch(() => {
+        // No bloquea el tablero si Airtable no está configurado todavía.
+      });
+  }, []);
 
   const tareasById = useMemo(() => new Map(tareas.map((t) => [t.id, t])), [tareas]);
 
@@ -133,6 +149,25 @@ export default function AdminTareasPage() {
     setModalTarea(undefined);
   }, []);
 
+  const handleAddRoot = useCallback((proyecto: string) => {
+    setCreateDefaults({ proyecto, parent_id: null });
+    setModalTarea(null);
+  }, []);
+
+  const handleAddSub = useCallback((parent: Tarea) => {
+    setCreateDefaults({ proyecto: parent.proyecto, parent_id: parent.id });
+    setModalTarea(null);
+  }, []);
+
+  const modalProyecto = modalTarea ? modalTarea.proyecto : createDefaults?.proyecto;
+  const parentOptions = useMemo(() => {
+    if (!modalProyecto) return undefined;
+    const excluded = modalTarea ? new Set([modalTarea.id, ...descendantIds(tareas, modalTarea.id)]) : new Set<string>();
+    return tareas
+      .filter((t) => canonicalProyecto(t.proyecto) === canonicalProyecto(modalProyecto) && !excluded.has(t.id))
+      .map((t) => ({ id: t.id, tarea: t.tarea }));
+  }, [tareas, modalTarea, modalProyecto]);
+
   const abiertas = tareas.filter((t) => t.columna_kanban !== "completada").length;
 
   return (
@@ -152,9 +187,31 @@ export default function AdminTareasPage() {
                 })}`}
             </p>
           </div>
-          <button onClick={() => setModalTarea(null)} style={s.newBtn}>
-            + Nueva tarea
-          </button>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <div style={s.viewToggle}>
+              <button
+                onClick={() => setView("kanban")}
+                style={{ ...s.viewToggleBtn, ...(view === "kanban" ? s.viewToggleBtnActive : {}) }}
+              >
+                Kanban
+              </button>
+              <button
+                onClick={() => setView("tabla")}
+                style={{ ...s.viewToggleBtn, ...(view === "tabla" ? s.viewToggleBtnActive : {}) }}
+              >
+                Tabla
+              </button>
+            </div>
+            <button
+              onClick={() => {
+                setCreateDefaults(undefined);
+                setModalTarea(null);
+              }}
+              style={s.newBtn}
+            >
+              + Nueva tarea
+            </button>
+          </div>
         </div>
 
         <ProyectoSummaryChips tareas={tareas} selectedProyecto={selectedProyecto} onSelect={selectProyecto} />
@@ -220,20 +277,40 @@ export default function AdminTareasPage() {
           <p style={s.empty}>Cargando...</p>
         ) : error ? (
           <p style={{ ...s.empty, color: theme.danger }}>{error}</p>
-        ) : (
+        ) : view === "kanban" ? (
           <TareasKanbanBoard
             tareas={filtered}
             tareasById={tareasById}
             onColumnChange={handleColumnChange}
-            onEdit={(t) => setModalTarea(t)}
+            onEdit={(t) => {
+              setCreateDefaults(undefined);
+              setModalTarea(t);
+            }}
+          />
+        ) : (
+          <TareaTableView
+            tareas={filtered}
+            onColumnChange={handleColumnChange}
+            onEdit={(t) => {
+              setCreateDefaults(undefined);
+              setModalTarea(t);
+            }}
+            onAddRoot={handleAddRoot}
+            onAddSub={handleAddSub}
           />
         )}
 
         {modalTarea !== undefined && (
           <TareaFormModal
             tarea={modalTarea}
-            onClose={() => setModalTarea(undefined)}
+            onClose={() => {
+              setModalTarea(undefined);
+              setCreateDefaults(undefined);
+            }}
             onSave={handleSaveTarea}
+            parentOptions={parentOptions}
+            createDefaults={createDefaults}
+            usuarioOptions={usuarioNombres}
           />
         )}
       </main>
@@ -260,6 +337,25 @@ const s: Record<string, React.CSSProperties> = {
     letterSpacing: "-0.01em",
   },
   subtitle: { fontSize: "13px", color: theme.textMuted, margin: 0 },
+  viewToggle: {
+    display: "flex",
+    border: `1px solid ${theme.border}`,
+    borderRadius: "8px",
+    overflow: "hidden",
+  },
+  viewToggleBtn: {
+    background: theme.surface2,
+    border: "none",
+    padding: "9px 14px",
+    fontSize: "13px",
+    color: theme.textMuted,
+    cursor: "pointer",
+  },
+  viewToggleBtnActive: {
+    background: theme.surface3,
+    color: theme.text,
+    fontWeight: 600,
+  },
   newBtn: {
     background: theme.accent,
     border: "none",

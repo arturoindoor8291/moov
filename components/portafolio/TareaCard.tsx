@@ -61,6 +61,9 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
 
         <div style={s.title}>{tarea.tarea}</div>
         {tarea.startup && <p style={s.startup}>{tarea.startup}</p>}
+        {tarea.parent_id && tareasById.get(tarea.parent_id) && (
+          <p style={s.parentLine}>↳ parte de: {tareasById.get(tarea.parent_id)!.tarea}</p>
+        )}
 
         {tarea.depende_de.length > 0 && (
           <div style={s.blockedRow}>
@@ -217,6 +220,7 @@ const s: Record<string, React.CSSProperties> = {
   confidencialPill: { fontSize: "11px" },
   title: { fontSize: "13px", fontWeight: 500, lineHeight: 1.4, color: theme.text, textAlign: "left" },
   startup: { fontSize: "11px", color: theme.textMuted, margin: 0, textAlign: "left" },
+  parentLine: { fontSize: "11px", color: theme.textFaint, margin: 0, textAlign: "left" },
   blockedRow: { display: "flex", flexDirection: "column", gap: "4px" },
   blockedLink: { fontSize: "11px", color: theme.warning, textAlign: "left" },
   footerRow: { display: "flex", alignItems: "center", gap: "8px" },
