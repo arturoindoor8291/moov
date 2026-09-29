@@ -3,8 +3,16 @@
 import { useState } from "react";
 import TareaCard, { COLUMNA_LABEL } from "./TareaCard";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
+import { theme } from "./tareasTheme";
 
 const COLUMNS = Object.keys(COLUMNA_LABEL) as Tarea["columna_kanban"][];
+
+const COLUMN_DOT: Record<Tarea["columna_kanban"], string> = {
+  pendiente: theme.info,
+  en_progreso: theme.accent,
+  bloqueada: theme.warning,
+  completada: "#5B9BD5",
+};
 
 const URGENCIA_RANK: Record<Tarea["nivel_urgencia"], number> = {
   inmediata: 0,
@@ -74,6 +82,7 @@ export default function TareasKanbanBoard({ tareas, tareasById, onColumnChange, 
             onDrop={(e) => handleDrop(e, key)}
           >
             <div style={s.columnHeader}>
+              <span style={{ ...s.dot, background: COLUMN_DOT[key] }} />
               <span style={s.columnTitle}>{COLUMNA_LABEL[key]}</span>
               <span style={s.columnCount}>{columnTareas.length}</span>
             </div>
@@ -125,9 +134,9 @@ export default function TareasKanbanBoard({ tareas, tareasById, onColumnChange, 
 const s: Record<string, React.CSSProperties> = {
   board: { display: "flex", gap: "16px", overflowX: "auto", paddingBottom: "8px", alignItems: "flex-start" },
   column: {
-    background: "#07080d",
-    border: "1px solid rgba(255,255,255,0.08)",
-    borderRadius: "14px",
+    background: theme.surface,
+    border: `1px solid ${theme.border}`,
+    borderRadius: "12px",
     padding: "14px",
     minWidth: "300px",
     maxWidth: "320px",
@@ -138,31 +147,31 @@ const s: Record<string, React.CSSProperties> = {
     transition: "border-color 0.15s, background 0.15s",
   },
   columnDragOver: { borderColor: "rgba(47,109,255,0.5)", background: "rgba(47,109,255,0.05)" },
-  columnHeader: { display: "flex", alignItems: "center", justifyContent: "space-between" },
+  columnHeader: { display: "flex", alignItems: "center", gap: "8px" },
+  dot: { display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", flexShrink: 0 },
   columnTitle: {
-    fontSize: "13px",
-    fontWeight: 700,
-    color: "#eef1f6",
+    fontSize: "12px",
+    fontWeight: 600,
+    color: theme.textMuted,
     textTransform: "uppercase",
-    letterSpacing: "0.04em",
+    letterSpacing: "0.02em",
   },
   columnCount: {
-    fontSize: "11px",
+    marginLeft: "auto",
+    fontSize: "13px",
     fontWeight: 600,
-    color: "rgba(238,241,246,0.5)",
-    background: "rgba(255,255,255,0.06)",
-    borderRadius: "10px",
-    padding: "1px 8px",
+    color: theme.textFaint,
+    fontFamily: "var(--tareas-font-display)",
   },
-  columnBody: { display: "flex", flexDirection: "column", gap: "10px" },
-  empty: { fontSize: "12px", color: "rgba(238,241,246,0.35)", textAlign: "center", padding: "16px 0" },
+  columnBody: { display: "flex", flexDirection: "column", gap: "8px" },
+  empty: { fontSize: "12px", color: theme.textFaint, textAlign: "center", padding: "16px 0" },
   showMoreBtn: {
     background: "transparent",
-    border: "1px dashed rgba(255,255,255,0.15)",
+    border: `1px dashed ${theme.border}`,
     borderRadius: "8px",
     padding: "8px",
     fontSize: "12px",
-    color: "rgba(238,241,246,0.5)",
+    color: theme.textMuted,
     cursor: "pointer",
   },
 };

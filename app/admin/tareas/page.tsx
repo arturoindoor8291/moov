@@ -1,22 +1,39 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import AdminNav from "@/components/admin/AdminNav";
 import TareasKanbanBoard from "@/components/portafolio/TareasKanbanBoard";
+import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import { TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
+import { theme } from "@/components/portafolio/tareasTheme";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
 type NivelImportancia = Tarea["nivel_importancia"];
 type NivelUrgencia = Tarea["nivel_urgencia"];
 type TipoTarea = Tarea["tipo_tarea"];
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--tareas-font-display",
+  display: "swap",
+  weight: ["500", "600", "700"],
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  variable: "--tareas-font-body",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
 export default function AdminTareasPage() {
   const [tareas, setTareas] = useState<Tarea[]>([]);
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [proyectoFilter, setProyectoFilter] = useState("all");
+  const [activeProyectos, setActiveProyectos] = useState<string[]>([]);
   const [startupFilter, setStartupFilter] = useState("all");
   const [importanciaFilter, setImportanciaFilter] = useState<"all" | NivelImportancia>("all");
   const [urgenciaFilter, setUrgenciaFilter] = useState<"all" | NivelUrgencia>("all");
@@ -56,9 +73,23 @@ export default function AdminTareasPage() {
     [tareas]
   );
 
+  // Aislar un proyecto: si está activo se apaga; si el toggle deja la
+  // lista vacía, se vuelve a todos (nunca un tablero en blanco por error).
+  const toggleProyecto = useCallback(
+    (proyecto: string) => {
+      setActiveProyectos((cur) => {
+        const base = cur.length > 0 ? cur : proyectos;
+        const has = base.includes(proyecto);
+        const next = has ? base.filter((p) => p !== proyecto) : base.concat([proyecto]);
+        return next.length === 0 ? proyectos : next;
+      });
+    },
+    [proyectos]
+  );
+
   const filtered = useMemo(() => {
     return tareas.filter((t) => {
-      const matchProyecto = proyectoFilter === "all" || t.proyecto === proyectoFilter;
+      const matchProyecto = activeProyectos.length === 0 || activeProyectos.includes(t.proyecto);
       const matchStartup = startupFilter === "all" || t.startup === startupFilter;
       const matchImportancia = importanciaFilter === "all" || t.nivel_importancia === importanciaFilter;
       const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
@@ -66,7 +97,7 @@ export default function AdminTareasPage() {
       const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
       return matchProyecto && matchStartup && matchImportancia && matchUrgencia && matchTipo && matchCompletada;
     });
-  }, [tareas, proyectoFilter, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
+  }, [tareas, activeProyectos, startupFilter, importanciaFilter, urgenciaFilter, tipoFilter, hideCompletadas]);
 
   const handleColumnChange = useCallback((id: string, columna: Tarea["columna_kanban"]) => {
     let previousColumn: Tarea["columna_kanban"] | undefined;
@@ -110,15 +141,17 @@ export default function AdminTareasPage() {
     setModalTarea(undefined);
   }, []);
 
+  const abiertas = tareas.filter((t) => t.columna_kanban !== "completada").length;
+
   return (
-    <div style={s.page}>
+    <div className={`${spaceGrotesk.variable} ${ibmPlexSans.variable}`} style={s.page}>
       <AdminNav active="tareas" />
       <main style={s.main}>
         <div style={s.header}>
           <div>
             <h1 style={s.title}>Tareas y Compromisos</h1>
             <p style={s.subtitle}>
-              {tareas.length} tareas registradas
+              {abiertas} actividades abiertas en {proyectos.length || "—"} proyecto{proyectos.length === 1 ? "" : "s"}
               {ultimaActualizacion &&
                 ` · Datos al ${new Date(ultimaActualizacion).toLocaleDateString("es-MX", {
                   day: "2-digit",
@@ -132,19 +165,13 @@ export default function AdminTareasPage() {
           </button>
         </div>
 
+        <ProyectoSummaryChips
+          tareas={tareas}
+          activeProyectos={new Set(activeProyectos.length > 0 ? activeProyectos : proyectos)}
+          onToggle={toggleProyecto}
+        />
+
         <div style={s.controls}>
-          <select
-            value={proyectoFilter}
-            onChange={(e) => setProyectoFilter(e.target.value)}
-            style={{ ...s.select, ...s.selectProyecto }}
-          >
-            <option value="all">Todos los proyectos</option>
-            {proyectos.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
           <select value={startupFilter} onChange={(e) => setStartupFilter(e.target.value)} style={s.select}>
             <option value="all">Todas las startups</option>
             {startups.map((st) => (
@@ -195,6 +222,8 @@ export default function AdminTareasPage() {
             />
             Ocultar completadas
           </label>
+          <div style={{ flexGrow: 1 }} />
+          <span style={s.hint}>Clic en un proyecto arriba para aislarlo. Clic en una tarjeta para ver el detalle.</span>
         </div>
 
         {saveError && <p style={s.saveError}>{saveError}</p>}
@@ -202,7 +231,7 @@ export default function AdminTareasPage() {
         {loading ? (
           <p style={s.empty}>Cargando...</p>
         ) : error ? (
-          <p style={{ ...s.empty, color: "#ff5a5a" }}>{error}</p>
+          <p style={{ ...s.empty, color: theme.danger }}>{error}</p>
         ) : (
           <TareasKanbanBoard
             tareas={filtered}
@@ -225,7 +254,7 @@ export default function AdminTareasPage() {
 }
 
 const s: Record<string, React.CSSProperties> = {
-  page: { minHeight: "100vh", background: "#050506", color: "#eef1f6" },
+  page: { minHeight: "100vh", background: theme.bg, color: theme.text, fontFamily: "var(--tareas-font-body)" },
   main: { maxWidth: "1400px", margin: "0 auto", padding: "32px 24px" },
   header: {
     display: "flex",
@@ -235,10 +264,16 @@ const s: Record<string, React.CSSProperties> = {
     gap: "16px",
     flexWrap: "wrap",
   },
-  title: { fontSize: "26px", fontWeight: 700, margin: "0 0 4px" },
-  subtitle: { fontSize: "13px", color: "rgba(238,241,246,0.45)", margin: 0 },
+  title: {
+    fontSize: "26px",
+    fontWeight: 600,
+    margin: "0 0 4px",
+    fontFamily: "var(--tareas-font-display)",
+    letterSpacing: "-0.01em",
+  },
+  subtitle: { fontSize: "13px", color: theme.textMuted, margin: 0 },
   newBtn: {
-    background: "#2f6dff",
+    background: theme.accent,
     border: "none",
     borderRadius: "8px",
     padding: "10px 18px",
@@ -256,36 +291,33 @@ const s: Record<string, React.CSSProperties> = {
     marginBottom: "24px",
   },
   select: {
-    background: "#0c0e14",
-    border: "1px solid rgba(255,255,255,0.1)",
+    background: theme.surface2,
+    border: `1px solid ${theme.border}`,
     borderRadius: "8px",
     padding: "10px 14px",
     fontSize: "14px",
-    color: "#eef1f6",
+    color: theme.text,
     outline: "none",
-  },
-  selectProyecto: {
-    fontWeight: 700,
-    border: "1px solid rgba(47,109,255,0.35)",
   },
   toggle: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
     fontSize: "13px",
-    color: "rgba(238,241,246,0.65)",
+    color: theme.textMuted,
     marginLeft: "4px",
     cursor: "pointer",
   },
   checkbox: { width: "14px", height: "14px", cursor: "pointer" },
+  hint: { fontSize: "11px", color: theme.textFaint, whiteSpace: "nowrap" },
   saveError: {
     fontSize: "13px",
-    color: "#ff5a5a",
-    background: "rgba(255,90,90,0.08)",
-    border: "1px solid rgba(255,90,90,0.25)",
+    color: theme.danger,
+    background: "rgba(229,96,90,0.08)",
+    border: "1px solid rgba(229,96,90,0.25)",
     borderRadius: "10px",
     padding: "10px 14px",
     marginBottom: "16px",
   },
-  empty: { color: "rgba(238,241,246,0.4)", padding: "40px 0", textAlign: "center" },
+  empty: { color: theme.textFaint, padding: "40px 0", textAlign: "center" },
 };

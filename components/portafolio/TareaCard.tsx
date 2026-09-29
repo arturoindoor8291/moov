@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import ImportanciaBadge from "./ImportanciaBadge";
-import UrgenciaBadge from "./UrgenciaBadge";
 import ProyectoBadge from "./ProyectoBadge";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { formatFechaLimite, isFechaLimiteUrgente } from "@/lib/portfolio/format";
+import { importanciaColor, ownerInitial, theme, urgenciaColor } from "./tareasTheme";
 
 export const COLUMNA_LABEL: Record<Tarea["columna_kanban"], string> = {
   pendiente: "Pendiente",
@@ -34,6 +33,7 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
   const isRiesgo = tarea.tipo_tarea === "hallazgo_riesgo";
   const urgenteFecha = isFechaLimiteUrgente(tarea.fecha_limite);
   const historialDesc = [...tarea.historial].sort((a, b) => (a.fecha < b.fecha ? 1 : -1));
+  const fechaColor = tarea.fecha_limite ? urgenciaColor(tarea.nivel_urgencia) : theme.textFaint;
 
   return (
     <div
@@ -42,43 +42,51 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
       onDragStart={(e) => onDragStart(e, tarea.id)}
       style={{ ...s.card, ...(isRiesgo ? s.cardRiesgo : {}), ...(urgenteFecha ? s.cardUrgente : {}) }}
     >
-      <div style={s.proyectoRow}>
-        <ProyectoBadge proyecto={tarea.proyecto} />
-      </div>
-      <div style={s.headerRow}>
-        {isRiesgo && (
-          <span title="Hallazgo de riesgo — verificar, no es una tarea por hacer" style={s.riesgoIcon}>
-            ⚠
+      <button onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} style={s.cardBtn}>
+        <div style={s.headTop}>
+          <span title="Importancia" style={{ ...s.dot, background: importanciaColor(tarea.nivel_importancia) }} />
+          <span title="Urgencia" style={{ ...s.dot, background: urgenciaColor(tarea.nivel_urgencia) }} />
+          <ProyectoBadge proyecto={tarea.proyecto} />
+          {tarea.confidencial && <span style={s.confidencialPill}>🔒</span>}
+          <div style={{ flexGrow: 1 }} />
+          {isRiesgo && (
+            <span title="Hallazgo de riesgo — verificar, no es una tarea por hacer" style={s.riesgoIcon}>
+              ⚠
+            </span>
+          )}
+          <span aria-hidden="true" style={s.chevron}>
+            {expanded ? "▴" : "▾"}
           </span>
-        )}
-        <span style={s.title}>{tarea.tarea}</span>
-      </div>
-      <p style={s.startup}>{tarea.startup}</p>
-
-      <div style={s.badgeRow}>
-        <ImportanciaBadge nivel={tarea.nivel_importancia} />
-        <UrgenciaBadge nivel={tarea.nivel_urgencia} />
-        {tarea.confidencial && <span style={s.confidencialPill}>🔒 Sensible</span>}
-      </div>
-
-      {tarea.depende_de.length > 0 && (
-        <div style={s.blockedRow}>
-          {tarea.depende_de.map((depId) => {
-            const dep = tareasById.get(depId);
-            return (
-              <a key={depId} href={`#tarea-${depId}`} style={s.blockedLink}>
-                🔗 bloqueada por {depId}
-                {dep ? `: ${dep.tarea}` : ""}
-              </a>
-            );
-          })}
         </div>
-      )}
 
-      <div style={s.footerRow}>
-        <span style={{ ...s.fechaLimite, ...(urgenteFecha ? s.fechaLimiteUrgente : {}) }}>
-          {tarea.fecha_limite ? `Vence: ${formatFechaLimite(tarea.fecha_limite)}` : "Sin fecha límite"}
-        </span>
+        <div style={s.title}>{tarea.tarea}</div>
+        {tarea.startup && <p style={s.startup}>{tarea.startup}</p>}
+
+        {tarea.depende_de.length > 0 && (
+          <div style={s.blockedRow}>
+            {tarea.depende_de.map((depId) => {
+              const dep = tareasById.get(depId);
+              return (
+                <span key={depId} style={s.blockedLink}>
+                  🔗 bloqueada por {depId}
+                  {dep ? `: ${dep.tarea}` : ""}
+                </span>
+              );
+            })}
+          </div>
+        )}
+
+        <div style={s.footerRow}>
+          <span style={s.ownerAvatar} title={tarea.responsable || "Sin responsable"}>
+            {ownerInitial(tarea.responsable)}
+          </span>
+          <span style={{ ...s.fecha, color: fechaColor }}>
+            {tarea.fecha_limite ? formatFechaLimite(tarea.fecha_limite) : "Sin fecha límite"}
+          </span>
+        </div>
+      </button>
+
+      <div style={s.actionsRow}>
         <select
           value={tarea.columna_kanban}
           onChange={(e) => onColumnChange(tarea.id, e.target.value as Tarea["columna_kanban"])}
@@ -90,12 +98,6 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
             </option>
           ))}
         </select>
-      </div>
-
-      <div style={s.cardActions}>
-        <button onClick={() => setExpanded((v) => !v)} style={s.expandBtn}>
-          {expanded ? "Ocultar detalle ▲" : "Ver detalle ▼"}
-        </button>
         <button onClick={() => onEdit(tarea)} style={s.editBtn}>
           Editar ✎
         </button>
@@ -190,97 +192,106 @@ export default function TareaCard({ tarea, tareasById, onColumnChange, onDragSta
 
 const s: Record<string, React.CSSProperties> = {
   card: {
-    background: "#0c0e14",
-    border: "1px solid rgba(255,255,255,0.08)",
-    borderRadius: "12px",
-    padding: "14px",
+    background: theme.surface2,
+    border: `1px solid ${theme.border}`,
+    borderRadius: "10px",
+    overflow: "hidden",
+    cursor: "grab",
+  },
+  cardRiesgo: { borderColor: "rgba(224,178,60,0.4)", boxShadow: `inset 3px 0 0 0 ${theme.warning}` },
+  cardUrgente: { borderColor: "rgba(229,96,90,0.35)" },
+  cardBtn: {
+    all: "unset",
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     gap: "8px",
-    cursor: "grab",
+    width: "100%",
+    cursor: "pointer",
+    padding: "12px",
   },
-  cardRiesgo: { borderColor: "rgba(255,195,0,0.4)", boxShadow: "inset 3px 0 0 0 #ffc300" },
-  cardUrgente: { borderColor: "rgba(255,90,90,0.35)" },
-  proyectoRow: { marginBottom: "2px" },
-  headerRow: { display: "flex", alignItems: "flex-start", gap: "6px" },
-  riesgoIcon: { color: "#ffc300", fontSize: "13px", lineHeight: "18px" },
-  title: { fontSize: "13px", fontWeight: 700, color: "#eef1f6", lineHeight: 1.4 },
-  startup: { fontSize: "11px", color: "rgba(238,241,246,0.45)", margin: 0 },
-  badgeRow: { display: "flex", gap: "6px", flexWrap: "wrap" },
-  confidencialPill: {
-    fontSize: "11px",
-    fontWeight: 600,
-    color: "#c98500",
-    background: "rgba(201,133,0,0.12)",
-    border: "1px solid rgba(201,133,0,0.3)",
-    borderRadius: "20px",
-    padding: "3px 10px",
-  },
+  headTop: { display: "flex", alignItems: "center", gap: "6px" },
+  dot: { display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", flexShrink: 0 },
+  riesgoIcon: { color: theme.warning, fontSize: "13px", lineHeight: "18px" },
+  chevron: { fontSize: "10px", color: theme.textFaint },
+  confidencialPill: { fontSize: "11px" },
+  title: { fontSize: "13px", fontWeight: 500, lineHeight: 1.4, color: theme.text, textAlign: "left" },
+  startup: { fontSize: "11px", color: theme.textMuted, margin: 0, textAlign: "left" },
   blockedRow: { display: "flex", flexDirection: "column", gap: "4px" },
-  blockedLink: { fontSize: "11px", color: "#ff9600", textDecoration: "none" },
-  footerRow: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", flexWrap: "wrap" },
-  fechaLimite: { fontSize: "11px", color: "rgba(238,241,246,0.45)" },
-  fechaLimiteUrgente: { color: "#ff5a5a", fontWeight: 700 },
-  select: {
-    background: "#050506",
-    border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: "6px",
-    padding: "4px 6px",
-    fontSize: "11px",
-    color: "#eef1f6",
-    outline: "none",
+  blockedLink: { fontSize: "11px", color: theme.warning, textAlign: "left" },
+  footerRow: { display: "flex", alignItems: "center", gap: "8px" },
+  ownerAvatar: {
+    width: "20px",
+    height: "20px",
+    borderRadius: "50%",
+    boxSizing: "border-box",
+    border: `1.5px solid ${theme.accent}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "9px",
+    fontWeight: 600,
+    color: theme.accent,
+    flexShrink: 0,
   },
-  cardActions: {
+  fecha: { fontSize: "11px", fontWeight: 500 },
+  actionsRow: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     gap: "8px",
-    borderTop: "1px solid rgba(255,255,255,0.06)",
-    paddingTop: "8px",
+    borderTop: `1px solid ${theme.border}`,
+    padding: "8px 12px",
   },
-  expandBtn: {
-    background: "transparent",
-    border: "none",
+  select: {
+    background: theme.surface3,
+    border: `1px solid ${theme.border}`,
+    borderRadius: "6px",
+    padding: "4px 6px",
     fontSize: "11px",
-    color: "rgba(238,241,246,0.4)",
-    cursor: "pointer",
-    textAlign: "left",
-    padding: 0,
+    color: theme.text,
+    outline: "none",
   },
   editBtn: {
     background: "transparent",
-    border: "1px solid rgba(255,255,255,0.12)",
+    border: `1px solid ${theme.border}`,
     borderRadius: "6px",
     padding: "3px 9px",
     fontSize: "11px",
-    color: "rgba(238,241,246,0.6)",
+    color: theme.textMuted,
     cursor: "pointer",
   },
-  detail: { display: "flex", flexDirection: "column", gap: "2px", paddingTop: "4px" },
+  detail: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "2px",
+    padding: "10px 12px 12px",
+    borderTop: `1px solid ${theme.border}`,
+  },
   detailLabel: {
     fontSize: "10px",
-    fontWeight: 700,
-    color: "rgba(238,241,246,0.4)",
+    fontWeight: 600,
+    color: theme.textFaint,
     textTransform: "uppercase",
-    letterSpacing: "0.04em",
+    letterSpacing: "0.03em",
     margin: "8px 0 2px",
   },
-  detailText: { fontSize: "12px", color: "rgba(238,241,246,0.8)", lineHeight: 1.5, margin: 0 },
+  detailText: { fontSize: "12px", color: theme.textMuted, lineHeight: 1.5, margin: 0 },
   checklist: { margin: "2px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "4px" },
-  checklistItem: { display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "rgba(238,241,246,0.8)" },
+  checklistItem: { display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: theme.textMuted },
   checkbox: { width: "12px", height: "12px" },
-  checklistDone: { textDecoration: "line-through", color: "rgba(238,241,246,0.4)" },
+  checklistDone: { textDecoration: "line-through", color: theme.textFaint },
   linkList: { margin: "2px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "4px" },
-  link: { fontSize: "12px", color: "#3987e5", textDecoration: "none" },
+  link: { fontSize: "12px", color: theme.accent, textDecoration: "none" },
   tagRow: { display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "8px" },
   tag: {
     fontSize: "10px",
-    color: "rgba(238,241,246,0.55)",
-    background: "rgba(255,255,255,0.06)",
+    color: theme.textMuted,
+    background: theme.surface3,
     borderRadius: "10px",
     padding: "2px 8px",
   },
   historial: { margin: "2px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" },
-  historialItem: { fontSize: "11px", color: "rgba(238,241,246,0.65)", lineHeight: 1.5 },
-  historialFecha: { color: "rgba(238,241,246,0.4)", fontWeight: 600 },
+  historialItem: { fontSize: "11px", color: theme.textMuted, lineHeight: 1.5 },
+  historialFecha: { color: theme.textFaint, fontWeight: 600 },
 };
