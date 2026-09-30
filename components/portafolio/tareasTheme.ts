@@ -23,6 +23,15 @@ export const theme = {
   accent: "#2f6dff",
 } as const;
 
+// Color del punto de estado — compartido por el kanban y la vista de tabla
+// para que un vistazo a cualquiera de las dos vistas lea el mismo código.
+export const COLUMN_DOT: Record<Tarea["columna_kanban"], string> = {
+  pendiente: theme.info,
+  en_progreso: theme.accent,
+  bloqueada: theme.warning,
+  completada: "#5B9BD5",
+};
+
 export function importanciaColor(nivel: Tarea["nivel_importancia"]): string {
   return nivel === "alta" ? theme.danger : nivel === "media" ? theme.warning : theme.good;
 }
@@ -56,6 +65,17 @@ export function proyectoColor(proyecto: string): string {
 
 export function proyectoTint(proyecto: string): string {
   return `hsla(${hueForProyecto(proyecto)}, 70%, 62%, 0.16)`;
+}
+
+// Únicos responsables reales de tareas hoy (personas, no contrapartes
+// externas de startups como "Mobi (envía)" o "Leasy (Alejandro)" que a veces
+// quedan en el campo responsable). El filtro de responsable de /tareas y
+// /admin/tareas usa esta lista fija en vez de derivarla de los datos.
+export const RESPONSABLES_CONOCIDOS = ["Arturo", "Sara", "Claude"] as const;
+
+/** True si `responsable` corresponde a `nombre` (coincidencia parcial, sin distinguir mayúsculas), para que "Arturo / Comité de inversión Huerpel" siga contando como Arturo. */
+export function esResponsable(responsable: string, nombre: string): boolean {
+  return responsable.toLowerCase().includes(nombre.toLowerCase());
 }
 
 export function ownerInitial(responsable: string): string {

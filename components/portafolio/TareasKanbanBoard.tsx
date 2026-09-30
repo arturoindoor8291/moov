@@ -3,16 +3,9 @@
 import { useState } from "react";
 import TareaCard, { COLUMNA_LABEL } from "./TareaCard";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
-import { theme } from "./tareasTheme";
+import { COLUMN_DOT, theme } from "./tareasTheme";
 
 const COLUMNS = Object.keys(COLUMNA_LABEL) as Tarea["columna_kanban"][];
-
-const COLUMN_DOT: Record<Tarea["columna_kanban"], string> = {
-  pendiente: theme.info,
-  en_progreso: theme.accent,
-  bloqueada: theme.warning,
-  completada: "#5B9BD5",
-};
 
 const URGENCIA_RANK: Record<Tarea["nivel_urgencia"], number> = {
   inmediata: 0,
