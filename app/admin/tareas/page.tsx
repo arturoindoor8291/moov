@@ -8,7 +8,7 @@ import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import { COLUMNA_LABEL, TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
-import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
+import { canonicalProyecto, esResponsable, RESPONSABLES_CONOCIDOS, theme } from "@/components/portafolio/tareasTheme";
 import { descendantIds } from "@/lib/portfolio/tareaTree";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
@@ -90,14 +90,10 @@ export default function AdminTareasPage() {
     [tareas]
   );
 
-  // Usuarios conocidos (/admin/usuarios) más cualquier otro responsable ya
-  // usado en los datos (contrapartes externas sin cuenta) — así el filtro
-  // cubre a quien sea que ya tenga tareas asignadas.
-  const responsables = useMemo(
-    () =>
-      Array.from(new Set([...usuarioNombres, ...tareas.map((t) => t.responsable)].filter(Boolean))).sort(),
-    [tareas, usuarioNombres]
-  );
+  // El filtro de responsable solo ofrece a las personas reales del equipo,
+  // no las contrapartes externas que a veces quedan en el campo responsable
+  // (ej. "Mobi (envía)", "Leasy (Alejandro)").
+  const responsables = RESPONSABLES_CONOCIDOS;
 
   // Aislar un proyecto: clic lo selecciona y el tablero solo muestra sus
   // tareas; clic de nuevo sobre el mismo lo quita y vuelve a mostrar todos.
@@ -113,7 +109,7 @@ export default function AdminTareasPage() {
       const matchUrgencia = urgenciaFilter === "all" || t.nivel_urgencia === urgenciaFilter;
       const matchTipo = tipoFilter === "all" || t.tipo_tarea === tipoFilter;
       const matchEstado = estadoFilter === "all" || t.columna_kanban === estadoFilter;
-      const matchResponsable = responsableFilter === "all" || t.responsable === responsableFilter;
+      const matchResponsable = responsableFilter === "all" || esResponsable(t.responsable, responsableFilter);
       const matchCompletada = !hideCompletadas || t.columna_kanban !== "completada";
       return (
         matchProyecto &&

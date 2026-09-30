@@ -5,7 +5,7 @@ import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/
 import { TareaSchema, type Tarea } from "@/lib/portfolio/portfolioSchemas";
 import { getAllTareas } from "@/lib/portfolio/tareasData";
 import { listarTareas } from "@/lib/portfolio/tareasQuery";
-import { getMergedTareas, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
+import { getMergedTareas, resolveTarea, upsertExternalTarea } from "@/lib/portfolio/tareasStore";
 import { checkIngestRateLimit } from "@/lib/ratelimit";
 import { verifyAccessToken } from "@/lib/mcpOAuthStore";
 
@@ -20,8 +20,20 @@ export const runtime = "nodejs";
  *    opcionales: proyecto, estado (pendiente | en_progreso | bloqueada |
  *    completada), responsable, actualizadas_desde (AAAA-MM-DD) y limite
  *    (50 por defecto, 200 máx). Ordena por fecha límite y luego por
- *    importancia. Excluye tareas confidenciales y sólo expone los campos de
- *    TareaResumen (ver lib/portfolio/tareasQuery.ts).
+ *    importancia. Excluye tareas confidenciales y archivadas, y sólo expone
+ *    los campos de TareaResumen (ver lib/portfolio/tareasQuery.ts).
+ *  - actualizar_tarea_moov: actualiza (merge parcial) una tarea existente
+ *    por id, de cualquier proyecto — no hay scoping por proyecto todavía,
+ *    ver nota de auth más abajo.
+ *  - eliminar_tarea_moov: archiva una tarea por id (no la borra: queda en
+ *    Redis con archivada=true y deja de aparecer en listar_tareas_moov).
+ *
+ * Nota de auth: las 4 herramientas comparten el mismo modelo — un token
+ * (secreto estático o OAuth) autentica al caller pero no lo ata a un
+ * proyecto, así que cualquier caller autorizado puede leer/crear/editar/
+ * archivar tareas de cualquier proyecto. crear_tarea_moov ya funcionaba
+ * así (el campo proyecto es auto-declarado); actualizar/eliminar heredan
+ * el mismo modelo por consistencia, no porque sea lo ideal.
  */
 
 function getClientIP(req: NextRequest): string {
@@ -50,6 +62,24 @@ const CreateTareaMcpSchema = {
   fecha_limite: z.string().nullable().default(null),
   confidencial: z.boolean().default(false),
   etiquetas: z.array(z.string()).default([]),
+};
+
+const UpdateTareaMcpSchema = {
+  id: z.string().min(1).describe("Id de la tarea a actualizar, el que devolvió crear_tarea_moov (ej. AC-T-...)."),
+  tarea: z.string().min(1).optional(),
+  descripcion: z.string().optional(),
+  proxima_accion: z.string().optional(),
+  columna_kanban: TareaSchema.shape.columna_kanban.optional(),
+  responsable: z.string().optional(),
+  nivel_importancia: TareaSchema.shape.nivel_importancia.optional(),
+  nivel_urgencia: TareaSchema.shape.nivel_urgencia.optional(),
+  fecha_limite: z.string().nullable().optional(),
+  etiquetas: z.array(z.string()).optional(),
+  confidencial: z.boolean().optional(),
+};
+
+const DeleteTareaMcpSchema = {
+  id: z.string().min(1).describe("Id de la tarea a archivar."),
 };
 
 const ListTareasMcpSchema = {
@@ -109,6 +139,7 @@ function buildServer(): McpServer {
         enlaces: [],
         depende_de: [],
         parent_id: null,
+        archivada: false,
         checklist: [],
         historial: [{ fecha: today, nota: "Tarea creada vía conector MCP de claude.ai." }],
       };
@@ -163,6 +194,107 @@ function buildServer(): McpServer {
       const resultado = listarTareas(tareas, args);
       const payload = { total: resultado.total, devueltas: resultado.tareas.length, tareas: resultado.tareas };
       return { content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }] };
+    }
+  );
+
+  server.registerTool(
+    "actualizar_tarea_moov",
+    {
+      title: "Actualizar tarea del board de MOOV",
+      description:
+        "Actualiza una tarea existente del board consolidado por id. Sólo cambia los campos enviados (merge, no " +
+        "reemplazo total) — útil para marcarla completada (columna_kanban: \"completada\"), moverla de columna, " +
+        "agregar información a la descripción o reasignar responsable.",
+      inputSchema: UpdateTareaMcpSchema,
+    },
+    async ({ id, ...patch }) => {
+      const camposEnviados = Object.fromEntries(Object.entries(patch).filter(([, v]) => v !== undefined));
+      if (Object.keys(camposEnviados).length === 0) {
+        return {
+          content: [{ type: "text" as const, text: "No se envió ningún campo para actualizar." }],
+          isError: true,
+        };
+      }
+
+      const current = await resolveTarea(id);
+      if (!current) {
+        return { content: [{ type: "text" as const, text: `No existe ninguna tarea con id ${id}.` }], isError: true };
+      }
+
+      const today = new Date().toISOString().slice(0, 10);
+      const updated: Tarea = {
+        ...current,
+        ...camposEnviados,
+        id,
+        fecha_actualizacion: today,
+        historial: [
+          ...current.historial,
+          { fecha: today, nota: `Actualizado vía conector MCP: ${Object.keys(camposEnviados).join(", ")}.` },
+        ],
+      };
+
+      const validated = TareaSchema.safeParse(updated);
+      if (!validated.success) {
+        return {
+          content: [{ type: "text" as const, text: `No se pudo actualizar la tarea: ${validated.error.message}` }],
+          isError: true,
+        };
+      }
+
+      try {
+        await upsertExternalTarea(validated.data);
+      } catch (err) {
+        console.error("[mcp] failed to persist tarea update:", err);
+        return {
+          content: [{ type: "text" as const, text: "No se pudo guardar el cambio (error de almacenamiento)." }],
+          isError: true,
+        };
+      }
+
+      return {
+        content: [{ type: "text" as const, text: `Tarea ${id} actualizada: ${Object.keys(camposEnviados).join(", ")}.` }],
+      };
+    }
+  );
+
+  server.registerTool(
+    "eliminar_tarea_moov",
+    {
+      title: "Archivar tarea del board de MOOV",
+      description:
+        "Archiva una tarea del board consolidado por id. No la borra: queda guardada con trazabilidad completa " +
+        "pero deja de aparecer en listar_tareas_moov y en el board.",
+      inputSchema: DeleteTareaMcpSchema,
+    },
+    async ({ id }) => {
+      const current = await resolveTarea(id);
+      if (!current) {
+        return { content: [{ type: "text" as const, text: `No existe ninguna tarea con id ${id}.` }], isError: true };
+      }
+      if (current.archivada) {
+        return { content: [{ type: "text" as const, text: `La tarea ${id} ya estaba archivada.` }] };
+      }
+
+      const today = new Date().toISOString().slice(0, 10);
+      const updated: Tarea = {
+        ...current,
+        id,
+        archivada: true,
+        fecha_actualizacion: today,
+        historial: [...current.historial, { fecha: today, nota: "Archivada vía conector MCP." }],
+      };
+
+      try {
+        await upsertExternalTarea(updated);
+      } catch (err) {
+        console.error("[mcp] failed to persist tarea archive:", err);
+        return {
+          content: [{ type: "text" as const, text: "No se pudo archivar la tarea (error de almacenamiento)." }],
+          isError: true,
+        };
+      }
+
+      return { content: [{ type: "text" as const, text: `Tarea ${id} archivada.` }] };
     }
   );
 

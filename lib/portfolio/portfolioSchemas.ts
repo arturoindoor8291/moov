@@ -154,6 +154,10 @@ export const TareaSchema = z.object({
   parent_id: z.string().nullable().default(null),
   etiquetas: z.array(z.string()),
   confidencial: z.boolean(),
+  // Archivado desde eliminar_tarea_moov (conector MCP): la tarjeta se
+  // conserva en Redis por trazabilidad pero deja de aparecer en
+  // listar_tareas_moov. Default false para no romper registros existentes.
+  archivada: z.boolean().default(false),
   checklist: z.array(ChecklistItemSchema),
   historial: z.array(HistorialEntrySchema),
 });

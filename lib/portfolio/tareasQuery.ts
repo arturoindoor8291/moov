@@ -47,11 +47,13 @@ function fechaLimiteOrden(t: Tarea): string {
  * Read-only projection of the kanban for the MCP list tool. Tareas flagged
  * `confidencial` are dropped entirely (not redacted) and only the fields in
  * TareaResumen ever leave this function — descripcion, historial, enlaces,
- * fuente, etc. are never exposed.
+ * fuente, etc. are never exposed. Tareas archivadas (eliminar_tarea_moov)
+ * también se excluyen: siguen en Redis por trazabilidad pero no se listan.
  */
 export function listarTareas(tareas: Tarea[], filters: TareasFilters): { total: number; tareas: TareaResumen[] } {
   const visibles = tareas
     .filter((t) => !t.confidencial)
+    .filter((t) => !t.archivada)
     .filter((t) => !filters.proyecto || matches(t.proyecto, filters.proyecto))
     .filter((t) => !filters.estado || t.columna_kanban === filters.estado)
     .filter((t) => !filters.responsable || matches(t.responsable, filters.responsable))

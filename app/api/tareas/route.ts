@@ -106,6 +106,7 @@ export async function POST(req: NextRequest) {
     fuente: { tipo: "manual", referencia: `Creado desde /tareas por ${user.email}`, fecha: today, link: null },
     enlaces: [],
     depende_de: [],
+    archivada: false,
     checklist: [],
     historial: [{ fecha: today, nota: `Tarea creada desde /tareas por ${user.email}.` }],
   };

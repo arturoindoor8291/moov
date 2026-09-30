@@ -8,7 +8,7 @@ import TareaTableView from "@/components/portafolio/TareaTableView";
 import ProyectoSummaryChips from "@/components/portafolio/ProyectoSummaryChips";
 import TareaFormModal, { type TareaFormValues } from "@/components/portafolio/TareaFormModal";
 import { COLUMNA_LABEL, TIPO_TAREA_LABEL } from "@/components/portafolio/TareaCard";
-import { canonicalProyecto, theme } from "@/components/portafolio/tareasTheme";
+import { canonicalProyecto, esResponsable, RESPONSABLES_CONOCIDOS, theme } from "@/components/portafolio/tareasTheme";
 import { descendantIds } from "@/lib/portfolio/tareaTree";
 import type { Tarea } from "@/lib/portfolio/portfolioSchemas";
 
@@ -79,13 +79,9 @@ export default function TareasPage() {
     return me.proyectos;
   }, [me, tareas]);
 
-  // Responsables ya usados entre las tareas visibles para este usuario —
-  // no hay endpoint de usuarios accesible desde /tareas, así que el filtro
-  // se arma con quien ya tenga alguna tarea asignada.
-  const responsables = useMemo(
-    () => Array.from(new Set(tareas.map((t) => t.responsable).filter(Boolean))).sort(),
-    [tareas]
-  );
+  // El filtro de responsable solo ofrece a las personas reales del equipo,
+  // no las contrapartes externas que a veces quedan en el campo responsable.
+  const responsables = RESPONSABLES_CONOCIDOS;
 
   const filtered = useMemo(() => {
     let result = tareas;
@@ -100,7 +96,7 @@ export default function TareasPage() {
     if (urgenciaFilter !== "all") result = result.filter((t) => t.nivel_urgencia === urgenciaFilter);
     if (tipoFilter !== "all") result = result.filter((t) => t.tipo_tarea === tipoFilter);
     if (estadoFilter !== "all") result = result.filter((t) => t.columna_kanban === estadoFilter);
-    if (responsableFilter !== "all") result = result.filter((t) => t.responsable === responsableFilter);
+    if (responsableFilter !== "all") result = result.filter((t) => esResponsable(t.responsable, responsableFilter));
     return result;
   }, [
     tareas,

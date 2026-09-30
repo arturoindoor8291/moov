@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
     fuente: { tipo: "manual", referencia: "Creado desde el panel /admin/tareas", fecha: today, link: null },
     enlaces: [],
     depende_de: [],
+    archivada: false,
     checklist: [],
     historial: [{ fecha: today, nota: "Tarea creada desde el panel /admin/tareas." }],
   };
