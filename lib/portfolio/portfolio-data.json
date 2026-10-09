@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-10-05",
+  "ultima_actualizacion": "2026-10-09",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -1993,7 +1993,7 @@
         "valor": 145906550,
         "moneda": "MXN",
         "fecha_dato": "2025",
-        "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva).",
+        "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva). Reporte mensual operativo sep-2026: GMV $44.9M MXN (-6% MoM, +37% YoY), 675.1K usuarios activos (+16% YoY), 9.33M operaciones (+26% YoY). Sin P&L posterior a Q4 2025.",
         "serie_trimestral": [
           {
             "periodo": "4Q 2025",
@@ -2019,15 +2019,76 @@
             "referencia": "Kigo_Financiero_2025-Q4.pdf",
             "nota": "Usuarios activos = diciembre 2025. El GMV de diciembre fue 63.7M MXN (no es revenue trimestral)."
           }
+        ],
+        "serie_mensual": [
+          {
+            "periodo": "2026-09",
+            "moneda": "MXN",
+            "usuarios_activos": 675100,
+            "kpis": [
+              {
+                "nombre": "GMV (serie del reporte; la tarjeta dice 44.2M)",
+                "valor": 44923088,
+                "unidad": "MXN"
+              },
+              {
+                "nombre": "GMV agosto 2026",
+                "valor": 47620416,
+                "unidad": "MXN"
+              },
+              {
+                "nombre": "Operaciones",
+                "valor": 9330000,
+                "unidad": "operaciones"
+              },
+              {
+                "nombre": "Descargas",
+                "valor": 179700,
+                "unidad": "descargas"
+              },
+              {
+                "nombre": "Usuarios nuevos",
+                "valor": 100400,
+                "unidad": "usuarios"
+              },
+              {
+                "nombre": "Usuarios multiproyecto",
+                "valor": 215500,
+                "unidad": "usuarios"
+              },
+              {
+                "nombre": "Usos promedio por usuario al mes",
+                "valor": 13.83,
+                "unidad": "usos"
+              },
+              {
+                "nombre": "CSAT PV",
+                "valor": 4.47,
+                "unidad": "puntos"
+              },
+              {
+                "nombre": "CSAT ED",
+                "valor": 4.79,
+                "unidad": "puntos"
+              }
+            ],
+            "referencia": "Kigo_KPI_2026-09.pdf",
+            "nota": "Reporte mensual operativo (sin ingresos, EBITDA ni caja). GMV de la tarjeta $44.2M vs serie $44,923,088: ver Discrepancias #13. Dic-2025: $63.7M (reporte Q4) vs $37.9M (serie): ver Discrepancias #14."
+          }
         ]
       },
-      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja.",
+      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja. Sep-2026 (primer reporte mensual, solo operativo): GMV $44.9M MXN (-6% MoM, +37% YoY), 675.1K usuarios activos, 10 proyectos nuevos (AIFA entre ellos) y firma con Simetrik para conciliación de pagos. Usuarios nuevos -35% YoY y descargas -16% YoY; ranking App Store de #15 a #29. Último dato financiero real: Q4 2025.",
       "proximos_pasos": [
         "Localizar el instrumento de inversión específico de Huerpel",
-        "Confirmar en qué entidad (México o Delaware) está la posición"
+        "Confirmar en qué entidad (México o Delaware) está la posición",
+        "Pedir a Kigo los estados financieros de Q1-Q3 2026 (ingresos, EBITDA, caja); el reporte mensual no los trae",
+        "Aclarar con Kigo la cifra de GMV de sep-2026 (tarjeta $44.2M vs serie $44.9M) y la definición de GMV (dic-2025: $63.7M vs $37.9M)"
       ],
       "alertas": [
-        "Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio"
+        "Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio",
+        "Sin P&L, caja ni runway posteriores a Q4 2025 (más de 9 meses)",
+        "Dos cifras de GMV sin reconciliar (sep-2026 y dic-2025); ver Discrepancias #13 y #14",
+        "Usuarios nuevos -35% YoY y descargas -16% YoY en sep-2026"
       ]
     },
     {

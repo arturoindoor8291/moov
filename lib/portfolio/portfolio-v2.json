@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "generado_de": {
-    "v1_actualizacion": "2026-10-05",
+    "v1_actualizacion": "2026-10-09",
     "excel_periodo": "4Q 2025"
   },
   "parametros": {
@@ -126,7 +126,7 @@
         "4Q 2025": 17500
       }
     },
-    "ultima_actualizacion": "2026-10-05"
+    "ultima_actualizacion": "2026-10-09"
   },
   "startups": [
     {
@@ -2738,25 +2738,25 @@
           "texto": "Headcount 11→15 en septiembre 2026: vigilar costos recurrentes (costos pico trimestrales históricos: ene €84K, abr €95K, jul €100K). Ver POR-T-MUVDBC2V.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Runway con tres versiones distintas (31-dic-2026 / 1-dic-2027 / 1-nov-2027 worst case y >2028 right case). Ver Discrepancias_Detectadas #11 y POR-T-MUVDBBO6.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Agosto 2026: MRR cayó -6.2% MoM; septiembre rebotó +11.3% (€76,333). Causa de la caída aún sin confirmar (POR-T-MTRAY1QM).",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "LTV/CAC no calculable con churn 0% (lifetime infinito); CAC sep-2026 €1,780.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -3298,31 +3298,31 @@
           "texto": "Sin instrumento legal localizado",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Cifras financieras absolutas no confiables (solo % de cumplimiento)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Cliente Grupo Salinas/Tiendas Neto dejó de pagar; cartera grande pendiente de cobro (ago-2026)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Perdieron al cliente Koji por centralización de operaciones en agencia (ago-2026)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Discrepancia sin resolver: monto de ronda cerrada ($900K, ago-2026) vs. extensión de nota convertible mencionada antes ($600-700K, jul-2025)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -4575,19 +4575,19 @@
           "texto": "New MRR growth de Q2 2026 fue solo 44% de la meta trimestral (USA aporto $0)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Cash positive de junio ayudado por cobranza atrasada - vigilar sostenibilidad estructural",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Definiciones de MRR aun sin unificacion formal confirmada por la startup",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -6389,31 +6389,31 @@
           "texto": "Runway pasó de ~21.8 meses (jun-2026) a ~11 meses (ago-2026) en dos meses. Parte del cambio es la corrección de unidades MXN->USD, pero la quema implicada (~$22.5K/mes) duplica el EBITDA mensual y no está explicada.",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "GTV prácticamente plano desde mayo 2026 (+1% en tres meses). El crecimiento de ingreso de 2026 es sobre todo expansión de take rate, que ya se agotó (estable ~30% desde junio).",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "El timeline de breakeven que comunica la startup (3-7 meses) es optimista por un factor de ~2x contra la tendencia de los últimos cuatro meses.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Discrepancia de unidades: las cifras históricas de esta ficha y del Dossier estaban en MXN etiquetadas como USD. Corregido a partir de ago-2026.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "El reporte de agosto reexpresa el net revenue de meses previos respecto al reporte de junio (ene -10%, abr -12%, jun +7%). Los GTV sí reconcilian tras convertir a USD; los de net revenue no.",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -6844,19 +6844,19 @@
           "texto": "Crisis de caja activa desde junio 2026",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Runway de solo 3 meses",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Descuento del SAFE (80%) requiere verificación",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -6973,19 +6973,19 @@
           "texto": "Sin instrumento legal localizado",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Sin ningún reporte financiero",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Startup con menos documentación de todo el portafolio",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -8235,13 +8235,13 @@
           "texto": "Discrepancia en margen neto 2024 (8.7% vs 20%)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Contrato legal no localizado",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -9265,7 +9265,114 @@
           ]
         }
       ],
-      "serie_mensual": [],
+      "serie_mensual": [
+        {
+          "periodo": "2026-09",
+          "moneda_original": "MXN",
+          "tipo_cambio_a_usd": null,
+          "tipo_cambio_fuente": null,
+          "revenue_original": null,
+          "revenue_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gtv_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "gross_profit_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "ebitda_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "burn_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "caja_usd": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "runway_meses": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "clientes": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "usuarios_activos": {
+            "valor": 675100,
+            "fuente": "reporte_startup",
+            "fecha_dato": "2026-09",
+            "referencia": "Kigo_KPI_2026-09.pdf",
+            "nota": "Reporte mensual operativo (sin ingresos, EBITDA ni caja). GMV de la tarjeta $44.2M vs serie $44,923,088: ver Discrepancias #13. Dic-2025: $63.7M (reporte Q4) vs $37.9M (serie): ver Discrepancias #14."
+          },
+          "equipo": {
+            "valor": null,
+            "fuente": "no_disponible",
+            "fecha_dato": null
+          },
+          "kpis_propios": [
+            {
+              "nombre": "GMV (serie del reporte; la tarjeta dice 44.2M)",
+              "valor": 44923088,
+              "unidad": "MXN"
+            },
+            {
+              "nombre": "GMV agosto 2026",
+              "valor": 47620416,
+              "unidad": "MXN"
+            },
+            {
+              "nombre": "Operaciones",
+              "valor": 9330000,
+              "unidad": "operaciones"
+            },
+            {
+              "nombre": "Descargas",
+              "valor": 179700,
+              "unidad": "descargas"
+            },
+            {
+              "nombre": "Usuarios nuevos",
+              "valor": 100400,
+              "unidad": "usuarios"
+            },
+            {
+              "nombre": "Usuarios multiproyecto",
+              "valor": 215500,
+              "unidad": "usuarios"
+            },
+            {
+              "nombre": "Usos promedio por usuario al mes",
+              "valor": 13.83,
+              "unidad": "usos"
+            },
+            {
+              "nombre": "CSAT PV",
+              "valor": 4.47,
+              "unidad": "puntos"
+            },
+            {
+              "nombre": "CSAT ED",
+              "valor": 4.79,
+              "unidad": "puntos"
+            }
+          ]
+        }
+      ],
       "kpi_principal": {
         "nombre": "Revenue anual",
         "valor": 145906550,
@@ -9274,8 +9381,8 @@
         "definicion": null
       },
       "reporte": {
-        "ultimo_periodo_reportado": "2025-12",
-        "frecuencia": "trimestral",
+        "ultimo_periodo_reportado": "2026-09",
+        "frecuencia": "mensual",
         "al_corriente": false,
         "nota_monitoring": "No disponible"
       },
@@ -9283,14 +9390,32 @@
         "Kigo reporta que le rechazaron una línea de crédito para seguir financiandose sin diluirse por Viwala. Sin embargo, se negoció exitosamente una línea de crédito de $1M USD con ZKTeco tras ganar el Premier Rapid Breakthrough Award en un viaje en China. ",
         "Se tiene un enfoque claro en estandarizar y documentar las buenas prácticas para impulsar al equipo con AI, dando que el día de hoy es muy dispar el uso en Kigo. "
       ],
-      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja.",
-      "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva).",
+      "situacion_actual": "Una de las dos startups más grandes del portafolio (junto con Partrunner). CAPEX se triplicó en 2025 ($37.85M MXN vs $13.15M en 2024). Mandato interno de mantener mínimo $4M MXN en caja. Sep-2026 (primer reporte mensual, solo operativo): GMV $44.9M MXN (-6% MoM, +37% YoY), 675.1K usuarios activos, 10 proyectos nuevos (AIFA entre ellos) y firma con Simetrik para conciliación de pagos. Usuarios nuevos -35% YoY y descargas -16% YoY; ranking App Store de #15 a #29. Último dato financiero real: Q4 2025.",
+      "tendencia": "+35.55% vs. 2024. Rentable desde Q1 2025 (primer trimestre con utilidad operativa positiva). Reporte mensual operativo sep-2026: GMV $44.9M MXN (-6% MoM, +37% YoY), 675.1K usuarios activos (+16% YoY), 9.33M operaciones (+26% YoY). Sin P&L posterior a Q4 2025.",
       "alertas": [
         {
           "texto": "Instrumento legal no localizado, pese a ser una de las inversiones más grandes del portafolio",
           "severidad": "alta",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
+        },
+        {
+          "texto": "Sin P&L, caja ni runway posteriores a Q4 2025 (más de 9 meses)",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-10-09"
+        },
+        {
+          "texto": "Dos cifras de GMV sin reconciliar (sep-2026 y dic-2025); ver Discrepancias #13 y #14",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-10-09"
+        },
+        {
+          "texto": "Usuarios nuevos -35% YoY y descargas -16% YoY en sep-2026",
+          "severidad": "media",
+          "severidad_revisada": false,
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
@@ -9300,6 +9425,14 @@
         },
         {
           "texto": "Confirmar en qué entidad (México o Delaware) está la posición",
+          "responsable": null
+        },
+        {
+          "texto": "Pedir a Kigo los estados financieros de Q1-Q3 2026 (ingresos, EBITDA, caja); el reporte mensual no los trae",
+          "responsable": null
+        },
+        {
+          "texto": "Aclarar con Kigo la cifra de GMV de sep-2026 (tarjeta $44.2M vs serie $44.9M) y la definición de GMV (dic-2025: $63.7M vs $37.9M)",
           "responsable": null
         }
       ],
@@ -10449,13 +10582,13 @@
           "texto": "Firma del waiver legal 2026 sin confirmar",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         },
         {
           "texto": "Dato financiero desactualizado (>12 meses)",
           "severidad": "media",
           "severidad_revisada": false,
-          "fecha": "2026-10-05"
+          "fecha": "2026-10-09"
         }
       ],
       "proximos_pasos": [
