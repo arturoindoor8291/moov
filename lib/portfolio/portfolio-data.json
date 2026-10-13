@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-10-09",
+  "ultima_actualizacion": "2026-10-13",
   "fondo": {
     "nombre": "MOOV",
     "entidad": "Grupo Huerpel",
@@ -1061,10 +1061,10 @@
       },
       "financiero": {
         "metrica_principal": "MRR Billed",
-        "valor": 153694,
+        "valor": 161603,
         "moneda": "USD",
-        "fecha_dato": "2026-06",
-        "tendencia": "MRR Billed subio de $142,999 (feb-2026) a $153,694 (jun-2026), crecimiento mensual modesto y consistente. New MRR de Q2 2026 fue solo 44% de la meta trimestral (~$17K vs $38K), con USA aportando $0. Cash Positive Operations alcanzado en junio 2026 (con matiz: ayudado por cobranza de cuentas por cobrar atrasadas, principalmente Traxion).",
+        "fecha_dato": "2026-09",
+        "tendencia": "MRR Billed sep-2026 $161,603: +5.1% vs jun-2026 ($153,694) y -1.3% vs jul ($163,697, maximo del periodo); 10% por debajo de la meta Q3 de $180K. Clientes cayeron de 88 (jul) a 77 (sep) y el churn de sep ($7,070) es el mayor de abr-sep. Cash-flow positivo de +$32K en Q3 (cobranza 80% al corriente, 1.4% a >90 dias). Oct esperado ~$175K; meta dic-2026 $200K.",
         "serie_mensual": [
           {
             "periodo": "2025-11",
@@ -1220,20 +1220,125 @@
             ],
             "referencia": "Ruedata_Financiero_2026-Q1.pdf y Ruedata_Newsletter_Q2-2026 (Total Administrative Revenue)",
             "equipo": 28
+          },
+          {
+            "periodo": "2026-07",
+            "moneda": "USD",
+            "revenue_usd": 179434,
+            "clientes": 88,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 163697,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 59091,
+                "unidad": "vehículos"
+              },
+              {
+                "nombre": "New MRR",
+                "valor": 3878,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Expansion MRR",
+                "valor": 9081,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Churn MRR",
+                "valor": 2110,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Ruedata_Newsletter_2026-Q3 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-08",
+            "moneda": "USD",
+            "revenue_usd": 175214,
+            "clientes": 85,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 160317,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 57871,
+                "unidad": "vehículos"
+              },
+              {
+                "nombre": "New MRR",
+                "valor": 1720,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Expansion MRR",
+                "valor": -149,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Churn MRR",
+                "valor": 4951,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Ruedata_Newsletter_2026-Q3 (Total Administrative Revenue)"
+          },
+          {
+            "periodo": "2026-09",
+            "moneda": "USD",
+            "revenue_usd": 173617,
+            "clientes": 77,
+            "kpis": [
+              {
+                "nombre": "MRR Billed",
+                "valor": 161603,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Vehículos facturados",
+                "valor": 58336,
+                "unidad": "vehículos"
+              },
+              {
+                "nombre": "New MRR",
+                "valor": 3560,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Expansion MRR",
+                "valor": 4796,
+                "unidad": "USD"
+              },
+              {
+                "nombre": "Churn MRR",
+                "valor": 7070,
+                "unidad": "USD"
+              }
+            ],
+            "referencia": "Ruedata_Newsletter_2026-Q3 (Total Administrative Revenue)"
           }
         ]
       },
-      "situacion_actual": "Q2 2026: llegaron a Cash Positive Operations en junio (meta que se habian fijado desde Q1), aunque con ayuda de cobranza atrasada de Traxion - julio/agosto deberian ser cash positive de forma estructural. Pipeline activo en USA: piloto pagado CEVA Logistics (2 plantas, $400K ACV potencial), ABARTA Coca-Cola pasa a produccion pagada en agosto y abrio puerta a Coca-Cola United (piloto oct-2026), partnership con Doran (TPMS) con primer piloto conjunto en agosto (Home City Ice). En Mexico: GEPP expande a $50K MRR (cuenta mas grande), FEMSA evaluando piloto ($60K MRR potencial, Q3), ADO firmo piloto en julio. Perdieron Mansfield (piloto no pagado) y TVA (por falta de certificacion SOC 2, prioridad Q3) en Q2. Definiciones de MRR siguen sin unificacion formal aunque el update de Q2 usa consistentemente 'MRR Billed' (ver Discrepancias_Detectadas).",
+      "situacion_actual": "Q3 2026: cash-flow positivo (+$32K) y cobranza sana, pero MRR Billed de sep $161.6K quedo 10% abajo de la meta de $180K: churn y downsells mayores a lo presupuestado (Tres Fronteras, Konect por software gratuito del proveedor de llantas, 4 cuentas chicas en Brasil, Traxion temporal); clientes 88->77 de jul a sep. Wins: GFA convierte a $7.5K MRR desde ene-2027, ABARTA (piloto hasta nov) abre Coca-Cola United (feb-2027) y Puerto Rico, AVIA (Espana) piloto completo y piloto de residuos en Espana (~$50K MRR potencial 2027), Dtroy regresa. Canales: Doran vivo (Home City Ice), Bosch FleetME con terminos comerciales acordados pero sin firma (2a ronda legal), Geotab Order Now ~6 meses mas. SOC 2 en proceso (fin de 2026). CEVA espera inspeccion final en California. Q4: burn hasta ~$15K, meta $200K MRR en dic (oct esperado ~$175K). MRR Billed sigue siendo la unica metrica usada en los updates de Q2 y Q3.",
       "proximos_pasos": [
-        "Aclarar con Ruedata la definicion unica de MRR a usar de forma permanente",
-        "Confirmar si julio/agosto se sostienen cash positive sin el efecto de cobranza atrasada",
-        "Dar seguimiento a certificacion SOC 2 (prioridad Q3, causo perdida de TVA)",
-        "Dar seguimiento a cierre de partnerships Bosch FleetME y Geotab Order Now (prioridad Q3)",
-        "Vigilar si la meta Q3 2026 de $180K MRR es alcanzable (New MRR de Q2 fue solo 44% de su propia meta)"
+        "Pedir a Ruedata confirmacion explicita de la definicion unica de MRR (MRR Billed) y aclarar el puente de jul-2026 que no cuadra por -$846",
+        "Preguntar por GEPP: el update de Q2 anuncio expansion a $50K MRR para fin de Q3 y el MRR de sep no la refleja ni el update de Q3 la menciona",
+        "Confirmar estatus de la oferta de Valor Ventures ($2M) y aislar posicion de Huerpel en el cap table",
+        "Vigilar si octubre llega a ~$175K MRR y si la meta de $200K en dic-2026 es alcanzable (requiere +24% vs sep)",
+        "Dar seguimiento a firma de Bosch FleetME, avance de SOC 2 (fin 2026) y cierre del piloto CEVA",
+        "Atender asks de Ruedata: intros a CONA, TEN/Penske/Cox Automotive Fleet Services y flotas de EE.UU. 500+"
       ],
       "alertas": [
-        "New MRR growth de Q2 2026 fue solo 44% de la meta trimestral (USA aporto $0)",
-        "Cash positive de junio ayudado por cobranza atrasada - vigilar sostenibilidad estructural",
+        "MRR Billed sep-2026 $161.6K vs meta Q3 $180K (-10%); clientes 88->77 jul-sep y churn sep $7.1K (el mayor de abr-sep)",
+        "Churn sigue siendo el mayor riesgo en LATAM; ~mitad ocurre en los primeros 6 meses y hay competencia gratuita/low-cost (software de proveedores de llantas, nuevo competidor local en Mexico)",
+        "Puente de MRR jul-2026 no cuadra por -$846; GEPP $50K MRR anunciado en Q2 no visible en MRR sep",
+        "Bosch FleetME sin firmar y Geotab Order Now ~6 meses mas: canales de 2027 tardan en generar ingresos",
         "Definiciones de MRR aun sin unificacion formal confirmada por la startup"
       ]
     },
